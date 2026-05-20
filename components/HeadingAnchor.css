@@ -1,0 +1,62 @@
+/* Global Heading Anchor Styles */
+
+/* Ensure headings have scroll margin for sticky navigation */
+h2.has-anchor {
+  scroll-margin-top: 80px !important; /* Adjust based on your sticky nav height */
+}
+
+/* Heading Anchor Icon Styles */
+.heading-anchor-icon {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 0.5rem !important;
+  opacity: 0; /* Hidden by default */
+  visibility: hidden; /* Hidden by default */
+  transition: opacity 0.2s ease, visibility 0.2s ease, color 0.2s ease;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+}
+
+/* Show icon on hover */
+h2:hover .heading-anchor-icon {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Icon hover state */
+.heading-anchor-icon:hover {
+  color: var(--color-primary); /* Blue color on hover */
+}
+
+/* Feedback state after copying */
+.heading-anchor-icon.copied {
+  opacity: 1;
+  visibility: visible;
+  color: var(--color-success); /* Green color for success feedback */
+}
+
+/* Icon SVG styling */
+.heading-anchor-icon svg {
+  width: 1em;
+  height: 1em;
+  stroke-width: 2;
+  vertical-align: middle;
+}
+
+/* Focus state for accessibility */
+/* .heading-anchor-icon:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 2px;
+} */
+
+/* Dark mode support if needed */
+@media (prefers-color-scheme: dark) {
+  .heading-anchor-icon:hover {
+    color: var(--color-primary); /* Lighter blue for dark mode */
+  }
+}

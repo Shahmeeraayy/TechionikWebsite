@@ -1,0 +1,147 @@
+"use client";
+
+import Button from "@/components/Button";
+import Image from "next/image";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ServiceType } from "@/data/OurServices";
+import { useSlider } from "@/components/hooks/Slider";
+
+const TechServices: React.FC<any> = ({ servicesData }) => {
+  // Embla is only used for the mobile ref
+  const { emblaRef, emblaApi } = useSlider({
+    loop: false,
+    align: "start",
+    containScroll: "trimSnaps",
+  });
+
+  const [selectedService, setSelectedService] = useState<any>(
+    servicesData?.services?.[0] || null,
+  );
+
+  // Sync mobile slider position if the active service changes via desktop click
+  useEffect(() => {
+    if (emblaApi && selectedService) {
+      const index = servicesData.services.findIndex(
+        (s: any) => s.id === selectedService.id,
+      );
+      if (index !== -1) emblaApi.scrollTo(index);
+    }
+  }, [emblaApi, selectedService, servicesData?.services]);
+
+  if (!servicesData?.services || !Array.isArray(servicesData.services))
+    return null;
+
+  return (
+    <div className="w-full">
+      {/* Header Container */}
+      <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 md:mb-12 gap-6">
+        {/* Title and Description */}
+        <div className="max-w-2xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gradient">
+            {servicesData?.title}{" "}
+            <span className="text-dark-gradient">
+              {servicesData?.gradientText}{" "}
+            </span>
+            {servicesData?.afterGradientText}
+          </h2>
+          <p
+            className="text-gray-400 mt-4"
+            dangerouslySetInnerHTML={{
+              __html: servicesData?.description ?? "",
+            }}
+          />
+        </div>
+
+        {/* 1. DESKTOP FILTERS (No Embla, Static Wrap) */}
+        <div className="hidden md:flex flex-wrap justify-end gap-3 max-w-3xl">
+          {servicesData.services.map((service: ServiceType) => (
+            <button
+              key={`desktop-${service.id}`}
+              onClick={() => setSelectedService(service)}
+              className={`px-6 py-2 rounded-full text-base font-medium transition-all whitespace-nowrap ${
+                selectedService.id === service.id
+                  ? "bg-primary-dark text-white shadow-md"
+                  : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+              }`}
+            >
+              {service.title}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 2. MOBILE FILTERS (Embla Slider Only) */}
+      <div
+        className="block md:hidden mb-8 overflow-hidden cursor-grab active:cursor-grabbing"
+        ref={emblaRef}
+      >
+        <div className="flex gap-3 touch-pan-y">
+          {servicesData.services.map((service: ServiceType) => (
+            <button
+              key={`mobile-${service.id}`}
+              onClick={() => setSelectedService(service)}
+              className={`h-10 px-6 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap flex-none ${
+                selectedService.id === service.id
+                  ? "bg-primary-dark text-white shadow-md"
+                  : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+              }`}
+            >
+              {service.title}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Service Card Section */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selectedService?.id ?? ""}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.4 }}
+          className="bg-secondary max-w-8xl mx-auto rounded-3xl gap-8 lg:gap-12 p-6 md:p-8 lg:p-12 flex flex-col md:flex-row items-center"
+        >
+          {/* Image */}
+          <div className="w-full md:w-1/2 2xl:w-1/3 relative h-64 md:h-85 rounded-2xl overflow-hidden">
+            <Image
+              src={selectedService?.image ?? ""}
+              alt={selectedService?.imageAlt ?? "Service Image"} // Added ?. and fallback
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 flex flex-col gap-5">
+            <h3 className="text-gradient text-2xl md:text-4xl font-semibold">
+              {selectedService?.title ?? ""}
+            </h3>
+            <p
+              className="text-[#CECECE] text-base md:text-lg leading-relaxed"
+              dangerouslySetInnerHTML={{
+                __html: selectedService?.description ?? "",
+              }}
+            />
+
+            <div className="pt-4">
+              <Button
+                ariaLabel={selectedService?.ctaText ?? ""}
+                text={`${selectedService?.ctaText ?? ""}`}
+                icon="/icons/arrow-right.svg"
+                size="medium"
+                radius="full"
+                href={selectedService?.ctaLink ?? ""}
+                variant="glass"
+                className="hidden md:inline-flex"
+              />
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export default TechServices;

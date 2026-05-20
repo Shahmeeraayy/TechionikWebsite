@@ -1,0 +1,52 @@
+.custom-card {
+  position: absolute;
+  top: 3514px;
+  left: 184px;
+
+  width: 395px;
+  height: 419px;
+
+  border-radius: 24px;
+  border-width: 1px;
+  border-style: solid;
+
+  /* Conic gradient border */
+  border-image-slice: 1;
+  border-image-source: conic-gradient(
+    from 180deg at 51.95% 49.81%, 
+    rgba(22, 22, 26, 0) -62.19deg, 
+    rgba(22, 22, 26, 0.105455) 121.23deg, 
+    rgba(240, 83, 35, 0.2) 142.73deg, 
+    #F05323 227.05deg, 
+    rgba(22, 22, 26, 0) 297.81deg, 
+    rgba(22, 22, 26, 0.105455) 481.23deg
+  );
+
+  /* Glassmorphic background */
+  background: linear-gradient(
+    179.26deg, 
+    rgba(22, 22, 26, 0.1) -1.53%, 
+    rgba(22, 22, 26, 0.5) 65.9%, 
+    rgba(22, 22, 26, 0) 101.48%
+  );
+
+  /* Shadow / blur */
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px); /* Safari support */
+
+  /* Optional */
+  opacity: 1;
+}
+
+/* Responsive: prevent horizontal overflow on small screens */
+@media (max-width: 768px) {
+  .custom-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 2rem auto;
+    width: calc(100% - 48px);
+    max-width: 395px;
+    height: auto;
+  }
+}

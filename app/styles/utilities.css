@@ -1,0 +1,118 @@
+/* Gradient text */
+.gradient-text {
+background: linear-gradient(90deg, #F05323 0%, #E9E9E9 85.58%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glass card */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Center utility */
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Globally target the Swiper pagination container */
+.swiper-pagination {
+  position: absolute !important;
+  bottom: -40px !important; /* Moves the dots below the slider */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 20;
+}
+
+/* Style the individual inactive bullet */
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+  margin: 0 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 1; /* Ensures it's visible */
+  transition: all 0.3s ease; /* Smooth transition for hover/active */
+}
+
+/* Style the active bullet */
+.swiper-pagination-bullet-active {
+  background-color: #ffffff; /* Solid white for active */
+  transform: scale(1.2); /* Slightly enlarge the active dot */
+}
+
+/* Optional: Style on hover */
+.swiper-pagination-bullet:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+  .pause-on-hover:hover {
+    animation-play-state: paused;
+  }
+
+  
+
+    .conic-border {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+  }
+
+   .conic-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      rgba(22, 22, 26, 0) -60deg,
+      rgba(22, 22, 26, 0.12) 120deg,
+      rgba(240, 83, 35, 0.4) 180deg,
+      rgba(22, 22, 26, 0) 260deg
+    );
+    animation: rotate-border 6s linear infinite;
+  }
+
+
+
+   .conic-border::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: linear-gradient(
+      179deg,
+      rgba(22, 22, 26, 0.1),
+      rgba(22, 22, 26, 0.5),
+      rgba(22, 22, 26, 0)
+    );
+    backdrop-filter: blur(40px);
+
+    /* This hides right + bottom border */
+    mask-image: linear-gradient(
+      to bottom right,
+      black 0%,
+      black 45%,
+      transparent 55%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom right,
+      black 0%,
+      black 45%,
+      transparent 55%,
+      transparent 100%
+    );
+  }
+@keyframes rotate-border {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

@@ -1,0 +1,26 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.67">
+<mask id="mask0_1397_4860" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-50" y="-50" width="180" height="180">
+<rect width="180" height="180" transform="translate(-50 -50)" fill="white"/>
+<rect x="26" y="26" width="28" height="28" rx="14" fill="black"/>
+</mask>
+<g mask="url(#mask0_1397_4860)">
+<foreignObject x="-14" y="-12" width="108" height="108"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(20px);clip-path:url(#bgblur_0_1397_4860_clip_path);height:100%;width:100%"></div></foreignObject><g filter="url(#filter0_f_1397_4860)" data-figma-bg-blur-radius="40">
+<path d="M26 42C26 34.268 32.268 28 40 28C47.732 28 54 34.268 54 42C54 49.732 47.732 56 40 56C32.268 56 26 49.732 26 42Z" fill="black" fill-opacity="0.04" style="mix-blend-mode:hard-light"/>
+</g>
+</g>
+</g>
+<path d="M26 40C26 32.268 32.268 26 40 26C47.732 26 54 32.268 54 40C54 47.732 47.732 54 40 54C32.268 54 26 47.732 26 40Z" fill="#333333" style="mix-blend-mode:color-dodge"/>
+<path d="M26 40C26 32.268 32.268 26 40 26C47.732 26 54 32.268 54 40C54 47.732 47.732 54 40 54C32.268 54 26 47.732 26 40Z" fill="white" fill-opacity="0.27"/>
+<path d="M26 40C26 32.268 32.268 26 40 26C47.732 26 54 32.268 54 40C54 47.732 47.732 54 40 54C32.268 54 26 47.732 26 40Z" fill="#F7F7F7" style="mix-blend-mode:plus-darker"/>
+<rect x="26" y="26" width="28" height="28" rx="14" fill="black" fill-opacity="0.01"/>
+<path d="M34.75 37.083L40 42.333L45.25 37.083" stroke="#F7F8FC" stroke-width="1.5"/>
+<defs>
+<filter id="filter0_f_1397_4860" x="-14" y="-12" width="108" height="108" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="10" result="effect1_foregroundBlur_1397_4860"/>
+</filter>
+<clipPath id="bgblur_0_1397_4860_clip_path" transform="translate(14 12)"><path d="M26 42C26 34.268 32.268 28 40 28C47.732 28 54 34.268 54 42C54 49.732 47.732 56 40 56C32.268 56 26 49.732 26 42Z"/>
+</clipPath></defs>
+</svg>

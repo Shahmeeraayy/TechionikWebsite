@@ -1,0 +1,11 @@
+.hero {
+  padding: 6rem 1rem;
+  text-align: center;
+  background: radial-gradient(circle at center, #1a1a1a, #000);
+}
+
+.subtitle {
+  max-width: 620px;
+  margin: 1rem auto;
+  color: var(--color-muted);
+}

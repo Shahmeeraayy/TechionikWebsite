@@ -1,0 +1,12 @@
+User-agent: *
+ 
+Disallow: /api/
+Disallow: /search/
+Disallow: /*?
+Disallow: /get-author-posts
+Disallow: /cache/
+Disallow: /ajax/
+Disallow: */feed
+Disallow: */rss
+ 
+Sitemap: https://techionik.com/sitemap.xml
