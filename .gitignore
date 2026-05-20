@@ -30,6 +30,10 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 logs/
+dev-server*.log
+.edge-profile/
+service-page-*.png
+services-*.png
 
 # env files
 .env*
