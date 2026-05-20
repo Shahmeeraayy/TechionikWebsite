@@ -26,33 +26,34 @@ export interface CompanyHighlightsData {
 }
 
 export const companyHighlightsData: CompanyHighlightsData = {
-  sectionTitle: "Why choose",
-  sectionSubtitle: "TECHIONIK",
-  description: "We deliver next-generation AI software solutions and automation that help businesses innovate, scale, and grow. As a trusted custom software development company, we build intelligent digital solutions for complex challenges. Trusted by enterprises across 30+ industries and recognized with a 98% client trust score, we transform challenges into competitive edge. ",
+  sectionTitle: "Why TECHIONIK",
+  sectionSubtitle: "",
+  description:
+    "Get software development services, built around your needs. From intelligent automation to full-cycle custom software - TECHIONIK helps companies achieve their roadmaps with the top 3% technology talent. Trusted by enterprises across 30+ industries.",
   mainImage: {
-    altText: "Orange dotted globe illustration",
-    imageUrl: "/images/home/redGlobe.webp", // Placeholder for your image path
+    altText: "AI engineering globe illustration",
+    imageUrl: "/images/home/redGlobe.webp",
   },
   stats: [
     {
-      id: "projects",
-      value: "300+",
-      label: "Projects Delivered",
+      id: "industries",
+      value: "30+",
+      label: "Industries served",
     },
     {
-      id: "experience",
-      value: "5+",
-      label: "Years Experience",
+      id: "talent",
+      value: "Top 3%",
+      label: "Technology talent",
     },
     {
-      id: "experts",
-      value: "25+",
-      label: "IT Experts",
+      id: "engineers",
+      value: "Vetted",
+      label: "AI-augmented engineers",
     },
     {
-      id: "countries",
-      value: "3",
-      label: "Countries we serve",
+      id: "roadmaps",
+      value: "Built",
+      label: "Around your needs",
     },
   ],
   certifications: [
@@ -60,19 +61,19 @@ export const companyHighlightsData: CompanyHighlightsData = {
       id: "iso",
       name: "ISO 9001:2015",
       imageAlt: "ISO 9001:2015 Certified Company Logo",
-      imageUrl: "/certificates/iso.webp", 
+      imageUrl: "/certificates/iso.webp",
     },
     {
       id: "iso2",
       name: "ISO 9001:2015",
       imageAlt: "ISO 9001:2015 Certified Company Logo",
-      imageUrl: "/certificates/iso.webp", 
+      imageUrl: "/certificates/iso.webp",
     },
     {
       id: "bafe",
       name: "BAFE",
       imageAlt: "BAFE Fire Safety Register Logo",
-      imageUrl: "/certificates/bafe.webp", 
+      imageUrl: "/certificates/bafe.webp",
     },
     {
       id: "ssip",

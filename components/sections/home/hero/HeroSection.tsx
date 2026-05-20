@@ -21,11 +21,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   autoplayDelay = 3000,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const activeSlide = slides[activeIndex] ?? slides[0];
+  const subtitle = activeSlide?.subtitle?.trim();
 
   const handleSlideChange = (swiper: SwiperType) => {
     setActiveIndex(swiper.realIndex);
   };
-  // console.log(category,"categocategoryry");
+
+  if (!activeSlide) {
+    return null;
+  }
 
   return (
     <div className="relative w-full h-screen max-h-screen min-h-[400px] overflow-hidden">
@@ -69,29 +74,31 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             key={activeIndex}
             className="opacity-0 animate-fadeIn text-2xl! md:text-5xl! lg:text-6xl! leading-tight! md:leading-normal!"
           >
-            <span className="gradient-text">{slides[activeIndex].title}</span>
-            <br />
-            <span className="text-gray-300">
-              {slides[activeIndex].subtitle}
-            </span>
+            <span className="gradient-text">{activeSlide.title}</span>
+            {subtitle ? (
+              <>
+                <br />
+                <span className="text-gray-300">{subtitle}</span>
+              </>
+            ) : null}
           </h1>
 
-          {slides[activeIndex].description && (
+          {activeSlide.description && (
             <p className="mt-6 text-gray-200 text-base sm:text-lg opacity-0 animate-fadeIn delay-200">
-              {slides[activeIndex].description}
+              {activeSlide.description}
             </p>
           )}
         </div>
 
-        {slides[activeIndex].ctaText && (
+        {activeSlide.ctaText && (
           <div className="py-6">
             <Button
-              ariaLabel={slides[activeIndex].ctaText}
-              text={slides[activeIndex].ctaText}
+              ariaLabel={activeSlide.ctaText}
+              text={activeSlide.ctaText}
               icon="/icons/arrow-right.svg"
               size="medium"
               radius="full"
-              href={slides[activeIndex].ctaLink || "#"}
+              href={activeSlide.ctaLink || "#"}
               variant="gradient"
               className="inline-flex w-full md:w-auto justify-between"
             />

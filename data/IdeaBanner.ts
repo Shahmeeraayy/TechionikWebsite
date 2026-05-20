@@ -1,3 +1,5 @@
+import { CALENDLY_URL } from "@/utils/links";
+
 export interface IdeaBannerData {
   title: string;
   highlight?: string;
@@ -5,16 +7,17 @@ export interface IdeaBannerData {
   ctaText: string;
   ctaLink: string;
   backgroundImage: string;
-  buttonVariant?: "glass" | "gradient" ;
+  buttonVariant?: "glass" | "gradient";
   buttonIcon?: string;
 }
 
 export const ideaBannerContent: IdeaBannerData = {
-  title: "Got an idea or Concerns?",
-  highlight: "idea",
-  description: "Whether you have a groundbreaking idea or specific concerns about your project, we're here to listen and help. Let's turn your vision into reality together.",
-  ctaText: "Let’s Discuss",
-  ctaLink: "contact-us",
+  title: "Ready to accelerate your roadmap?",
+  highlight: "roadmap",
+  description:
+    "Get software development services, built around your needs. Schedule a call.",
+  ctaText: "Schedule a Call",
+  ctaLink: CALENDLY_URL,
   backgroundImage: "/banners/idea-banner.png",
   buttonVariant: "glass",
   buttonIcon: "/icons/arrow-right.svg",

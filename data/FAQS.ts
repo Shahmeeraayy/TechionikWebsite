@@ -12,59 +12,56 @@ export interface FAQ {
 }
 
 export const faqsData: FAQ = {
-  mainTitle: "Software Development",
+  mainTitle: "AI-Native Engineering",
   spanTitle: "FAQs",
   faq: [
     {
       id: 1,
-      question: "What's Custom Software Development?",
+      question: "What is AI-native engineering?",
       answer:
-        "Custom software development services include building tailored software solutions for unique business challenges, modifying existing systems, and updating legacy software to meet the functionality, scalability, and usability.",
+        "AI-native engineering blends expert software delivery with practical AI assistance, helping teams design, build, and ship faster without losing quality or control.",
     },
     {
       id: 2,
-      question: "How much do Software Development services cost?",
+      question: "Which industries do you support?",
       answer:
-        "Custom software development services include building tailored software solutions for unique business challenges, modifying existing systems, and updating legacy software to meet the functionality, scalability, and usability.",
+        "We support organizations across 30+ industries, including healthcare, finance, retail, manufacturing, education, real estate, insurance, and hi-tech.",
     },
     {
       id: 3,
-      question: "Why hire a custom software development company?",
+      question: "Which engagement model should I choose?",
       answer:
-        "Hiring a professional company ensures expertise, better software architecture, maintenance support, and cost-effective solutions tailored to your business needs.",
+        "Choose staff augmentation to extend your team quickly, a dedicated team for long-term roadmap work, project-based outsourcing for turnkey delivery, or managed IT services for ongoing operational support.",
     },
     {
       id: 4,
-      question: "What are the technologies do you use?",
+      question: "Can you build software from scratch?",
       answer:
-        "We use modern technologies like React, Next.js, Node.js, Python, and cloud services to deliver scalable and efficient solutions.",
+        "Yes. We design and deliver custom software, web apps, mobile apps, and enterprise solutions from discovery through launch and support.",
     },
     {
       id: 5,
-      question: "How long does it take to develop custom software?",
+      question: "Do you offer AI automation services?",
       answer:
-        "The timeline depends on the complexity of the project, ranging from a few weeks for simple applications to several months for enterprise solutions.",
+        "Yes. We build automation across business processes, sales, marketing, HR, calling, and appointment workflows, along with agentic AI solutions.",
     },
     {
       id: 6,
-      question: "Do you provide post-development support?",
+      question: "How do you collaborate with in-house teams?",
       answer:
-        "Yes, we provide ongoing maintenance, updates, and support to ensure your software continues to meet your business needs.",
+        "We adapt to your process, communicate clearly, and integrate with your internal product, engineering, and operations teams to keep delivery aligned.",
     },
     {
       id: 7,
-      question: "Can you integrate our existing systems?",
+      question: "Can you work with our existing systems?",
       answer:
-        "Absolutely! We can integrate with your existing systems, APIs, and databases for seamless functionality.",
+        "Absolutely. We modernize, integrate, and extend existing platforms so your current systems keep working while new capabilities are added safely.",
     },
     {
       id: 8,
-      question: "Is my data secure during development?",
+      question: "How do we get started?",
       answer:
-        "Yes, we follow strict security protocols and data protection standards to ensure your data remains safe throughout the development process.",
+        "Start with a call so we can understand your roadmap, goals, and delivery needs, then we will recommend the right team structure and next steps.",
     },
   ],
 };
-
-
-

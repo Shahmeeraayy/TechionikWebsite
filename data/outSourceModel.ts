@@ -15,16 +15,16 @@ export interface slides {
 }
 
 export const outsourcingModelsData: OutsourcingSlide = {
-  title: "Our Flexible",
-  MiddleTitle: "Outsourcing",
-  lastTitle: "Models",
-
+  title: "Engagement",
+  MiddleTitle: "Models",
+  lastTitle: "",
   description:
-    "Partner with TECHIONIK to strengthen software development, automation, and IT capabilities through flexible collaboration models designed to support different business and project requirements.",
+    "Partner with TECHIONIK to thrive in AI software, automation, and IT capabilities.",
   items: [
     {
       title: "Staff Augmentation",
-      description: "<ul><li>Expand development teams with skilled AI and software engineers</li><li>Access specialized expertise for complex digital initiatives</li><li>Maintain project while accelerating delivery timelines</li><li>Reduce recruitment overhead and onboarding time</li></ul>",
+      description:
+        "<ul><li>Access specialized skills for complex digital initiatives</li><li>Maintain control while accelerating software delivery</li><li>Reduce recruitment costs and ramp up projects faster</li></ul>",
       image: "/images/ParentServices/outsourcingmedia/full.webp",
       hoverImage: "/images/ParentServices/outsourcingmedia/colorfull.webp",
       // bulletPoints: [
@@ -35,8 +35,9 @@ export const outsourcingModelsData: OutsourcingSlide = {
       // ],
     },
     {
-      title: "Dedicated Team ",
-      description: "<ul><li>Expand development teams with skilled AI and software engineers</li><li>Access specialized expertise for complex digital initiatives</li><li>Maintain project while accelerating delivery timelines</li><li>Reduce recruitment overhead and onboarding time</li></ul>",
+      title: "Dedicated Team",
+      description:
+        "<ul><li>Long-term collaboration with elite engineering talent</li><li>Full integration with in-house teams</li><li>Teams that grow with your business needs</li></ul>",
       image: "/images/ParentServices/outsourcingmedia/full.webp",
       hoverImage: "/images/ParentServices/outsourcingmedia/colorfull.webp",
       // bulletPoints: [
@@ -48,7 +49,8 @@ export const outsourcingModelsData: OutsourcingSlide = {
     },
     {
       title: "Project-Based Outsourcing",
-      description: "<ul><li>Expand development teams with skilled AI and software engineers</li><li>Access specialized expertise for complex digital initiatives</li><li>Maintain project while accelerating delivery timelines</li><li>Reduce recruitment overhead and onboarding time</li></ul>",
+      description:
+        "<ul><li>Predictable timelines, budgets, and quality outcomes</li><li>Turnkey solutions that minimize risk and overhead</li><li>Ideal for automation and digital transformation</li></ul>",
       image: "/images/ParentServices/outsourcingmedia/full.webp",
       hoverImage: "/images/ParentServices/outsourcingmedia/colorfull.webp",
 
@@ -61,7 +63,8 @@ export const outsourcingModelsData: OutsourcingSlide = {
     },
     {
       title: "Managed IT Services",
-      description: "<ul><li>Expand development teams with skilled AI and software engineers</li><li>Access specialized expertise for complex digital initiatives</li><li>Maintain project while accelerating delivery timelines</li><li>Reduce recruitment overhead and onboarding time</li></ul>",
+      description:
+        "<ul><li>Reduce workloads with AI-driven automation</li><li>Ensure business continuity and operational efficiency</li><li>Reliable expert support, 24/7</li></ul>",
       image: "/images/ParentServices/outsourcingmedia/full.webp",
       hoverImage: "/images/ParentServices/outsourcingmedia/colorfull.webp",
 
