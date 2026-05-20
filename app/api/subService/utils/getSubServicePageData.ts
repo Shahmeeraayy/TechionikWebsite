@@ -6,10 +6,12 @@ import type { WhatYouGett } from "@/data/WhatYouGetData";
 import type { TechnologyExpertise } from "@/data/technologyExpertiseData";
 import type { ContactHeroData } from "@/data/ConnectHero";
 import type { CaseStudyType } from "@/views/home/CaseStudies";
+import type { TechStackData } from "@/data/TechStack/AboutTeckStack";
 
 import { getSubService } from "./getSubService";
 import type { Industries, SubServiceData } from "../types/subService.type";
 import { WhatWeDo } from "@/data/what-we-do-data";
+import { backendDevelopmentPageData } from "@/data/services/backendDevelopmentPageData";
 
 const SUB_SERVICE_API_FALLBACK_IMAGE = "/banners/Hero.webp";
 const SOLUTIONS_ICON_FALLBACK = "/icons/cloud.svg";
@@ -18,8 +20,6 @@ const OUTSOURCING_IMAGE_FALLBACK =
 const OUTSOURCING_HOVER_IMAGE_FALLBACK =
   "/images/ParentServices/outsourcingmedia/colorfull.webp";
 const TECH_EXPERTISE_ICON_FALLBACK = "/icons/box-icon.png";
-const CONTACT_HERO_BG_FALLBACK = "/banners/buissness-banner.webp";
-const BLOG_PLACEHOLDER = "/images/home/blog-one.png";
 
 function stripHtml(html?: string) {
   if (!html) return "";
@@ -53,6 +53,133 @@ export interface SubServiceBlogFrontend {
   slug: string;
 }
 
+type TemplateHeroSlide = Partial<HeroSlide> & {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  video?: string;
+  image?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  imageAlt?: string;
+};
+
+type TemplateWhyChooseItem = {
+  title?: string;
+  description?: string;
+};
+
+type TemplateWhyChooseSection = {
+  title?: string;
+  description?: string;
+  items?: TemplateWhyChooseItem[];
+};
+
+type TemplateWhatWeDoItem = {
+  title?: string;
+  description?: string;
+};
+
+type TemplateWhatWeDoSection = {
+  title?: string;
+  description?: string;
+  items?: TemplateWhatWeDoItem[];
+};
+
+type TemplateSolutionCard = {
+  title?: string;
+  description?: string | string[];
+  icon?: string;
+};
+
+type TemplateSolutionsWeDeliverSection = {
+  title?: string;
+  spanTitle?: string;
+  description?: string;
+  cards?: TemplateSolutionCard[];
+};
+
+type TemplateOutsourcingItem = {
+  title?: string;
+  description?: string;
+  image?: string;
+  hoverImage?: string;
+};
+
+type TemplateOutsourcingModelsSection = {
+  title?: string;
+  description?: string;
+  items?: TemplateOutsourcingItem[];
+};
+
+type TemplateFaqItem = {
+  question?: string;
+  answer?: string;
+};
+
+type TemplateBlogItem = {
+  id?: string | number;
+  title?: string;
+  shortDescription?: string;
+  ogImage?: string;
+  tags?: { name?: string }[];
+  slug?: string;
+};
+
+type TemplateCaseStudyItem = {
+  id?: string | number;
+  title?: string;
+  shortDescription?: string;
+  ogImage?: string;
+  categories?: { name?: string }[];
+  slug?: string;
+};
+
+type TemplateSubServiceData = {
+  heroSlides?: TemplateHeroSlide[];
+  hero?: TemplateHeroSlide;
+  cta?: {
+    title?: string;
+    description?: string;
+    image?: string;
+    imageAlt?: string;
+    ctaText?: string;
+    ctaLink?: string;
+    buttonLabel?: string;
+    buttonUrl?: string;
+  };
+  extraSection?: {
+    title?: string;
+    description?: string;
+  };
+  whatWeDo?: TemplateWhatWeDoSection;
+  solutionsWeDeliver?: TemplateSolutionsWeDeliverSection;
+  ourOutsourcingModels?: TemplateOutsourcingModelsSection;
+  whyChooseTechionik?: TemplateWhyChooseSection;
+  faq?:
+    | TemplateFaqItem[]
+    | {
+        faqItem?: TemplateFaqItem[];
+        faq?: TemplateFaqItem[];
+      };
+  techStackData?: TechStackData | null;
+};
+
+interface MappedIndustriesData {
+  title: string;
+  gradientTitle: string;
+  afterGradientTitle: string;
+  description: string;
+  slides: {
+    title: string;
+    description: string;
+    link: string;
+    bgImage: string;
+    icon: string;
+  }[];
+}
+
+// â”€â”€ Core Page Data â”€â”€
 export interface SubServicePageData {
   heroSlides: HeroSlide[];
   whatYouGet: WhatYouGett | null;
@@ -61,15 +188,18 @@ export interface SubServicePageData {
   outsourcingModels: OutsourcingSlide | null;
   faq: FAQ | null;
   contactHero: ContactHeroData | null;
+  techStackData?: TechStackData | null;
   caseStudies: CaseStudyType[];
   whatWeDo: WhatWeDo;
   blogs: SubServiceBlogFrontend[];
-  industries: any; 
+  industries: MappedIndustriesData;
   addScheema?: string;
 }
 
 // ── Map Industries ──
-export function mapIndustriesFromSubService(industriesFromApi: Industries[] = []) {
+export function mapIndustriesFromSubService(
+  industriesFromApi: Industries[] = [],
+): MappedIndustriesData {
   return {
     title: "We Help Businesses ",
     gradientTitle: "Use Technology to Grow, ",
@@ -89,14 +219,14 @@ export function mapIndustriesFromSubService(industriesFromApi: Industries[] = []
 
 // ── Map SubService API Data ──
 function mapSubServiceToPageData(apiData: SubServiceData): SubServicePageData {
-  const t: any = apiData?.subService.templateData;
+  const t = apiData?.subService.templateData as TemplateSubServiceData | undefined;
   const parentService = apiData?.service;
   const subService = apiData?.subService;
 
   // ── 1. Hero Slides ──
   const heroSlides: HeroSlide[] =
     t?.heroSlides && Array.isArray(t.heroSlides) && t.heroSlides.length > 0
-      ? t.heroSlides.map((slide: any) => ({
+      ? t.heroSlides.map((slide: TemplateHeroSlide) => ({
           title: slide?.title ?? subService?.name ?? "Hero Title",
           subtitle: slide?.subtitle ?? " ",
           description:
@@ -193,7 +323,7 @@ function mapSubServiceToPageData(apiData: SubServiceData): SubServicePageData {
         mainDescription:
           stripHtml(t?.whatWeDo?.description) ??
           "Our comprehensive technology expertise",
-        cards: t?.whatWeDo?.items.map((item: any, idx: number) => ({
+        cards: t?.whatWeDo?.items.map((item: TemplateWhatWeDoItem, idx: number) => ({
           id: idx + 1,
           title: item?.title ?? `Expertise ${idx + 1}`,
           description: htmlToLines(item?.description) ?? [
@@ -213,12 +343,14 @@ function mapSubServiceToPageData(apiData: SubServiceData): SubServicePageData {
         description:
           stripHtml(t?.solutionsWeDeliver?.description) ??
           "We IT-enable all kinds of B2B, B2C interactions and internal Operations",
-        cards: t?.solutionsWeDeliver?.cards?.map((card: any, idx: number) => ({
+        cards: t?.solutionsWeDeliver?.cards?.map((card: TemplateSolutionCard, idx: number) => ({
           id: idx + 1,
           title: card?.title ?? `Solution ${idx + 1}`,
-          description: htmlToLines(card?.description) ?? [
-            "Innovative solution description",
-          ],
+          description: Array.isArray(card?.description)
+            ? card.description
+            : htmlToLines(card?.description) ?? [
+                "Innovative solution description",
+              ],
           icon: card?.icon ?? SOLUTIONS_ICON_FALLBACK,
         })),
       }
@@ -241,7 +373,7 @@ function mapSubServiceToPageData(apiData: SubServiceData): SubServicePageData {
           stripHtml(t?.ourOutsourcingModels?.description) ??
           "Flexible outsourcing solutions tailored to your needs",
         items: t?.ourOutsourcingModels?.items?.map(
-          (item: any, idx: number) => ({
+          (item: TemplateOutsourcingItem, idx: number) => ({
             title: item?.title ?? `Model ${idx + 1}`,
             description: stripHtml(item?.description) ?? "",
             image: item?.image ?? OUTSOURCING_IMAGE_FALLBACK,
@@ -279,16 +411,17 @@ function mapSubServiceToPageData(apiData: SubServiceData): SubServicePageData {
         buttonIcon: "/icons/arrow-right.svg",
       }
     : null;
+  const techStackData: TechStackData | null = t?.techStackData ?? null;
   const whatWeDo: WhatWeDo = t?.whyChooseTechionik
     ? {
         title: t?.whyChooseTechionik?.title ?? "What We Do",
         descriptiption: stripHtml(t?.whyChooseTechionik?.description) ?? "",
         // mainDescription: stripHtml(t?.whyChooseTechionik?.description),
         card: (t?.whyChooseTechionik?.items ?? []).map(
-          (item: any, idx: number) => ({
+          (item: TemplateWhyChooseItem, idx: number) => ({
             id: idx + 1,
-            title: item?.title,
-            description: item?.description,
+            title: item?.title ?? `Card ${idx + 1}`,
+            description: item?.description ?? "",
           }),
         ),
       }
@@ -307,7 +440,7 @@ function mapSubServiceToPageData(apiData: SubServiceData): SubServicePageData {
     ? {
         mainTitle: "",
         spanTitle: "FAQs",
-        faq: rawFaqs?.map((item: any, idx: number) => ({
+        faq: rawFaqs?.map((item: TemplateFaqItem, idx: number) => ({
           id: idx + 1,
           question: item?.question ?? "",
           answer: item?.answer ?? "",
@@ -322,8 +455,8 @@ function mapSubServiceToPageData(apiData: SubServiceData): SubServicePageData {
       : parentService?.caseStudies || [];
 
   const caseStudies: CaseStudyType[] = rawCaseStudies.map(
-    (cs: any, idx: number) => ({
-      id: cs?.id ?? idx + 1,
+    (cs: TemplateCaseStudyItem, idx: number) => ({
+      id: typeof cs?.id === "number" ? cs.id : idx + 1,
       brand: "",
       title: cs?.title ?? "Case Study",
       description: cs?.shortDescription ?? "",
@@ -343,12 +476,15 @@ function mapSubServiceToPageData(apiData: SubServiceData): SubServicePageData {
       ? subService?.blogs
       : parentService?.blogs || [];
 
-  const blogs: SubServiceBlogFrontend[] = rawBlogs.map((b: any) => ({
-    id: b?.id ?? Math.random().toString(),
+  const blogs: SubServiceBlogFrontend[] = rawBlogs.map((b: TemplateBlogItem) => ({
+    id: String(b?.id ?? Math.random().toString()),
     title: b?.title ?? "Blog Post",
     description: b?.shortDescription ?? "",
     image: b?.ogImage ?? "/banners/dollers.webp",
-    stack: b?.tags?.map((tag: any) => tag?.name) ?? [],
+    stack:
+      b?.tags
+        ?.map((tag: { name?: string }) => tag?.name)
+        .filter((name): name is string => Boolean(name)) ?? [],
     slug: b?.slug ?? "",
   }));
 
@@ -363,6 +499,7 @@ function mapSubServiceToPageData(apiData: SubServiceData): SubServicePageData {
     solutionsWeDeliver,
     outsourcingModels,
     contactHero,
+    techStackData,
     faq,
     caseStudies,
     blogs,
@@ -377,7 +514,16 @@ export async function getSubServicePageDataBySlug(
   subServiceSlug: string,
 ): Promise<SubServicePageData | null> {
   const apiData = await getSubService(serviceSlug, subServiceSlug);
-  if (!apiData) return null;
+  if (apiData) {
+    return mapSubServiceToPageData(apiData);
+  }
 
-  return mapSubServiceToPageData(apiData);
+  if (
+    serviceSlug === "custom-software-development" &&
+    subServiceSlug === "backend-development"
+  ) {
+    return backendDevelopmentPageData as SubServicePageData;
+  }
+
+  return null;
 }

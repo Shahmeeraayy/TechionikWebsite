@@ -28,6 +28,7 @@ const STATIC_ROUTES = [
   "/how-we-work",
   "/hire-developers",
   "/services/custom-software-development",
+  "/services/custom-software-development/backend-development",
   "/services/application-development",
 ].map((route) => route);
 

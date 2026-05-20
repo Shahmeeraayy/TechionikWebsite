@@ -10,6 +10,7 @@ import OurClientSays from "@/components/OurClientSays";
 import AllBlogs from "@/views/home/AllBlogs";
 import FAQs from "@/views/home/FAQs";
 import OutsourcingModels from "@/components/OutSourceModel";
+import TechStack from "@/views/home/TechStacks";
 
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
@@ -24,9 +25,15 @@ export async function generateMetadata({
   params: Promise<{ category: string; slug: string }>;
 }): Promise<Metadata> {
   const { category, slug } = await params;
-  if (category === "custom-software-development" && slug === "application-development") {
+  if (
+    category === "custom-software-development" &&
+    slug === "application-development"
+  ) {
     return {};
   }
+  const isBackendPage =
+    category === "custom-software-development" &&
+    slug === "backend-development";
   const apiData = await getSubServicePageDataBySlug(category, slug);
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL || "https://www.techionik.com";
@@ -40,7 +47,15 @@ export async function generateMetadata({
     apiData.whatYouGet?.RightDescription1 ||
     apiData.heroSlides?.[0]?.description ||
     "Techionik builds secure, scalable, and custom software solutions.";
-  const keywords = ["Techionik", "software development", title];
+  const keywords = isBackendPage
+    ? [
+        "Techionik",
+        "backend development services",
+        "backend api development",
+        "cloud backend solutions",
+        title,
+      ]
+    : ["Techionik", "software development", title];
 
   // Get image from hero or use fallback
   const imageUrl = apiData.heroSlides?.[0]?.image || "/images/og-default.png";
@@ -48,13 +63,22 @@ export async function generateMetadata({
   return {
     title: title,
     description: description,
-    robots: {
-      index: false,
-      follow: false,
-    },
-    other: {
-      "X-Robots-Tag": "noindex, nofollow",
-    },
+    robots: isBackendPage
+      ? {
+          index: true,
+          follow: true,
+        }
+      : {
+          index: false,
+          follow: false,
+        },
+    ...(isBackendPage
+      ? {}
+      : {
+          other: {
+            "X-Robots-Tag": "noindex, nofollow",
+          },
+        }),
     keywords: keywords,
     openGraph: {
       title: title,
@@ -92,14 +116,16 @@ const SubServicePage = async ({
   params: Promise<{ slug: string; category: string }>;
 }) => {
   const { slug, category } = await params;
-  if (category === "custom-software-development" && slug === "application-development") {
+  if (
+    category === "custom-software-development" &&
+    slug === "application-development"
+  ) {
     redirect("/services/application-development");
   }
   const apiData: SubServicePageData | null = await getSubServicePageDataBySlug(
     category,
     slug,
   );
-  console.log(apiData?.industries);
 
   if (!apiData) return notFound();
   // const unifiedSubServiceSchema = {
@@ -192,7 +218,7 @@ const SubServicePage = async ({
       )}
 
       <div className="subservice-voice-narrative" style={{ display: "none" }}>
-        {`Techionik provides expert ${apiData.heroSlides?.[0]?.title}. ${apiData.whatYouGet?.RightDescription1}. Our expertise includes ${apiData.technologyExpertise?.cards?.map((c: { title?: string }) => c.title ?? "").filter(Boolean).join(", ")}.`}
+        {`Techionik provides expert ${apiData.heroSlides?.[0]?.title}. ${apiData.whatYouGet?.RightDescription1}. Our expertise includes ${apiData.technologyExpertise?.cards?.map((c: { title?: string }) => c.title ?? "").filter(Boolean).join(", ")}.${apiData.techStackData?.headingData?.title ? ` The page also highlights ${apiData.techStackData.headingData.title}.` : ""}`}
       </div>
       {/* Hero Section */}
       <div className="">
@@ -249,6 +275,15 @@ const SubServicePage = async ({
         <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 py-8">
           <ContactHero content={apiData?.contactHero} />
         </div>
+      )}
+
+      {apiData?.techStackData && (
+        <section className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 py-10">
+          <TechStack
+            data={apiData.techStackData}
+            defaultActiveCategory="Backend"
+          />
+        </section>
       )}
 
       {apiData?.whatWeDo && (

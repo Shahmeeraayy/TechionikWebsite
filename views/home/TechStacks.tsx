@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Button from "@/components/Button";
 import { Category, TechStackData } from "@/data/TechStack/AboutTeckStack";
@@ -9,11 +9,19 @@ import { useSlider } from "@/components/hooks/Slider";
 
 type Props = {
   data: TechStackData;
+  defaultActiveCategory?: Category | null;
 };
 
-export default function TechStack({ data }: Props) {
+export default function TechStack({
+  data,
+  defaultActiveCategory = "Frontend",
+}: Props) {
   const { emblaRef } = useSlider();
-  const [active, setActive] = useState<Category | null>("Frontend");
+  const [active, setActive] = useState<Category | null>(defaultActiveCategory);
+
+  useEffect(() => {
+    setActive(defaultActiveCategory);
+  }, [defaultActiveCategory]);
 
   const filteredStacks = active
     ? data.techIcons.filter((icon) => icon.category.includes(active))
