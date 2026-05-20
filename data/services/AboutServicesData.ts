@@ -3,8 +3,8 @@ import { ServiceData } from "../services/service-component-types";
 export const aboutserviceData: ServiceData = {
     title: "Modern Software",
     middleTitle: "Engineering for Intelligent",
-    lastTitle: "AI-Driven Systems",
-    description: "Our teams design and develop software solutions that integrate artificial intelligence, automation, and cloud infrastructure to create adaptable systems that support evolving business needs.",
+    lastTitle: "Digital Systems",
+    description: "Our teams design and develop software solutions that integrate AI, automation, cloud infrastructure, and connected services to support evolving business needs.",
     
     slider: {
 
@@ -18,13 +18,13 @@ export const aboutserviceData: ServiceData = {
                 state: true,
                 lists: [
                     'Custom Software Development',
-                    'Mobile app development',
-                    'Software Outsourcing',
-                    'MVP development',
                     'Enterprise Software Development',
-                    'Web development'
+                    'MVP Development',
+                    'Software Development Outsourcing',
+                    'Full-Stack Development',
+                    'Front-End Development'
                 ],
-                href: "/services/custom-software-development"
+                href: "/services/software-development"
             }
         ],
         
@@ -32,19 +32,19 @@ export const aboutserviceData: ServiceData = {
             {
                 id: 2,
                 icon: "icons/ai-brain.svg",
-                title: "AI Automation",
+                title: "AI & Machine Learning",
                 description: 
-                "AI automation systems help organizations streamline processes, reduce manual workloads, and improve decision-making through intelligent data analysis. Using machine learning, predictive analytics, and automation technologies, businesses can transform complex operational workflows into efficient digital systems.",
+                "AI and machine learning systems help organizations streamline processes, reduce manual workloads, and improve decision-making through intelligent data analysis and automation.",
                 state: false,
                 lists: [
-                    'Business Process Automation (BPA)',
-                    'Sale Automation',
-                    'Marketing Automation',
-                    'Low-code/no-code (LCNC) automation',
-                    'HR Automation',
-                    'Calling & Appointment Automation'
+                    'AI Consulting Services',
+                    'AI Software Development',
+                    'Generative AI Development',
+                    'Machine Learning Services',
+                    'Agentic AI Development',
+                    'AI Hire Developers'
                 ],
-                href: "/services/ai-automation"
+                href: "/services/ai-ml"
             }
         ],
         
@@ -58,10 +58,10 @@ export const aboutserviceData: ServiceData = {
                 state: false,
             lists: [
                 'Mobile App Development',
-                'Web App Development',
-                'SaaS App Development',
-                'Application modernization',
-                'Application integration',
+                'Desktop Application Development',
+                'Web Application Development',
+                'Application Modernization',
+                'Application Integration',
                 'Progressive Web App (PWA) Development'
             ],
             href: "/services/application-development"
@@ -72,57 +72,57 @@ export const aboutserviceData: ServiceData = {
         {
             id: 4,
             icon: "icons/data-line.svg",
-            title: "Data Science",
+            title: "Data & Analytics",
             description: 
-            "Data science services help organizations extract valuable insights from complex datasets using machine learning, artificial intelligence, and advanced analytics. By analyzing patterns and building predictive models, businesses can make more informed decisions and improve operational performance.",
+            "Data and analytics services help organizations extract valuable insights from complex datasets using machine learning, business intelligence, and advanced analytics.",
             state: false,
             lists: [
-                'Data Engineering',
-                'Data mining services',
-                'Agentic AI Development',
-                'Data science consulting',
-                'Business intelligence',
-                'Generative AI Solutions'
+                'Business Intelligence Services',
+                'Data Engineering / Big Data',
+                'Analytics Strategy',
+                'Data Warehousing',
+                'Dashboards & Reporting',
+                'Data Integration'
             ],
-            href: "/services/data-science"
+            href: "/services/data-analytics"
         }
     ],
     service5: [
         {
             id: 5,
-            icon: "icons/data-line.svg",
-            title: "Business intelligence",
+            icon: "icons/cloud.svg",
+            title: "Infrastructure & DevOps",
             description: 
-            "Business intelligence solutions transform raw data into actionable insights through analytics platforms, data visualization tools, and reporting systems. Organizations use BI platforms to monitor performance, analyze trends, and support strategic planning.",
+            "Infrastructure and DevOps services help organizations build reliable cloud foundations, improve deployment pipelines, and keep release operations stable.",
             state: false,
             lists: [
-                'BI Consulting',
-                'BI Implementation',
-                'Self Services BI',
-                'Dashboard Development',
-                'Data Integration',
-                'BI Strategy and Roadmap Planning',
+                'DevOps Services & Solutions',
+                'Cloud Services / Cloud Migration',
+                'CI/CD Automation',
+                'Observability',
+                'Environment Management',
+                'Release Operations',
             ],
-            href: "/services/business-intelligence"
+            href: "/services/infrastructure-devops"
         }
     ],
     service6: [
         {
             id: 6,
-            icon: "icons/data-line.svg",
-            title: "IT staff augmentation",
+            icon: "icons/browser.svg",
+            title: "Integration & APIs",
             description: 
-            "IT staff augmentation provides skilled developers, engineers, and technology specialists who support internal teams and accelerate software development projects.",
+            "Integration and API services connect systems, automate workflows, and keep data moving cleanly across the stack.",
             state: false,
             lists: [
-                'UI/UX Designer',
-                'Project Managers',
-                'Software Developers',
-                'AI & Machine Learning Specialists',
-                'Cloud Architects',
-                'Quality Assurance Expert'
+                'Custom API Development',
+                'CMS Development',
+                'ERP Software Development',
+                'Workflow Automation',
+                'Platform Integration',
+                'Data Sync Services'
             ],
-            href: "/services/staff-augmentation"
+            href: "/services/integration-api"
         }
     ],
 }

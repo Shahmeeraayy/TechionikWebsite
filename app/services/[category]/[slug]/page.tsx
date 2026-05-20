@@ -15,6 +15,7 @@ import TechStack from "@/views/home/TechStacks";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { getSubServicePageDataBySlug } from "@/app/api/subService/utils/getSubServicePageData";
+import { getSubServiceRedirect } from "@/data/services/serviceRegistry";
 
 import type { SubServicePageData } from "@/app/api/subService/utils/getSubServicePageData";
 import WhatWeDoCard from "@/components/whatWeDoCard";
@@ -25,19 +26,27 @@ export async function generateMetadata({
   params: Promise<{ category: string; slug: string }>;
 }): Promise<Metadata> {
   const { category, slug } = await params;
-  if (
-    category === "custom-software-development" &&
-    slug === "application-development"
-  ) {
+  if (category === "application-development" && slug === "overview") {
     return {};
   }
-  const isBackendPage =
-    category === "custom-software-development" &&
-    slug === "backend-development";
+  const redirectTarget = getSubServiceRedirect(category, slug);
+  const isCanonicalPage = new Set([
+    "software-development",
+    "application-development",
+    "ai-ml",
+    "data-analytics",
+    "design",
+    "quality-assurance",
+    "infrastructure-devops",
+    "integration-api",
+    "automation",
+  ]).has(category);
   const apiData = await getSubServicePageDataBySlug(category, slug);
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL || "https://www.techionik.com";
-  const pathname = `/services/${category}/${slug}`;
+  const pathname = redirectTarget
+    ? `/services/${redirectTarget}`
+    : `/services/${category}/${slug}`;
   const canonicalUrl = `${baseUrl}${pathname}`;
 
   if (!apiData) return {};
@@ -47,6 +56,7 @@ export async function generateMetadata({
     apiData.whatYouGet?.RightDescription1 ||
     apiData.heroSlides?.[0]?.description ||
     "Techionik builds secure, scalable, and custom software solutions.";
+  const isBackendPage = category === "software-development" && slug === "backend";
   const keywords = isBackendPage
     ? [
         "Techionik",
@@ -63,7 +73,7 @@ export async function generateMetadata({
   return {
     title: title,
     description: description,
-    robots: isBackendPage
+    robots: isCanonicalPage
       ? {
           index: true,
           follow: true,
@@ -72,7 +82,7 @@ export async function generateMetadata({
           index: false,
           follow: false,
         },
-    ...(isBackendPage
+    ...(isCanonicalPage
       ? {}
       : {
           other: {
@@ -116,11 +126,13 @@ const SubServicePage = async ({
   params: Promise<{ slug: string; category: string }>;
 }) => {
   const { slug, category } = await params;
-  if (
-    category === "custom-software-development" &&
-    slug === "application-development"
-  ) {
+  if (category === "application-development" && slug === "overview") {
     redirect("/services/application-development");
+  }
+
+  const redirectTarget = getSubServiceRedirect(category, slug);
+  if (redirectTarget) {
+    redirect(`/services/${redirectTarget}`);
   }
   const apiData: SubServicePageData | null = await getSubServicePageDataBySlug(
     category,

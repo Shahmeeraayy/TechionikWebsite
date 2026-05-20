@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import LoadingLink from "@/components/LoadingLink";
 import Image from "next/image";
-import Button from "../Button";
 import { motion } from "framer-motion";
 import AskAI from "../footerAI_Fields";
 
@@ -150,29 +149,27 @@ const Footer = () => {
             <h4 className="mb-4 gradient-text">Services</h4>
             <ul className="space-y-2 text-sm">
               {[
-                { label: "AI & Automation", href: "/services/ai-automation" },
+                { label: "Software Development", href: "/services/software-development" },
                 {
-                  label: "Software Development",
-                  href: "/services/custom-software-development",
-                },
-                { label: "AI Development", href: "/services/ai-development" },
-                {
-                  label: "Business Intelligence",
-                  href: "/services/business-intelligence",
+                  label: "Application Development",
+                  href: "/services/application-development",
                 },
                 {
-                  label: "Data Management",
-                  href: "/services/data",
+                  label: "AI & Machine Learning",
+                  href: "/services/ai-ml",
+                },
+                {
+                  label: "Data & Analytics",
+                  href: "/services/data-analytics",
                 },
                 {
                   label: "Quality Assurance",
                   href: "/services/quality-assurance",
                 },
-                { label: "UI/UX Designing", href: "/services/ui-ux" },
-                // {
-                //   label: "Web Development",
-                //   href: "/services/custom-software-development/web-development",
-                // },
+                { label: "Infrastructure & DevOps", href: "/services/infrastructure-devops" },
+                { label: "Integration & APIs", href: "/services/integration-api" },
+                { label: "Automation & Process", href: "/services/automation" },
+                { label: "Design", href: "/services/design" },
               ].map((item) => (
                 <li key={item.label}>
                   <LoadingLink

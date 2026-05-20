@@ -11,7 +11,9 @@ import type { TechStackData } from "@/data/TechStack/AboutTeckStack";
 import { getSubService } from "./getSubService";
 import type { Industries, SubServiceData } from "../types/subService.type";
 import { WhatWeDo } from "@/data/what-we-do-data";
-import { backendDevelopmentPageData } from "@/data/services/backendDevelopmentPageData";
+import {
+  getSubServicePageDataByRoute,
+} from "@/data/services/serviceRegistry";
 
 const SUB_SERVICE_API_FALLBACK_IMAGE = "/banners/Hero.webp";
 const SOLUTIONS_ICON_FALLBACK = "/icons/cloud.svg";
@@ -518,11 +520,9 @@ export async function getSubServicePageDataBySlug(
     return mapSubServiceToPageData(apiData);
   }
 
-  if (
-    serviceSlug === "custom-software-development" &&
-    subServiceSlug === "backend-development"
-  ) {
-    return backendDevelopmentPageData as SubServicePageData;
+  const localData = getSubServicePageDataByRoute(serviceSlug, subServiceSlug);
+  if (localData) {
+    return localData as unknown as SubServicePageData;
   }
 
   return null;

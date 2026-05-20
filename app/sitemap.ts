@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { BASE_URL } from "./api/config/apiConfig";
 import { getSiteUrl } from "@/lib/site";
+import { serviceMenuItems } from "@/data/services/serviceRegistry";
 
 export const revalidate = 86400;
 
@@ -27,9 +28,42 @@ const STATIC_ROUTES = [
   "/our-clients",
   "/how-we-work",
   "/hire-developers",
-  "/services/custom-software-development",
-  "/services/custom-software-development/backend-development",
+  "/services/software-development",
+  "/services/software-development/custom",
+  "/services/software-development/enterprise",
+  "/services/software-development/mvp",
+  "/services/software-development/outsourcing",
+  "/services/software-development/full-stack",
+  "/services/software-development/frontend",
+  "/services/software-development/backend",
   "/services/application-development",
+  "/services/application-development/overview",
+  "/services/application-development/mobile",
+  "/services/application-development/desktop",
+  "/services/application-development/web",
+  "/services/ai-ml",
+  "/services/ai-ml/consulting",
+  "/services/ai-ml/ai-software-development",
+  "/services/ai-ml/generative-ai",
+  "/services/ai-ml/machine-learning",
+  "/services/ai-ml/agentic-ai",
+  "/services/ai-ml/hire-ai-developers",
+  "/services/data-analytics",
+  "/services/data-analytics/business-intelligence",
+  "/services/data-analytics/data-engineering",
+  "/services/design",
+  "/services/design/ui-ux",
+  "/services/quality-assurance",
+  "/services/quality-assurance/testing",
+  "/services/infrastructure-devops",
+  "/services/infrastructure-devops/devops",
+  "/services/infrastructure-devops/cloud",
+  "/services/integration-api",
+  "/services/integration-api/custom-api",
+  "/services/integration-api/cms",
+  "/services/integration-api/erp",
+  "/services/automation",
+  "/services/automation/bpa",
 ].map((route) => route);
 
 async function fetchRouteData<T>(url: string): Promise<T[]> {
@@ -62,33 +96,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === "" ? 1 : 0.8,
   }));
 
-  const [blogs, caseStudies, services, technologies, industries] =
+  const [blogs, caseStudies, technologies, industries] =
     await Promise.all([
       fetchRouteData<RouteItem>(`${BASE_URL}/blogs`),
       fetchRouteData<RouteItem>(`${BASE_URL}/case-studies`),
-      fetchRouteData<RouteItem>(`${BASE_URL}/services`),
       fetchRouteData<RouteItem>(`${BASE_URL}/technologies`),
       fetchRouteData<RouteItem>(`${BASE_URL}/industries`),
     ]);
-
-  const serviceDetails = await Promise.all(
-    services.map(async (service) => {
-      try {
-        const response = await fetch(`${BASE_URL}/services/${service.slug}`, {
-          next: { revalidate: 86400 },
-        });
-
-        if (!response.ok) {
-          return service;
-        }
-
-        const json = (await response.json()) as { data?: RouteItem };
-        return json.data ?? service;
-      } catch {
-        return service;
-      }
-    }),
-  );
 
   const dynamicRoutes: MetadataRoute.Sitemap = [
     ...blogs.map((blog) => ({
@@ -103,35 +117,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
-    ...serviceDetails.flatMap((service) => {
-      const routes: MetadataRoute.Sitemap = [];
-
-      if (service.isActive !== false && service.hasPage !== false) {
-        routes.push({
-          url: `${siteUrl}/services/${service.slug}`,
-          lastModified: toDate(service.updatedAt ?? service.publishedAt),
-          changeFrequency: "monthly",
-          priority: 0.8,
-        });
-      }
-
-      if (Array.isArray(service.subServices)) {
-        service.subServices.forEach((subService) => {
-          if (subService.isActive !== false && subService.hasPage !== false) {
-            routes.push({
-              url: `${siteUrl}/services/${service.slug}/${subService.slug}`,
-              lastModified: toDate(
-                subService.updatedAt ?? subService.publishedAt,
-              ),
-              changeFrequency: "monthly",
-              priority: 0.7,
-            });
-          }
-        });
-      }
-
-      return routes;
-    }),
     ...technologies.map((technology) => ({
       url: `${siteUrl}/technology/${technology.slug}`,
       lastModified: toDate(technology.updatedAt ?? technology.publishedAt),
@@ -144,6 +129,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    ...serviceMenuItems.flatMap((service) => [
+      {
+        url: `${siteUrl}${service.href ?? `/services/${service.slug}`}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.8,
+      },
+      ...(service.children ?? []).map((child) => ({
+        url: `${siteUrl}${child.href ?? `${service.href ?? `/services/${service.slug}`}/${child.slug}`}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      })),
+    ]),
   ];
 
   const allRoutes = [...staticPages, ...dynamicRoutes];

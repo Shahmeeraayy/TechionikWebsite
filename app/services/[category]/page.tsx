@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import ParentServiceTemplate, {
   type ParentServiceTemplateVariant,
 } from "@/components/service-pages/ParentServiceTemplate";
@@ -12,20 +12,22 @@ import type { SolutionWeDeliver } from "@/data/solutionWeDeliverData";
 import type { IndustriesData } from "@/data/Industries Data/types";
 import type { FAQ } from "@/data/FAQS";
 import type { CaseStudyType } from "@/views/home/CaseStudies";
-import { servicesDataHome } from "@/data/TechServices/HomeTechServices";
-import { talentPoolDataHome } from "@/data/Talent Pool/TalentPollDataHome";
-import { abouttechStackData } from "@/data/TechStack/AboutTeckStack";
-import { outsourcingModelsData } from "@/data/outSourceModel";
+import {
+  getParentServicePageCopyBySlug,
+  getParentServiceRedirect,
+  servicesData,
+  servicesOutsourcingData,
+  servicesSoftwareInsightsData,
+  servicesTalentPoolData,
+  servicesTechStackData,
+} from "@/data/services/serviceRegistry";
 import { getSingleService } from "@/app/api/singleService/utils/getSingleService";
 import { getNormalizedCaseStudies } from "@/app/api/All-CaseStudies/utils/caseStudyComponent";
-import { customSoftwarePageCopy } from "@/data/services/customSoftwarePageCopy";
 import {
   applicationDevelopmentOutsourcingModelsData,
-  applicationDevelopmentPageCopy,
   applicationDevelopmentTechServicesData,
   applicationDevelopmentTechStackData,
 } from "@/data/services/applicationDevelopmentPageCopy";
-import { SoftwareInsightData } from "@/data/softwareInsightsData";
 
 export async function generateMetadata({
   params,
@@ -33,17 +35,13 @@ export async function generateMetadata({
   params: Promise<{ category: string }>;
 }): Promise<Metadata> {
   const { category } = await params;
-  const isCustomSoftwarePage = category === "custom-software-development";
-  const isApplicationDevelopmentPage = category === "application-development";
-  const pageCopy = isCustomSoftwarePage
-    ? customSoftwarePageCopy
-    : isApplicationDevelopmentPage
-      ? applicationDevelopmentPageCopy
-      : null;
-  const apiData = isApplicationDevelopmentPage ? null : await getSingleService(category);
+  const redirectTarget = getParentServiceRedirect(category);
+  const canonicalCategory = redirectTarget ? redirectTarget.split("/")[0] : category;
+  const pageCopy = getParentServicePageCopyBySlug(canonicalCategory);
+  const apiData = await getSingleService(canonicalCategory);
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL || "https://www.techionik.com";
-  const pathname = `/services/${category}`;
+  const pathname = redirectTarget || `/services/${canonicalCategory}`;
   const canonicalUrl = `${baseUrl}${pathname}`;
 
   if (!apiData && !pageCopy) return {};
@@ -113,14 +111,14 @@ const SingleServicePage = async ({
   params: Promise<{ category: string }>;
 }) => {
   const { category } = await params;
-  const isCustomSoftwarePage = category === "custom-software-development";
-  const isApplicationDevelopmentPage = category === "application-development";
-  const pageCopy = isCustomSoftwarePage
-    ? customSoftwarePageCopy
-    : isApplicationDevelopmentPage
-      ? applicationDevelopmentPageCopy
-      : null;
-  const apiData = isApplicationDevelopmentPage ? null : await getSingleService(category);
+  const redirectTarget = getParentServiceRedirect(category);
+  if (redirectTarget) {
+    redirect(redirectTarget);
+  }
+
+  const canonicalCategory = category;
+  const pageCopy = getParentServicePageCopyBySlug(canonicalCategory);
+  const apiData = await getSingleService(canonicalCategory);
 
   if (!apiData && !pageCopy) {
     return notFound();
@@ -189,7 +187,7 @@ const SingleServicePage = async ({
   const faqData: FAQ | null = pageCopy?.faq ?? (apiData?.faq as FAQ) ?? null;
 
   const subServicesNarrative = pageCopy
-    ? pageCopy.softwareSolutions.items.map((s) => s.title).join(", ")
+    ? pageCopy.softwareSolutions?.items.map((s) => s.title).join(", ") ?? ""
     : (apiData?.subServices ?? []).map((s) => s.name).join(", ");
 
   const serviceNarrative = pageCopy
@@ -212,15 +210,16 @@ const SingleServicePage = async ({
         }))
       : await getNormalizedCaseStudies();
 
-  const techStackData = isApplicationDevelopmentPage
-    ? applicationDevelopmentTechStackData
-    : abouttechStackData;
-  const techServicesData = isApplicationDevelopmentPage
+  const techStackData =
+    category === "application-development"
+      ? applicationDevelopmentTechStackData
+      : servicesTechStackData;
+  const techServicesData = category === "application-development"
     ? applicationDevelopmentTechServicesData
-    : servicesDataHome;
-  const outsourcingData = isApplicationDevelopmentPage
+    : servicesData;
+  const outsourcingData = category === "application-development"
     ? applicationDevelopmentOutsourcingModelsData
-    : outsourcingModelsData;
+    : servicesOutsourcingData;
   const templateVariant =
     (pageCopy as { templateVariant?: ParentServiceTemplateVariant } | null)
       ?.templateVariant ?? "default";
@@ -242,9 +241,9 @@ const SingleServicePage = async ({
       outsourcingData={outsourcingData}
       techServicesData={techServicesData}
       normalizedCaseStudies={normalizedCaseStudies}
-      talentPoolData={talentPoolDataHome}
+      talentPoolData={servicesTalentPoolData}
       faqData={faqData}
-      softwareInsightsData={SoftwareInsightData}
+      softwareInsightsData={servicesSoftwareInsightsData}
     />
   );
 };

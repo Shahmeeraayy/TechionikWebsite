@@ -1,20 +1,14 @@
 // data/menuCMSData.ts
 
+import { serviceMenuItems, type ServiceMenuItem } from "@/data/services/serviceRegistry";
+
 export interface MenuType {
   id: number;
   name: string;
   slug: string;
 }
 
-export interface MenuItem {
-  id: number;
-  name: string;
-  slug: string;
-  href?: string;
-  icon?: string;
-  imageUrl?: string;
-  children?: MenuItem[];
-}
+export type MenuItem = ServiceMenuItem;
 
 export interface MenuResponse {
   type: MenuType;
@@ -29,82 +23,7 @@ export const MegaMenuResponses: Record<string, MenuResponse> = {
       name: "Services",
       slug: "services"
     },
-    menu: [
-      {
-        id: 1,
-        name: "Software Development",
-        slug: "custom-software-development",
-        href: "/services/custom-software-development",
-        icon: "/icons/cloud.svg",
-        imageUrl: "/images/megamenu-newsletter.png",
-        children: [
-          { id: 101, name: "Web Development", slug: "web-development" },
-          { id: 102, name: "Mobile App Development", slug: "mobile-development" },
-          { id: 103, name: "Backend Development", slug: "backend-development" },
-          { id: 105, name: "CMS Development Services", slug: "cms-development" },
-        ]
-      },
-      {
-        id: 2,
-        name: "AI Automation",
-        slug: "ai-automation",
-        href: "/services/ai-automation",
-        icon: "/icons/ai-brain.svg",
-        imageUrl: "/images/megamenu-newsletter.png",
-        children: [
-          { id: 201, name: "Business Process Automation", slug: "business-process-automation" },
-          { id: 202, name: "Sales Automation", slug: "sales-automation" },
-          { id: 203, name: "Marketing Automation", slug: "marketing-automation" },
-          { id: 204, name: "Low Code Automation", slug: "low-code-automation" },
-          { id: 205, name: "No Code Automation", slug: "no-code-automation" },
-          { id: 206, name: "Operation Automation", slug: "operation-automation" },
-          { id: 207, name: "HR Automation", slug: "hr-automation" },
-          { id: 208, name: "Calling Automation", slug: "calling-automation" },
-          { id: 209, name: "Appointment Automation", slug: "appointment-automation" },
-          { id: 210, name: "Manual Automation", slug: "manual-automation" },
-          { id: 211, name: "Email Automation", slug: "email-automation" }
-        ]
-      },
-      {
-        id: 3,
-        name: "Application Development",
-        slug: "application-development",
-        href: "/services/application-development",
-        icon: "/icons/building.svg",
-        imageUrl: "/images/megamenu-newsletter.png",   // most right featured section
-        children: []
-      },
-      {
-        id: 4,
-        name: "Data Science",
-        slug: "data-science",
-        href: "/services/data-science",
-        icon: "/icons/data-line.svg",
-        children: [
-          { id: 301, name: "Data Analytics", slug: "data-analytics" },
-          { id: 302, name: "Machine Learning Models", slug: "machine-learning-models" }
-        ]
-      },
-      {
-        id: 5,
-        name: "Business Intelligence",
-        slug: "business-intelligence",
-        href: "/services/business-intelligence",
-        icon: "/icons/browser.svg",
-        children: [
-          { id: 401, name: "Dashboard Creation", slug: "dashboard-creation" }
-        ]
-      },
-      {
-        id: 6,
-        name: "IT Staff Augmentation",
-        slug: "staff-augmentation",
-        href: "/services/staff-augmentation",
-        icon: "/icons/people-team.svg",
-        imageUrl: "/images/megamenu-newsletter.png",
-        children: []
-      },
-    ]
+    menu: serviceMenuItems
   },
   
   "pages": {
