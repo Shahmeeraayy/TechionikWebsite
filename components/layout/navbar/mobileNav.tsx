@@ -18,13 +18,24 @@ interface MobileMenuProps {
 type PanelState =
   | null
   | { type: "mega"; slug: string; label: string; items: MenuItem[]; baseHref: string }
-  | { type: "sub"; label: string; parentHref: string; children: MenuItem[] };
+  | {
+      type: "sub";
+      label: string;
+      parentHref: string;
+      parentSlug: string;
+      children: MenuItem[];
+    };
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [panel, setPanel] = useState<PanelState>(null);
   const [animating, setAnimating] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setTimeout(() => setPanel(null), 300);
+  };
 
   // Lock body scroll
   useEffect(() => {
@@ -42,11 +53,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks }) => {
     if (isOpen) document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, [isOpen]);
-
-  const handleClose = () => {
-    setIsOpen(false);
-    setTimeout(() => setPanel(null), 300);
-  };
 
   const slideToPanel = (next: PanelState) => {
     setAnimating(true);
@@ -66,7 +72,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks }) => {
           (l) =>
             l.isMega &&
             (l.children as MenuItem[])?.some(
-              (c) => c.slug === (panel as any).parentSlug
+              (c) => c.slug === panel.parentSlug
             )
         );
         if (ownerLink) {
@@ -227,13 +233,13 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks }) => {
               {panel.items.map((category) => {
                 const hasChildren = category.children && category.children.length > 0;
                 const baseHref = panel.baseHref.endsWith("/") ? panel.baseHref.slice(0, -1) : panel.baseHref;
-                const href = `${baseHref}/${category.slug}`;
+                const href = category.href || `${baseHref}/${category.slug}`;
 
                 return (
                   <div key={category.id} className="flex items-center rounded-lg hover:bg-white/[0.04] transition-all">
                     {/* Category name → navigate */}
                     <LoadingLink
-                      href={href}
+                      href={category.href || href}
                       onClick={() => handleClose()}
                       className="flex-1 px-3 py-3 text-white/70 hover:text-white text-sm"
                     >
@@ -248,9 +254,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks }) => {
                             label: category.name,
                             parentHref: href,
                             children: category.children!,
-                            // store parentSlug for back navigation
-                            ...{ parentSlug: category.slug },
-                          } as any)
+                            parentSlug: category.slug,
+                          })
                         }
                         className="px-3 py-3 text-white/30 hover:text-white transition-colors"
                         aria-label={`Open ${category.name} submenu`}
@@ -283,7 +288,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks }) => {
               {panel.children.map((child) => (
                 <LoadingLink
                   key={child.id}
-                  href={`${panel.parentHref}/${child.slug}`}
+                  href={child.href || `${panel.parentHref}/${child.slug}`}
                   onClick={() => handleClose()}
                   className="block px-3 py-2.5 rounded-lg text-white/60 hover:text-[#F05323] hover:bg-white/[0.04] transition-all text-sm"
                 >

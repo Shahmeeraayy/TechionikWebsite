@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import LoadingLink from "@/components/LoadingLink";
 import Image from "next/image";
-import { MenuItem } from "@/data/megaMenuData"; // Adjust path as needed
 import { NavChild } from "@/app/api/menu/utils/buildnavlinks";
 import { CALENDLY_URL } from "@/utils/links";
 
@@ -15,20 +14,19 @@ interface MegaMenuProps {
 }
 
 const MegaMenu = ({ data, parentSlug, isOpen, onClose }: MegaMenuProps) => {
-  const [activeItem, setActiveItem] = useState<MenuItem>(data[0]);
+  const [activeItemId, setActiveItemId] = useState<number>(data[0]?.id ?? 0);
 
   // Handle closing when clicking any link
   const handleLinkClick = () => {
     onClose();
   };
 
-  useEffect(() => {
-    if (data.length > 0) {
-      setActiveItem(data[0]);
-    }
-  }, [data]);
-
   if (!data || data.length === 0) return null;
+
+  const activeItem =
+    data.find((item) => item.id === activeItemId) ?? data[0];
+  const activeItemHref =
+    activeItem.href ?? `/${parentSlug}/${activeItem.slug}`;
 
   return (
     <div
@@ -43,12 +41,12 @@ const MegaMenu = ({ data, parentSlug, isOpen, onClose }: MegaMenuProps) => {
               {data.map((item) => (
                 <div
                   key={item.id}
-                  onMouseEnter={() => setActiveItem(item)}
+                  onMouseEnter={() => setActiveItemId(item.id)}
                   className="relative"
                 >
                   <LoadingLink
                     onClick={handleLinkClick}
-                    href={`/${parentSlug}/${item.slug}`}
+                    href={item.href ?? `/${parentSlug}/${item.slug}`}
                     className={`
               flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer text-[15px] font-medium
               ${
@@ -150,7 +148,10 @@ const MegaMenu = ({ data, parentSlug, isOpen, onClose }: MegaMenuProps) => {
                   key={child.id}
                   onClick={handleLinkClick}
                   /* FIXED: Conditionally build the subcategory URL */
-                  href={`/${parentSlug}/${activeItem.slug}/${child.slug}`}
+                  href={
+                    child.href ??
+                    `/${parentSlug}/${activeItem.slug}/${child.slug}`
+                  }
                   className="group/sub flex items-start gap-3 p-2 -ml-2 rounded-lg hover:bg-gray-50 transition-colors"
                 >
                   <div className="mt-2 w-1.5 h-1.5 rounded-full bg-[#F05323] shrink-0 group-hover/sub:scale-125 transition-transform" />
@@ -175,7 +176,7 @@ const MegaMenu = ({ data, parentSlug, isOpen, onClose }: MegaMenuProps) => {
             <LoadingLink
               onClick={handleLinkClick}
               /* FIXED: Conditionally build the "View All [Category]" URL */
-              href={`/${parentSlug}/${activeItem.slug}`}
+              href={activeItemHref}
               className="text-[#F05323] font-semibold flex items-center gap-2 text-sm hover:translate-x-1 transition-transform"
             >
               All {activeItem.name}{" "}

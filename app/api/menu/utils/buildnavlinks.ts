@@ -2,11 +2,13 @@
 
 import { BASE_URL, ENDPOINTS } from "../../config/apiConfig";
 import { MenuResponse } from "../types/menu.type";
+import { MegaMenuResponses } from "@/data/megaMenuData";
 
 export interface NavChild {
   id: number;
   name: string;
   slug: string;
+  href?: string;
   imageUrl?: string;
   icon?: string;
   children?: NavChild[];
@@ -20,88 +22,15 @@ export interface Navlink {
   children?: NavChild[];
 }
 
+const HOMEPAGE_SERVICE_MENU = MegaMenuResponses["services"].menu as NavChild[];
+
 const FALLBACK_NAV_LINKS: Navlink[] = [
   { name: "Home", href: "/" },
   {
     name: "Services",
     href: "/services",
     isMega: true,
-    children: [
-      {
-        id: 1,
-        name: "AI Automation",
-        slug: "ai-automation",
-        icon: "/icons/building.svg",
-        imageUrl: "/images/megamenu-newsletter.png",
-        children: [
-          {
-            id: 9,
-            name: "Business process automation",
-            slug: "business-process-automation",
-          },
-        ],
-      },
-      {
-        id: 3,
-        name: "Custom Software Development",
-        slug: "custom-software-development",
-        icon: "/icons/building.svg",
-        imageUrl: "/images/megamenu-newsletter.png",
-        children: [
-          {
-            id: 16,
-            name: "Mobile App Consulting",
-            slug: "mobile-app-consulting",
-          },
-        ],
-      },
-      {
-        id: 4,
-        name: "AI Development",
-        slug: "ai-development",
-        icon: "/icons/building.svg",
-        imageUrl: "/images/megamenu-newsletter.png",
-        children: [
-          { id: 6, name: "AI Consulting", slug: "ai-consulting" },
-          { id: 7, name: "Generative AI", slug: "generative-ai" },
-          { id: 12, name: "Agentic AI", slug: "agentic-ai" },
-        ],
-      },
-      {
-        id: 7,
-        name: "UI-UX",
-        slug: "ui-ux",
-        icon: "/icons/building.svg",
-        imageUrl: "/images/megamenu-newsletter.png",
-        children: [],
-      },
-      {
-        id: 8,
-        name: "Quality Assurance",
-        slug: "quality-assurance",
-        icon: "/icons/building.svg",
-        imageUrl: "/images/megamenu-newsletter.png",
-        children: [],
-      },
-      {
-        id: 11,
-        name: "Business intelligence",
-        slug: "business-intelligence",
-        icon: "/icons/building.svg",
-        imageUrl: "/images/megamenu-newsletter.png",
-        children: [],
-      },
-      {
-        id: 12,
-        name: "Data management",
-        slug: "data",
-        icon: "/icons/building.svg",
-        imageUrl: "/images/megamenu-newsletter.png",
-        children: [
-          { id: 15, name: "Data Analytics Services", slug: "data-analytics" },
-        ],
-      },
-    ],
+    children: HOMEPAGE_SERVICE_MENU,
   },
   { name: "About us", href: "/about-us" },
   {
@@ -183,6 +112,15 @@ function mergeWithFallback(navLinks: Navlink[]): Navlink[] {
 
     if (!apiLink) {
       return fallback;
+    }
+
+    if (fallbackSlug === "services") {
+      return {
+        ...fallback,
+        ...apiLink,
+        children: HOMEPAGE_SERVICE_MENU,
+        isMega: true,
+      };
     }
 
     const apiChildren = apiLink.children ?? [];

@@ -10,6 +10,7 @@ export interface MenuItem {
   id: number;
   name: string;
   slug: string;
+  href?: string;
   icon?: string;
   imageUrl?: string;
   children?: MenuItem[];
@@ -31,79 +32,80 @@ export const MegaMenuResponses: Record<string, MenuResponse> = {
     menu: [
       {
         id: 1,
-        name: "AI Automation",
-        slug: "ai-automation",
-        icon: "/icons/ai-brain.svg",
+        name: "Software Development",
+        slug: "custom-software-development",
+        href: "/services/custom-software-development",
+        icon: "/icons/cloud.svg",
         imageUrl: "/images/megamenu-newsletter.png",
         children: [
-          { id: 101, name: "Business Process Automation", slug: "business-process-automation" },
-          { id: 102, name: "Sales Automation", slug: "sales-automation" },
-          { id: 103, name: "Marketing Automation", slug: "marketing-automation" },
-          { id: 104, name: "Low Code Automation", slug: "low-code-automation" },
-          { id: 105, name: "No Code Automation", slug: "no-code-automation" },
-          { id: 106, name: "Operation Automation", slug: "operation-automation" },
-          { id: 107, name: "HR Automation", slug: "hr-automation" },
-          { id: 108, name: "Calling Automation", slug: "calling-automation" },
-          { id: 109, name: "Appointment Automation", slug: "appointment-automation" },
-          { id: 110, name: "Manual Automation", slug: "manual-automation" },
-          { id: 111, name: "Email Automation", slug: "email-automation" }
+          { id: 101, name: "Web Development", slug: "web-development" },
+          { id: 102, name: "Mobile App Development", slug: "mobile-development" },
+          { id: 103, name: "Backend Development", slug: "backend-development" },
+          { id: 104, name: "Application Development Services", slug: "application-development" },
+          { id: 105, name: "CMS Development Services", slug: "cms-development" },
+          { id: 106, name: "Software Development Services", slug: "software-development" }
         ]
       },
       {
         id: 2,
-        name: "Custom Software Development",
-        slug: "custom-software-development",
-        icon: "/icons/building.svg",
-        imageUrl: "/images/megamenu-newsletter.png",   // most right featured section
+        name: "AI Automation",
+        slug: "ai-automation",
+        href: "/services/ai-automation",
+        icon: "/icons/ai-brain.svg",
+        imageUrl: "/images/megamenu-newsletter.png",
         children: [
-          { id: 201, name: "Web Application Development", slug: "web-development" },
-          { id: 202, name: "Mobile App Development", slug: "mobile-development" },
-          { id: 203, name: "Backend Development Application", slug: "backend-development" },
-          { id: 204, name: "Application Development Services", slug: "application-development" },
-          { id: 205, name: "CMS Development Services", slug: "cms-development" },
-          { id: 206, name: "Software Development Services", slug: "software-development" }
+          { id: 201, name: "Business Process Automation", slug: "business-process-automation" },
+          { id: 202, name: "Sales Automation", slug: "sales-automation" },
+          { id: 203, name: "Marketing Automation", slug: "marketing-automation" },
+          { id: 204, name: "Low Code Automation", slug: "low-code-automation" },
+          { id: 205, name: "No Code Automation", slug: "no-code-automation" },
+          { id: 206, name: "Operation Automation", slug: "operation-automation" },
+          { id: 207, name: "HR Automation", slug: "hr-automation" },
+          { id: 208, name: "Calling Automation", slug: "calling-automation" },
+          { id: 209, name: "Appointment Automation", slug: "appointment-automation" },
+          { id: 210, name: "Manual Automation", slug: "manual-automation" },
+          { id: 211, name: "Email Automation", slug: "email-automation" }
         ]
       },
       {
         id: 3,
+        name: "Application Development",
+        slug: "application-development",
+        href: "/services/custom-software-development/application-development",
+        icon: "/icons/building.svg",
+        imageUrl: "/images/megamenu-newsletter.png",   // most right featured section
+        children: []
+      },
+      {
+        id: 4,
         name: "Data Science",
         slug: "data-science",
-        icon: "/icons/building.svg",
+        href: "/services/data-science",
+        icon: "/icons/data-line.svg",
         children: [
           { id: 301, name: "Data Analytics", slug: "data-analytics" },
           { id: 302, name: "Machine Learning Models", slug: "machine-learning-models" }
         ]
       },
       {
-        id: 4,
+        id: 5,
         name: "Business Intelligence",
         slug: "business-intelligence",
-        icon: "/icons/building.svg",
+        href: "/services/business-intelligence",
+        icon: "/icons/browser.svg",
         children: [
           { id: 401, name: "Dashboard Creation", slug: "dashboard-creation" }
         ]
       },
       {
-        id: 5,
-        name: "Staff Augmentation",
-        slug: "staff-augmentation",
-        icon: "/icons/building.svg",
-        children: []
-      },
-      {
         id: 6,
-        name: "Artificial Intelligence",
-        slug: "artificial-intelligence",
-        icon: "/icons/building.svg",
+        name: "IT Staff Augmentation",
+        slug: "staff-augmentation",
+        href: "/services/staff-augmentation",
+        icon: "/icons/people-team.svg",
+        imageUrl: "/images/megamenu-newsletter.png",
         children: []
       },
-      {
-        id: 7,
-        name: "Outsourcing",
-        slug: "outsourcing",
-        icon: "/icons/building.svg",
-        children: []
-      }
     ]
   },
   
