@@ -8,6 +8,7 @@ import type { IndustriesData } from "@/data/Industries Data/types";
 import { faqsData } from "@/data/FAQS";
 
 export const customSoftwarePageCopy = {
+  templateVariant: "default",
   meta: {
     title:
       "Custom Software Development | Techionik - Building Scalable Software for Digital Success",

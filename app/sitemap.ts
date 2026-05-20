@@ -27,6 +27,8 @@ const STATIC_ROUTES = [
   "/our-clients",
   "/how-we-work",
   "/hire-developers",
+  "/services/custom-software-development",
+  "/services/application-development",
 ].map((route) => route);
 
 async function fetchRouteData<T>(url: string): Promise<T[]> {
@@ -143,5 +145,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
-  return [...staticPages, ...dynamicRoutes];
+  const allRoutes = [...staticPages, ...dynamicRoutes];
+  const seen = new Set<string>();
+
+  return allRoutes.filter((route) => {
+    if (seen.has(route.url)) return false;
+    seen.add(route.url);
+    return true;
+  });
 }

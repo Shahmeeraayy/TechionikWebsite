@@ -61,7 +61,7 @@ export const homeserviceData: ServiceData = {
           "Application Integration",
           "Progressive Web App (PWA) Development",
         ],
-        href: "/services/custom-software-development/application-development",
+        href: "/services/application-development",
       },
     ],
     service4: [

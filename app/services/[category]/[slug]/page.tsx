@@ -10,10 +10,9 @@ import OurClientSays from "@/components/OurClientSays";
 import AllBlogs from "@/views/home/AllBlogs";
 import FAQs from "@/views/home/FAQs";
 import OutsourcingModels from "@/components/OutSourceModel";
-import SolutionsWeDeliverComponent from "@/components/SolutionWeDeliver";
 
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getSubServicePageDataBySlug } from "@/app/api/subService/utils/getSubServicePageData";
 
 import type { SubServicePageData } from "@/app/api/subService/utils/getSubServicePageData";
@@ -25,6 +24,9 @@ export async function generateMetadata({
   params: Promise<{ category: string; slug: string }>;
 }): Promise<Metadata> {
   const { category, slug } = await params;
+  if (category === "custom-software-development" && slug === "application-development") {
+    return {};
+  }
   const apiData = await getSubServicePageDataBySlug(category, slug);
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL || "https://www.techionik.com";
@@ -90,6 +92,9 @@ const SubServicePage = async ({
   params: Promise<{ slug: string; category: string }>;
 }) => {
   const { slug, category } = await params;
+  if (category === "custom-software-development" && slug === "application-development") {
+    redirect("/services/application-development");
+  }
   const apiData: SubServicePageData | null = await getSubServicePageDataBySlug(
     category,
     slug,
@@ -187,7 +192,7 @@ const SubServicePage = async ({
       )}
 
       <div className="subservice-voice-narrative" style={{ display: "none" }}>
-        {`Techionik provides expert ${apiData.heroSlides?.[0]?.title}. ${apiData.whatYouGet?.RightDescription1}. Our expertise includes ${apiData.technologyExpertise?.cards?.map((c: any) => c.title).join(", ")}.`}
+        {`Techionik provides expert ${apiData.heroSlides?.[0]?.title}. ${apiData.whatYouGet?.RightDescription1}. Our expertise includes ${apiData.technologyExpertise?.cards?.map((c: { title?: string }) => c.title ?? "").filter(Boolean).join(", ")}.`}
       </div>
       {/* Hero Section */}
       <div className="">

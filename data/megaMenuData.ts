@@ -41,9 +41,7 @@ export const MegaMenuResponses: Record<string, MenuResponse> = {
           { id: 101, name: "Web Development", slug: "web-development" },
           { id: 102, name: "Mobile App Development", slug: "mobile-development" },
           { id: 103, name: "Backend Development", slug: "backend-development" },
-          { id: 104, name: "Application Development Services", slug: "application-development" },
           { id: 105, name: "CMS Development Services", slug: "cms-development" },
-          { id: 106, name: "Software Development Services", slug: "software-development" }
         ]
       },
       {
@@ -71,7 +69,7 @@ export const MegaMenuResponses: Record<string, MenuResponse> = {
         id: 3,
         name: "Application Development",
         slug: "application-development",
-        href: "/services/custom-software-development/application-development",
+        href: "/services/application-development",
         icon: "/icons/building.svg",
         imageUrl: "/images/megamenu-newsletter.png",   // most right featured section
         children: []

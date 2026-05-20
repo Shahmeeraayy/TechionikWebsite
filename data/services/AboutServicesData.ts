@@ -56,7 +56,7 @@ export const aboutserviceData: ServiceData = {
                 description: 
                 "Modern applications enable organizations to manage operations, deliver services, and interact with customers across digital platforms. Application development focuses on creating secure and scalable systems for web and mobile environments.",
                 state: false,
-                lists: [
+            lists: [
                 'Mobile App Development',
                 'Web App Development',
                 'SaaS App Development',
@@ -64,7 +64,7 @@ export const aboutserviceData: ServiceData = {
                 'Application integration',
                 'Progressive Web App (PWA) Development'
             ],
-            href: "/services/custom-software-development/application-development"
+            href: "/services/application-development"
         }
     ],
     

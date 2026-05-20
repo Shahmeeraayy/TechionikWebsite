@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import ParentServiceTemplate, {
+  type ParentServiceTemplateVariant,
+} from "@/components/service-pages/ParentServiceTemplate";
 import type { HeroSlide } from "@/data/HeroSectionData";
 import type { WhatYouGett } from "@/data/WhatYouGetData";
 import type { SoftwareSolutions } from "@/data/SoftwareSolution";
@@ -7,25 +10,8 @@ import type { ServicesCTAInterface } from "@/data/servicesCTAData";
 import type { WhatWeDo } from "@/data/what-we-do-data";
 import type { SolutionWeDeliver } from "@/data/solutionWeDeliverData";
 import type { IndustriesData } from "@/data/Industries Data/types";
-import type { OutsourcingSlide } from "@/data/outSourceModel";
 import type { FAQ } from "@/data/FAQS";
-import HeroSection from "@/components/sections/home/hero/HeroSection";
-import WhatYouGet from "@/components/WhatYouGet";
-import TrustLogoStrip from "@/components/TrustLogoStrip";
-import SoftwareSolution from "@/components/sections/about/SoftwareSolution/page";
-import ServicesCTA from "@/components/servicesCTA";
-import TechStack from "@/views/home/TechStacks";
-import WhatWeDoCard from "@/components/whatWeDoCard";
-import IndustriesSection from "@/views/home/IndustriesSection";
-import SolutionsWeDeliverComponent from "@/components/SolutionWeDeliver";
-import OutSourceModels from "@/components/OutSourceModel";
-import TechServices from "@/views/home/TechServices";
-import CaseStudies, { type CaseStudyType } from "@/views/home/CaseStudies";
-import TalentPool from "@/views/home/TalentPool";
-import OurClientSays from "@/components/OurClientSays";
-import FooterContact from "@/components/sections/home/footer-content/FooterContent";
-import SoftwareDevelopmentInsights from "@/components/softwareInsights";
-import FAQComponent from "@/views/home/FAQs";
+import type { CaseStudyType } from "@/views/home/CaseStudies";
 import { servicesDataHome } from "@/data/TechServices/HomeTechServices";
 import { talentPoolDataHome } from "@/data/Talent Pool/TalentPollDataHome";
 import { abouttechStackData } from "@/data/TechStack/AboutTeckStack";
@@ -33,6 +19,12 @@ import { outsourcingModelsData } from "@/data/outSourceModel";
 import { getSingleService } from "@/app/api/singleService/utils/getSingleService";
 import { getNormalizedCaseStudies } from "@/app/api/All-CaseStudies/utils/caseStudyComponent";
 import { customSoftwarePageCopy } from "@/data/services/customSoftwarePageCopy";
+import {
+  applicationDevelopmentOutsourcingModelsData,
+  applicationDevelopmentPageCopy,
+  applicationDevelopmentTechServicesData,
+  applicationDevelopmentTechStackData,
+} from "@/data/services/applicationDevelopmentPageCopy";
 import { SoftwareInsightData } from "@/data/softwareInsightsData";
 
 export async function generateMetadata({
@@ -42,8 +34,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { category } = await params;
   const isCustomSoftwarePage = category === "custom-software-development";
-  const pageCopy = isCustomSoftwarePage ? customSoftwarePageCopy : null;
-  const apiData = await getSingleService(category);
+  const isApplicationDevelopmentPage = category === "application-development";
+  const pageCopy = isCustomSoftwarePage
+    ? customSoftwarePageCopy
+    : isApplicationDevelopmentPage
+      ? applicationDevelopmentPageCopy
+      : null;
+  const apiData = isApplicationDevelopmentPage ? null : await getSingleService(category);
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL || "https://www.techionik.com";
   const pathname = `/services/${category}`;
@@ -78,11 +75,8 @@ export async function generateMetadata({
     title,
     description,
     robots: {
-      index: false,
-      follow: false,
-    },
-    other: {
-      "X-Robots-Tag": "noindex, nofollow",
+      index: true,
+      follow: true,
     },
     keywords,
     openGraph: {
@@ -120,8 +114,13 @@ const SingleServicePage = async ({
 }) => {
   const { category } = await params;
   const isCustomSoftwarePage = category === "custom-software-development";
-  const pageCopy = isCustomSoftwarePage ? customSoftwarePageCopy : null;
-  const apiData = await getSingleService(category);
+  const isApplicationDevelopmentPage = category === "application-development";
+  const pageCopy = isCustomSoftwarePage
+    ? customSoftwarePageCopy
+    : isApplicationDevelopmentPage
+      ? applicationDevelopmentPageCopy
+      : null;
+  const apiData = isApplicationDevelopmentPage ? null : await getSingleService(category);
 
   if (!apiData && !pageCopy) {
     return notFound();
@@ -193,6 +192,10 @@ const SingleServicePage = async ({
     ? pageCopy.softwareSolutions.items.map((s) => s.title).join(", ")
     : (apiData?.subServices ?? []).map((s) => s.name).join(", ");
 
+  const serviceNarrative = pageCopy
+    ? `${pageCopy.meta.title}. ${pageCopy.meta.description} ${whatYouGetData.RightDescription1} ${whatWeDoData?.mainDescription || ""}`
+    : `Techionik provides expert software development services. ${subServicesNarrative}. ${whatWeDoData?.mainDescription || apiData?.shortDescription || ""}`;
+
   const apiCaseStudies = apiData?.caseStudies ?? [];
   const normalizedCaseStudies: CaseStudyType[] =
     apiCaseStudies.length > 0
@@ -209,103 +212,40 @@ const SingleServicePage = async ({
         }))
       : await getNormalizedCaseStudies();
 
+  const techStackData = isApplicationDevelopmentPage
+    ? applicationDevelopmentTechStackData
+    : abouttechStackData;
+  const techServicesData = isApplicationDevelopmentPage
+    ? applicationDevelopmentTechServicesData
+    : servicesDataHome;
+  const outsourcingData = isApplicationDevelopmentPage
+    ? applicationDevelopmentOutsourcingModelsData
+    : outsourcingModelsData;
+  const templateVariant =
+    (pageCopy as { templateVariant?: ParentServiceTemplateVariant } | null)
+      ?.templateVariant ?? "default";
+
   return (
-    <main className="overflow-x-hidden scroll-smooth">
-      {apiData?.addScheema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: apiData.addScheema,
-          }}
-        />
-      )}
-
-      <div className="service-voice-narrative" style={{ display: "none" }}>
-        {`Techionik provides expert software development services. ${subServicesNarrative}. ${whatWeDoData?.mainDescription || apiData?.shortDescription || ""}`}
-      </div>
-
-      <section id="hero">
-        <HeroSection slides={heroSlides} />
-      </section>
-
-      {pageCopy?.trustLogos?.length ? (
-        <TrustLogoStrip logos={pageCopy.trustLogos} />
-      ) : null}
-
-      <section className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 pt-10">
-        <WhatYouGet data={whatYouGetData} />
-      </section>
-
-      {whyChooseData && (
-        <section className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 pt-10">
-          <SoftwareSolution data={whyChooseData} />
-        </section>
-      )}
-
-      <section className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 pt-10">
-        <ServicesCTA opacity={true} data={servicesCtaData} />
-      </section>
-
-      <section className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 pb-10">
-        <TechStack data={abouttechStackData} />
-      </section>
-
-      {whatWeDoData && (
-        <section className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 py-0">
-          <WhatWeDoCard whatwedo={whatWeDoData} />
-        </section>
-      )}
-
-      {(industriesData?.slides?.length ?? 0) > 0 && (
-        <section className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 pt-20 pb-15">
-          <IndustriesSection industries={industriesData} />
-        </section>
-      )}
-
-      {solutionsWeDeliverData && (
-        <section>
-          <SolutionsWeDeliverComponent data={solutionsWeDeliverData} />
-        </section>
-      )}
-
-      <section>
-        <OutSourceModels data={outsourcingModelsData as OutsourcingSlide} />
-      </section>
-
-      <section
-        id="tech-services"
-        className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 pt-15 pb-25"
-      >
-        <TechServices servicesData={servicesDataHome} />
-      </section>
-
-      <CaseStudies caseStudies={normalizedCaseStudies} />
-
-      <section className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 py-15">
-        <TalentPool data={talentPoolDataHome} />
-      </section>
-
-      <section className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20">
-        <OurClientSays />
-      </section>
-
-      {faqData && (
-        <section className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 pb-25">
-          <FAQComponent data={faqData} />
-        </section>
-      )}
-
-      <section
-        id="contact"
-        className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 py-0"
-      >
-        <FooterContact />
-      </section>
-
-      <section className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 pt-10">
-        <SoftwareDevelopmentInsights data={SoftwareInsightData} />
-      </section>
-    </main>
+    <ParentServiceTemplate
+      variant={templateVariant}
+      narrative={serviceNarrative}
+      schemaMarkup={apiData?.addScheema ?? null}
+      heroSlides={heroSlides}
+      trustLogos={pageCopy?.trustLogos}
+      whatYouGetData={whatYouGetData}
+      whyChooseData={whyChooseData}
+      servicesCtaData={servicesCtaData}
+      techStackData={techStackData}
+      whatWeDoData={whatWeDoData}
+      industriesData={industriesData}
+      solutionsWeDeliverData={solutionsWeDeliverData}
+      outsourcingData={outsourcingData}
+      techServicesData={techServicesData}
+      normalizedCaseStudies={normalizedCaseStudies}
+      talentPoolData={talentPoolDataHome}
+      faqData={faqData}
+      softwareInsightsData={SoftwareInsightData}
+    />
   );
 };
 
