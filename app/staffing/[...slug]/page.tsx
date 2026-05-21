@@ -12,6 +12,10 @@ export default async function StaffingSlugPage({
   }
 
   if (slug[0] === "ai-ml") {
+    if (slug[1] === "hire-ai-developers") {
+      redirect("/staffing/hire-developers/hire-ai-developers");
+    }
+
     redirect(`/services/${slug.join("/")}`);
   }
 

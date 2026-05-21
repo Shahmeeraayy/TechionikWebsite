@@ -25,7 +25,15 @@ import { agenticAiDevelopmentPageData } from "@/data/services/agenticAiDevelopme
 import { aiSoftwareDevelopmentPageData } from "@/data/services/aiSoftwareDevelopmentPageData";
 import { generativeAiDevelopmentPageData } from "@/data/services/generativeAiDevelopmentPageData";
 import { hireAiDevelopersPageData } from "@/data/services/hireAiDevelopersPageData";
+import { customApiDevelopmentPageData } from "@/data/services/customApiDevelopmentPageData";
+import { cmsDevelopmentPageData } from "@/data/services/cmsDevelopmentPageData";
+import { erpSoftwareDevelopmentPageData } from "@/data/services/erpSoftwareDevelopmentPageData";
+import { businessProcessAutomationPageData } from "@/data/services/businessProcessAutomationPageData";
+import { devopsServicesPageData } from "@/data/services/devopsServicesPageData";
+import { desktopAppDevelopmentPageData } from "@/data/services/desktopAppDevelopmentPageData";
 import { machineLearningDevelopmentPageData } from "@/data/services/machineLearningDevelopmentPageData";
+import { mobileAppConsultingPageData } from "@/data/services/mobileAppConsultingPageData";
+import { qaSoftwareTestingPageData } from "@/data/services/qaSoftwareTestingPageData";
 import { backendDevelopmentPageData } from "@/data/services/backendDevelopmentPageData";
 import { mvpDevelopmentPageData } from "@/data/services/mvpDevelopmentPageData";
 import { uiUxDesignPageData } from "@/data/services/uiUxDesignPageData";
@@ -609,6 +617,7 @@ export const serviceMenuItems: ServiceMenuItem[] = [
     children: [
       { id: 201, name: "Application Development Services", slug: "overview", href: "/services/application-development/overview" },
       { id: 202, name: "Mobile App Development", slug: "mobile", href: "/services/application-development/mobile" },
+      { id: 205, name: "Mobile App Consulting", slug: "mobile-app-consulting", href: "/services/application-development/mobile-app-consulting" },
       { id: 203, name: "Desktop Application Development", slug: "desktop", href: "/services/application-development/desktop" },
       { id: 204, name: "Web Application Development", slug: "web", href: "/services/application-development/web" },
     ],
@@ -626,7 +635,7 @@ export const serviceMenuItems: ServiceMenuItem[] = [
       { id: 303, name: "Generative AI Development", slug: "generative-ai", href: "/services/ai-ml/generative-ai" },
       { id: 304, name: "Machine Learning Services", slug: "machine-learning", href: "/services/ai-ml/machine-learning" },
       { id: 305, name: "Agentic AI Development", slug: "agentic-ai", href: "/services/ai-ml/agentic-ai" },
-      { id: 306, name: "Hire AI Developers", slug: "hire-ai-developers", href: "/services/ai-ml/hire-ai-developers" },
+      { id: 306, name: "Hire AI Developers", slug: "hire-ai-developers", href: "/staffing/hire-developers/hire-ai-developers" },
     ],
   },
   {
@@ -1505,6 +1514,14 @@ const staticSubServicePageData: Record<string, SubServicePageData> = {
   "ai-ml/machine-learning": machineLearningDevelopmentPageData as SubServicePageData,
   "ai-ml/hire-ai-developers": hireAiDevelopersPageData as SubServicePageData,
   "ai-ml/agentic-ai": agenticAiDevelopmentPageData as SubServicePageData,
+  "integration-api/custom-api": customApiDevelopmentPageData as SubServicePageData,
+  "integration-api/cms": cmsDevelopmentPageData as SubServicePageData,
+  "integration-api/erp": erpSoftwareDevelopmentPageData as SubServicePageData,
+  "automation/bpa": businessProcessAutomationPageData as SubServicePageData,
+  "infrastructure-devops/devops": devopsServicesPageData as SubServicePageData,
+  "application-development/desktop": desktopAppDevelopmentPageData as SubServicePageData,
+  "application-development/mobile-app-consulting": mobileAppConsultingPageData as SubServicePageData,
+  "quality-assurance/testing": qaSoftwareTestingPageData as SubServicePageData,
   "software-development/backend": backendDevelopmentPageData as SubServicePageData,
   "software-development/mvp": mvpDevelopmentPageData as SubServicePageData,
   "design/ui-ux": uiUxDesignPageData as SubServicePageData,

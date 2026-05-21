@@ -88,7 +88,7 @@ const FALLBACK_NAV_LINKS: Navlink[] = [
         id: 14,
         name: "AI Teams",
         slug: "ai-ml",
-        href: "/staffing/ai-ml/hire-ai-developers",
+        href: "/staffing/hire-developers/hire-ai-developers",
         icon: "/icons/ai-brain.svg",
         imageUrl: "/images/megamenu-newsletter.png",
         children: [
@@ -96,7 +96,7 @@ const FALLBACK_NAV_LINKS: Navlink[] = [
             id: 1401,
             name: "AI Teams Bridge",
             slug: "bridge",
-            href: "/staffing/ai-ml/hire-ai-developers",
+            href: "/staffing/hire-developers/hire-ai-developers",
           },
         ],
       },
