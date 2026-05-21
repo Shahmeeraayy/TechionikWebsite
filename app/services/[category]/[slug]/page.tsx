@@ -140,6 +140,14 @@ const SubServicePage = async ({
   );
 
   if (!apiData) return notFound();
+  const techStackFilters = apiData.techStackData?.filters ?? [];
+  const defaultTechStackCategory =
+    category === "software-development" && slug === "full-stack"
+      ? "Frontend"
+      : techStackFilters.includes("Frontend") &&
+        !techStackFilters.includes("Backend")
+      ? "Frontend"
+      : "Backend";
   // const unifiedSubServiceSchema = {
   //   "@context": "https://schema.org",
   //   "@graph": [
@@ -293,7 +301,7 @@ const SubServicePage = async ({
         <section className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 py-10">
           <TechStack
             data={apiData.techStackData}
-            defaultActiveCategory="Backend"
+            defaultActiveCategory={defaultTechStackCategory}
           />
         </section>
       )}

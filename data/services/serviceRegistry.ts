@@ -29,6 +29,9 @@ import { customApiDevelopmentPageData } from "@/data/services/customApiDevelopme
 import { cmsDevelopmentPageData } from "@/data/services/cmsDevelopmentPageData";
 import { erpSoftwareDevelopmentPageData } from "@/data/services/erpSoftwareDevelopmentPageData";
 import { enterpriseSoftwareDevelopmentPageData } from "@/data/services/enterpriseSoftwareDevelopmentPageData";
+import { frontendDevelopmentPageData } from "@/data/services/frontendDevelopmentPageData";
+import { fullStackDevelopmentPageData } from "@/data/services/fullStackDevelopmentPageData";
+import { softwareDevelopmentOutsourcingPageData } from "@/data/services/softwareDevelopmentOutsourcingPageData";
 import { businessProcessAutomationPageData } from "@/data/services/businessProcessAutomationPageData";
 import { devopsServicesPageData } from "@/data/services/devopsServicesPageData";
 import { desktopAppDevelopmentPageData } from "@/data/services/desktopAppDevelopmentPageData";
@@ -198,6 +201,7 @@ function slugLabel(slug: string) {
     "bpa": "Business Process Automation",
     "qa": "Quality Assurance",
     "devops": "DevOps",
+    "frontend": "Front-End",
     "cms": "CMS",
     "erp": "ERP",
     "b2b": "B2B",
@@ -723,8 +727,14 @@ export const subRouteAliases: Record<string, string> = {
   "custom-software-development/application-development": "application-development",
   "custom-software-development/backend-development": "software-development/backend",
   "custom-software-development/web-development": "software-development/full-stack",
+  "custom-software-development/full-stack-development": "software-development/full-stack",
+  "custom-software-development/outsourcing": "software-development/outsourcing",
+  "custom-software-development/software-outsourcing": "software-development/outsourcing",
   "custom-software-development/mobile-development": "application-development/mobile",
   "custom-software-development/cms-development": "integration-api/cms",
+  "software-development/front-end": "software-development/frontend",
+  "software-development/full-stack-development": "software-development/full-stack",
+  "software-development/software-outsourcing": "software-development/outsourcing",
   "ai-automation/business-process-automation": "automation/bpa",
   "ai-automation/sales-automation": "automation/bpa",
   "ai-automation/marketing-automation": "automation/bpa",
@@ -1519,6 +1529,9 @@ const staticSubServicePageData: Record<string, SubServicePageData> = {
   "integration-api/cms": cmsDevelopmentPageData as SubServicePageData,
   "integration-api/erp": erpSoftwareDevelopmentPageData as SubServicePageData,
   "software-development/enterprise": enterpriseSoftwareDevelopmentPageData as SubServicePageData,
+  "software-development/full-stack": fullStackDevelopmentPageData as SubServicePageData,
+  "software-development/outsourcing": softwareDevelopmentOutsourcingPageData as SubServicePageData,
+  "software-development/frontend": frontendDevelopmentPageData as SubServicePageData,
   "automation/bpa": businessProcessAutomationPageData as SubServicePageData,
   "infrastructure-devops/devops": devopsServicesPageData as SubServicePageData,
   "application-development/desktop": desktopAppDevelopmentPageData as SubServicePageData,
