@@ -131,7 +131,7 @@ export const enterpriseSoftwareDevelopmentPageData = {
   heroSlides: [
     {
       title: "Enterprise Software Development Services",
-      subtitle: "Scalable, secure systems for complex organizations.",
+      subtitle: "",
       description:
         "We engineer scalable, secure enterprise software with advanced automation, AI integration, cloud architecture, and legacy modernization, driving efficiency, resilience, and compliance for large organizations through precision-driven development and continuous innovation.",
       image: heroImage,

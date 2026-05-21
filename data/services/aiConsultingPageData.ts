@@ -114,7 +114,7 @@ export const aiConsultingPageData = {
   heroSlides: [
     {
       title: "AI Consulting Services",
-      subtitle: "Enterprise AI strategy, data readiness, and deployment guidance.",
+      subtitle: "",
       description:
         "We offer expert Artificial Intelligence consulting services with enterprise AI strategy, data readiness, model design, MLOps pipelines, GenAI integration, governance, and cost and risk management using GPT, Gemini, Llama, and PaLM to enhance decision-making and achieve business objectives.",
       image: heroImage,

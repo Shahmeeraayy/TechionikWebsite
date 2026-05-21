@@ -141,7 +141,7 @@ export const softwareDevelopmentOutsourcingPageData = {
   heroSlides: [
     {
       title: "Software Development Outsourcing Services",
-      subtitle: "Dedicated engineering teams for faster delivery and lower costs.",
+      subtitle: "",
       description:
         "Techionik offers full-cycle software development outsourcing services, helping startups, SMBs, and enterprises. We deliver end-to-end software solutions through dedicated engineering teams and flexible engagement models, enabling you to hire developers, reduce costs, accelerate time-to-market, and ensure predictable, high-quality outcomes.",
       image: heroImage,

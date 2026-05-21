@@ -136,7 +136,7 @@ const ParentServiceTemplate = ({
       </div>
 
       <section id="hero">
-        <HeroSection slides={heroSlides} />
+        <HeroSection slides={heroSlides} showSubtitle={false} />
       </section>
 
       {trustLogos?.length ? <TrustLogoStrip logos={trustLogos} /> : null}

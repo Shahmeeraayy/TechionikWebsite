@@ -119,7 +119,7 @@ export const qaSoftwareTestingPageData = {
   heroSlides: [
     {
       title: "Full-cycle Quality Assurance (QA) and Software Testing Services",
-      subtitle: "Certified testing teams for faster, safer releases.",
+      subtitle: "",
       description:
         "As a software QA company, we deploy a dedicated certified testing team that can dive into your project within 1-4 days. We build custom testing frameworks, apply structured test execution supported by precision-driven strategies, and deliver full-cycle QA and AQA support powered by advanced methodologies including AI, blockchain, and automation to ensure reliability across all devices and platforms.",
       image: heroImage,

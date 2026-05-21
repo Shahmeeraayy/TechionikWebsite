@@ -64,7 +64,7 @@ export const customSoftwarePageCopy = {
   heroSlides: [
     {
       title: "Building Scalable Software",
-      subtitle: "for Digital Success",
+      subtitle: "",
       description:
         "We design secure, scalable software solutions that help modern businesses move faster, streamline operations, and turn ambitious ideas into reliable digital products.",
       image: "/banners/Hero.webp",

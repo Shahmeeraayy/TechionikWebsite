@@ -244,7 +244,7 @@ const SubServicePage = async ({
       )}
       {/* Hero Section */}
       <div className="">
-        <HeroSection slides={apiData?.heroSlides ?? []} />
+        <HeroSection slides={apiData?.heroSlides ?? []} showSubtitle={false} />
       </div>
 
       {/* What You Get */}

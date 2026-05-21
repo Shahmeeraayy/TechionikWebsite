@@ -120,7 +120,7 @@ export const machineLearningDevelopmentPageData = {
   heroSlides: [
     {
       title: "Machine Learning Development Company",
-      subtitle: "Custom ML models, predictive analytics, NLP, and computer vision for enterprise impact.",
+      subtitle: "",
       description:
         "We are a top machine learning development company that delivers custom ML models, predictive analytics, NLP, and computer vision solutions. Our ML engineers utilize TensorFlow and PyTorch to automate workflows, optimize decisions, and drive measurable business outcomes.",
       image: heroImage,

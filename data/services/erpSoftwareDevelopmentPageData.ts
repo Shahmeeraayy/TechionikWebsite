@@ -119,7 +119,7 @@ export const erpSoftwareDevelopmentPageData = {
   heroSlides: [
     {
       title: "ERP Software Development Services",
-      subtitle: "Custom ERP systems that align with your business processes.",
+      subtitle: "",
       description:
         "We deliver full-cycle ERP services to organizations across 12+ industries, designing and developing custom ERP solutions aligned with their unique business processes. As a trusted custom ERP development company, we build AI-powered, scalable, and business-ready ERP systems that adapt seamlessly to startups, SMBs, and large enterprises.",
       image: heroImage,

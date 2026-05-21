@@ -231,7 +231,7 @@ function mapSubServiceToPageData(apiData: SubServiceData): SubServicePageData {
     t?.heroSlides && Array.isArray(t.heroSlides) && t.heroSlides.length > 0
       ? t.heroSlides.map((slide: TemplateHeroSlide) => ({
           title: slide?.title ?? subService?.name ?? "Hero Title",
-          subtitle: slide?.subtitle ?? " ",
+          subtitle: slide?.subtitle ?? "",
           description:
             stripHtml(slide?.description ?? subService?.shortDescription) ||
             "Discover our innovative solutions",
@@ -246,7 +246,7 @@ function mapSubServiceToPageData(apiData: SubServiceData): SubServicePageData {
       : [
           {
             title: t?.hero?.title ?? subService?.name ?? "Hero Title",
-            subtitle: t?.hero?.subtitle ?? " ",
+            subtitle: t?.hero?.subtitle ?? "",
             description:
               stripHtml(
                 t?.hero?.description ??

@@ -260,7 +260,7 @@ export async function getSingleService(
         t?.heroSlides && Array.isArray(t.heroSlides) && t.heroSlides.length > 0
           ? t.heroSlides.map((slide: any) => ({
               title: slide?.title ?? "Title Here",
-              subtitle: slide?.subtitle ?? "Subtitle Here",
+              subtitle: slide?.subtitle ?? "",
               description: slide?.description ?? "This is the Description",
               image:
                 slide?.image ||
@@ -274,7 +274,7 @@ export async function getSingleService(
           : [
               {
                 title: t?.hero?.title ?? "Title Here",
-                subtitle: t?.hero?.subtitle ?? "Subtitle Here",
+                subtitle: t?.hero?.subtitle ?? "",
                 description: t?.hero?.description ?? "This is the Description",
                 image:
                   t?.hero?.image ??

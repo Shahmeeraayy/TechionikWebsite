@@ -119,7 +119,7 @@ export const desktopAppDevelopmentPageData = {
   heroSlides: [
     {
       title: "Desktop Application Development Services",
-      subtitle: "High-performance software for Windows, macOS, and Linux.",
+      subtitle: "",
       description:
         "We develop desktop application services for Windows, macOS, and Linux using C++/Qt, .NET, and Python. Our engineers build high-performance systems for demanding workflows with long-term stability and reliable architectures.",
       image: heroImage,

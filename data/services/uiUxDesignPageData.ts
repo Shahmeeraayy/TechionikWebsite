@@ -103,7 +103,7 @@ export const uiUxDesignPageData = {
   heroSlides: [
     {
       title: "UI/UX Design Services",
-      subtitle: "Intuitive, AI-driven experiences for web and mobile.",
+      subtitle: "",
       description:
         "We deliver intuitive, AI-driven UI/UX design services for web and mobile, combining accessibility, prototypes, human-centered interfaces, and seamless user experiences to boost engagement, conversions, retention, and measurable ROI.",
       image: heroImage,

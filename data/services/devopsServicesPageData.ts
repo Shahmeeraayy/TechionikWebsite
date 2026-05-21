@@ -122,7 +122,7 @@ export const devopsServicesPageData = {
   heroSlides: [
     {
       title: "DevOps Services and Solutions",
-      subtitle: "Automate delivery, improve reliability, and scale with confidence.",
+      subtitle: "",
       description:
         "Techionik is a top-notch DevOps solutions company delivering expert DevOps services and solutions for IT infrastructure management. We help automate IT operations, IT processes, and the software development lifecycle while implementing CI/CD, Kubernetes, IaC, GitOps, observability, and architecture improvements that strengthen release quality.",
       image: heroImage,

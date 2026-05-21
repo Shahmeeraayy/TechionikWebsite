@@ -754,7 +754,7 @@ export const parentServicePageCopies: Record<string, ParentPageCopy> = {
     ...makeParentCopy({
       title: "Software Development Services",
       heroTitle: "Building Scalable Software",
-      heroSubtitle: "for Digital Success",
+      heroSubtitle: "",
       heroDescription:
         "We design secure, scalable software solutions that help modern businesses move faster, streamline operations, and turn ambitious ideas into reliable digital products.",
       whatYouGetTitle1: "Our Core Tech Stack for",
@@ -845,7 +845,7 @@ export const parentServicePageCopies: Record<string, ParentPageCopy> = {
   "ai-ml": makeParentCopy({
     title: "AI & Machine Learning Services",
     heroTitle: "Intelligent Software Engineering",
-    heroSubtitle: "for the Age of AI",
+    heroSubtitle: "",
     heroDescription:
       "Get AI-driven software solutions, expert engineering, and clear collaboration to accelerate digital transformation and growth.",
     whatYouGetTitle1: "What you get with TECHIONIK",
@@ -918,7 +918,7 @@ export const parentServicePageCopies: Record<string, ParentPageCopy> = {
   "data-analytics": makeParentCopy({
     title: "Data & Analytics Services",
     heroTitle: "Transforming Data Into",
-    heroSubtitle: "Business Intelligence",
+    heroSubtitle: "",
     heroDescription:
       "Make better decisions with data engineering, analytics, and business intelligence systems designed for clarity, speed, and scale.",
     whatYouGetTitle1: "Data & Analytics Solutions",
@@ -991,7 +991,7 @@ export const parentServicePageCopies: Record<string, ParentPageCopy> = {
   "design": makeParentCopy({
     title: "Design Services",
     heroTitle: "Designing Clear, Useful",
-    heroSubtitle: "Digital Experiences",
+    heroSubtitle: "",
     heroDescription:
       "Create interfaces that feel polished, intuitive, and aligned with your brand, users, and business goals.",
     whatYouGetTitle1: "What you get with TECHIONIK",
@@ -1064,7 +1064,7 @@ export const parentServicePageCopies: Record<string, ParentPageCopy> = {
   "quality-assurance": makeParentCopy({
     title: "Quality Assurance Services",
     heroTitle: "QA That Protects",
-    heroSubtitle: "Product Quality",
+    heroSubtitle: "",
     heroDescription:
       "Reduce release risk with testing services that validate functionality, performance, and user experience before launch.",
     whatYouGetTitle1: "What you get with TECHIONIK",
@@ -1137,7 +1137,7 @@ export const parentServicePageCopies: Record<string, ParentPageCopy> = {
   "infrastructure-devops": makeParentCopy({
     title: "Infrastructure & DevOps Services",
     heroTitle: "Infrastructure That Keeps",
-    heroSubtitle: "Software Moving",
+    heroSubtitle: "",
     heroDescription:
       "Build reliable deployment pipelines, cloud operations, and infrastructure foundations that keep products secure and scalable.",
     whatYouGetTitle1: "What you get with TECHIONIK",
@@ -1210,7 +1210,7 @@ export const parentServicePageCopies: Record<string, ParentPageCopy> = {
   "integration-api": makeParentCopy({
     title: "Integration & API Services",
     heroTitle: "Connected Systems,",
-    heroSubtitle: "Clean Data Flow",
+    heroSubtitle: "",
     heroDescription:
       "Connect products, platforms, and operations through reliable APIs and integrations that keep data moving cleanly across systems.",
     whatYouGetTitle1: "What you get with TECHIONIK",
@@ -1283,7 +1283,7 @@ export const parentServicePageCopies: Record<string, ParentPageCopy> = {
   "automation": makeParentCopy({
     title: "Automation & Process Services",
     heroTitle: "Automation That Reduces",
-    heroSubtitle: "Manual Work",
+    heroSubtitle: "",
     heroDescription:
       "Automate repeatable processes with solutions that improve speed, reduce errors, and free teams to focus on higher-value work.",
     whatYouGetTitle1: "What you get with TECHIONIK",

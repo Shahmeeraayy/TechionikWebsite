@@ -145,7 +145,7 @@ export const fullStackDevelopmentPageData = {
   heroSlides: [
     {
       title: "Full-Stack Development Services",
-      subtitle: "UI-to-database engineering for modern web and mobile products.",
+      subtitle: "",
       description:
         "We are the top full-stack development company that provides UI-to-database engineering, front-end, back-end, DevOps, API, and cloud solutions developed by top 3% full-stack engineers. Our high-quality web and mobile products serve 13+ industries and are delivered with consistency through disciplined full-stack engineering practices.",
       image: heroImage,

@@ -217,7 +217,7 @@ export async function getSingleIndustry(
       // ── Hero ──
       heroSlides: {
         title: t?.heroSlides?.[0]?.title ?? "Title Here",
-        subtitle: t?.heroSlides?.[0]?.subtitle ?? "Subtitle Here",
+        subtitle: t?.heroSlides?.[0]?.subtitle ?? "",
         image: t?.heroSlides?.[0]?.image ?? "/banners/dollers.webp",
         imageAlt: t?.heroSlides?.[0]?.imageAlt ?? "Hero Image Alt Textt",
         description: t?.heroSlides?.[0]?.description ?? "This is the Description",

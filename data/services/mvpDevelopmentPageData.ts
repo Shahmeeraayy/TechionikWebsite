@@ -108,7 +108,7 @@ export const mvpDevelopmentPageData = {
   heroSlides: [
     {
       title: "MVP Development Services",
-      subtitle: "Validate faster. Launch smarter.",
+      subtitle: "",
       description:
         "Techionik develops custom MVP solutions for startups, SMBs, and large enterprises, combining agile delivery, real user feedback, and custom-fit software to reduce risk and launch quickly with a trusted expert software development team.",
       image: heroImage,

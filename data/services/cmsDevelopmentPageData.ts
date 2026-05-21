@@ -120,7 +120,7 @@ export const cmsDevelopmentPageData = {
   heroSlides: [
     {
       title: "CMS Development Services",
-      subtitle: "Full control over your digital presence.",
+      subtitle: "",
       description:
         "Techionik CMS Development Company provides full control digital presence with platform-based CMS development services. We deliver custom, headless, and cloud CMS solutions with responsive UI, seamless integrations, workflow optimization, AI-powered content automation, and enterprise-grade performance for faster publishing and SEO dominance.",
       image: heroImage,

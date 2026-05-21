@@ -83,7 +83,7 @@ export const applicationDevelopmentPageCopy = {
   heroSlides: [
     {
       title: "Application Development Services",
-      subtitle: "for Every Platform and Industry",
+      subtitle: "",
       description:
         "We provide end-to-end Application Development Services for web, mobile, desktop, and cloud solutions with agile processes, UX/UI design, QA, and post-launch support to deliver measurable business results.",
       image: "/banners/Software-Development.webp",

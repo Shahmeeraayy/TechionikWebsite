@@ -122,7 +122,7 @@ export const customApiDevelopmentPageData = {
   heroSlides: [
     {
       title: "Custom API Development Services",
-      subtitle: "The APIs behind products you use every day.",
+      subtitle: "",
       description:
         "As a leading custom API development company, we provide enterprise-grade API engineering with REST, GraphQL, SOAP, and gRPC, protected authentication and OWASP Top 10 security protocols. Our custom API development services are developed with clear documentation and OpenAPI standards to maintain the API lifecycle, support smooth integration, and improve product performance.",
       image: heroImage,

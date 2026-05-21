@@ -114,7 +114,7 @@ export const generativeAiDevelopmentPageData = {
   heroSlides: [
     {
       title: "Generative AI Development Services",
-      subtitle: "Future-forward AI development for enterprise transformation.",
+      subtitle: "",
       description:
         "As a trusted generative AI development company, we deliver future-forward AI development services that reduce costs, meet compliance, and accelerate digital transformation. Our AI engineers help organizations integrate agentic AI, custom large language models, retrieval-augmented generation pipelines, and generative AI to align with organizational goals.",
       image: heroImage,

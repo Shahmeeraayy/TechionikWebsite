@@ -121,7 +121,7 @@ export const frontendDevelopmentPageData = {
   heroSlides: [
     {
       title: "Front-End Development Services",
-      subtitle: "High-quality, fast, and stable web apps for every device.",
+      subtitle: "",
       description:
         "We provide Front-End Development Services, delivering high-quality, fast, and stable web apps with modular code, E2E testing, security audits, React, Angular, Vue, SSR, and PWA frameworks, SLA-backed performance, optimized for all browsers, devices, and operating systems.",
       image: heroImage,

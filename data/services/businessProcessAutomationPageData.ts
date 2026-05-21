@@ -115,8 +115,7 @@ export const businessProcessAutomationPageData = {
   heroSlides: [
     {
       title: "Business Process Automation Services",
-      subtitle:
-        "RPA, AI workflows, and Microsoft Power Automate for modern operations.",
+      subtitle: "",
       description:
         "We deliver full-scale business automation services as a leading business process automation company, helping SMBs and enterprises eliminate up to 80% of manual tasks using RPA, AI-driven workflows, and Microsoft Power Automate to improve day-to-day efficiency, accuracy, and legacy integration.",
       image: heroImage,

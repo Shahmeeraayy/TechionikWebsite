@@ -117,7 +117,7 @@ export const aiSoftwareDevelopmentPageData = {
   heroSlides: [
     {
       title: "AI Software Development Services",
-      subtitle: "Enterprise AI solutions with intelligence, compliance, and scale.",
+      subtitle: "",
       description:
         "Our AI development company delivers enterprise AI solutions with intelligent automation, ML pipelines, generative AI, predictive analytics, and computer vision, ensuring compliance, operational efficiency, and actionable AI insights for your enterprise.",
       image: heroImage,

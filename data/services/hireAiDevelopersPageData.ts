@@ -112,7 +112,7 @@ export const hireAiDevelopersPageData = {
   heroSlides: [
     {
       title: "Hire AI Developers for Custom AI & Machine Learning Solutions",
-      subtitle: "Build your dream tech team offshore.",
+      subtitle: "",
       description:
         "We help businesses create AI and machine learning solutions that grow with your operations, automating key processes and driving smarter, faster results. Our pre-vetted AI developers can join your team in just two weeks.",
       image: heroImage,

@@ -14,15 +14,17 @@ import { HeroSlide } from "../../../../data/HeroSectionData";
 interface HeroSectionProps {
   slides: HeroSlide[];
   autoplayDelay?: number;
+  showSubtitle?: boolean;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
   slides,
   autoplayDelay = 3000,
+  showSubtitle = true,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeSlide = slides[activeIndex] ?? slides[0];
-  const subtitle = activeSlide?.subtitle?.trim();
+  const subtitle = showSubtitle ? activeSlide?.subtitle?.trim() : "";
 
   const handleSlideChange = (swiper: SwiperType) => {
     setActiveIndex(swiper.realIndex);

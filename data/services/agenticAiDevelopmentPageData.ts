@@ -115,7 +115,7 @@ export const agenticAiDevelopmentPageData = {
   heroSlides: [
     {
       title: "Agentic AI Development Company",
-      subtitle: "Autonomous reasoning and decision-making for enterprise automation.",
+      subtitle: "",
       description:
         "Our Agentic AI development services help organizations across 12+ industries achieve intelligent process automation through autonomous reasoning and decision-making. We specialize in building agentic AI solutions for startups, SMBs, and enterprises. Hire Agentic AI developers to deliver measurable ROI via secure, human-AI collaboration.",
       image: heroImage,
