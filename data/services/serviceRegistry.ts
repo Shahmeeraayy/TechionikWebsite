@@ -20,7 +20,10 @@ import { talentPoolDataHome } from "@/data/Talent Pool/TalentPollDataHome";
 import { SoftwareInsightData } from "@/data/softwareInsightsData";
 import { caseStudyData } from "@/data/caseStudyData";
 import { DummyBlogData } from "@/data/blogData";
+import { aiConsultingPageData } from "@/data/services/aiConsultingPageData";
 import { backendDevelopmentPageData } from "@/data/services/backendDevelopmentPageData";
+import { mvpDevelopmentPageData } from "@/data/services/mvpDevelopmentPageData";
+import { uiUxDesignPageData } from "@/data/services/uiUxDesignPageData";
 import { applicationDevelopmentPageCopy } from "@/data/services/applicationDevelopmentPageCopy";
 
 export interface ServiceMenuItem {
@@ -1491,7 +1494,10 @@ function buildGenericSubServicePageData(
 }
 
 const staticSubServicePageData: Record<string, SubServicePageData> = {
+  "ai-ml/consulting": aiConsultingPageData as SubServicePageData,
   "software-development/backend": backendDevelopmentPageData as SubServicePageData,
+  "software-development/mvp": mvpDevelopmentPageData as SubServicePageData,
+  "design/ui-ux": uiUxDesignPageData as SubServicePageData,
 };
 
 export function getSubServicePageDataByRoute(

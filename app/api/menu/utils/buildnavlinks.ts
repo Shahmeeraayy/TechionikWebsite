@@ -64,17 +64,41 @@ const FALLBACK_NAV_LINKS: Navlink[] = [
     ],
   },
   {
-    name: "Hire Developers",
-    href: "/hire-developers",
+    name: "Staffing Hire",
+    href: "/staffing",
     isMega: true,
     children: [
       {
         id: 13,
-        name: "AI Developers",
-        slug: "ai",
+        name: "General Hiring",
+        slug: "hire-developers",
+        href: "/staffing/hire-developers",
         icon: "/icons/building.svg",
         imageUrl: "/images/megamenu-newsletter.png",
-        children: [],
+        children: [
+          {
+            id: 1301,
+            name: "General Hiring Overview",
+            slug: "overview",
+            href: "/staffing/hire-developers",
+          },
+        ],
+      },
+      {
+        id: 14,
+        name: "AI Teams",
+        slug: "ai-ml",
+        href: "/staffing/ai-ml/hire-ai-developers",
+        icon: "/icons/ai-brain.svg",
+        imageUrl: "/images/megamenu-newsletter.png",
+        children: [
+          {
+            id: 1401,
+            name: "AI Teams Bridge",
+            slug: "bridge",
+            href: "/staffing/ai-ml/hire-ai-developers",
+          },
+        ],
       },
     ],
   },
@@ -125,7 +149,12 @@ function mergeWithFallback(navLinks: Navlink[]): Navlink[] {
 
     const apiChildren = apiLink.children ?? [];
     const fallbackChildren = fallback.children ?? [];
-    const children = apiChildren.length > 0 ? apiChildren : fallbackChildren;
+    const isStaffingHub = fallbackSlug === "staffing";
+    const children = isStaffingHub
+      ? fallbackChildren
+      : apiChildren.length > 0
+        ? apiChildren
+        : fallbackChildren;
 
     return {
       ...fallback,
