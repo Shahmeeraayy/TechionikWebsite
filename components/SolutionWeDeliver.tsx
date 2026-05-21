@@ -28,8 +28,8 @@ const SolutionsWeDeliverComponent = ({ data }: SolutionWeDeliverProps) => {
         <h2 className="service-section-heading text-muted">
           <span className="gradient-text">{data.title}</span> {data.spanTitle}
         </h2>
-        <p
-          className="service-section-description text-muted w-full lg:w-[70%] 2xl:w-[60%]"
+        <div
+          className="service-section-description service-rich-text text-muted w-full lg:w-[70%] 2xl:w-[60%]"
           dangerouslySetInnerHTML={createMarkup(data.description)}
         />
       </div>

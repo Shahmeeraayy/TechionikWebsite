@@ -57,11 +57,11 @@ const WhatYouGet = ({ data }: WhatYouGetProps) => {
 
         {/* Right Side */}
         <div className="w-full lg:w-1/2 flex flex-col space-y-5 text-muted break-words">
-          <p
+          <div
             className="voice-summary service-rich-text"
             dangerouslySetInnerHTML={{ __html: data.RightDescription1 }}
           />
-          <p
+          <div
             className="service-rich-text"
             dangerouslySetInnerHTML={{ __html: data.RightDescription2 }}
           />

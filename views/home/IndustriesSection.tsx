@@ -38,7 +38,6 @@ export default function IndustriesSection({
 
   useEffect(() => {
     if (!carouselApi) return;
-    onCarouselSelect();
     carouselApi.on("select", onCarouselSelect);
     carouselApi.on("reInit", onCarouselSelect);
     return () => {

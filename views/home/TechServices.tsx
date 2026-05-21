@@ -4,10 +4,31 @@ import Button from "@/components/Button";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ServiceType } from "@/data/OurServices";
 import { useSlider } from "@/components/hooks/Slider";
 
-const TechServices: React.FC<any> = ({ servicesData }) => {
+interface TechServiceItem {
+  id: number;
+  title: string;
+  description: string;
+  image?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  imageAlt?: string;
+}
+
+interface TechServicesData {
+  title: string;
+  description: string;
+  gradientText: string;
+  afterGradientText: string;
+  services: TechServiceItem[];
+}
+
+interface TechServicesProps {
+  servicesData: TechServicesData;
+}
+
+const TechServices = ({ servicesData }: TechServicesProps) => {
   // Embla is only used for the mobile ref
   const { emblaRef, emblaApi } = useSlider({
     loop: false,
@@ -15,7 +36,7 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
     containScroll: "trimSnaps",
   });
 
-  const [selectedService, setSelectedService] = useState<any>(
+  const [selectedService, setSelectedService] = useState<TechServiceItem | null>(
     servicesData?.services?.[0] || null,
   );
 
@@ -23,7 +44,7 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
   useEffect(() => {
     if (emblaApi && selectedService) {
       const index = servicesData.services.findIndex(
-        (s: any) => s.id === selectedService.id,
+        (s) => s.id === selectedService.id,
       );
       if (index !== -1) emblaApi.scrollTo(index);
     }
@@ -31,6 +52,9 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
 
   if (!servicesData?.services || !Array.isArray(servicesData.services))
     return null;
+
+  const activeService = selectedService ?? servicesData.services[0];
+  if (!activeService) return null;
 
   return (
     <div className="w-full">
@@ -45,8 +69,8 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
             </span>
             {servicesData?.afterGradientText}
           </h2>
-          <p
-            className="service-section-description text-muted mt-4"
+          <div
+            className="service-section-description service-rich-text text-muted mt-4"
             dangerouslySetInnerHTML={{
               __html: servicesData?.description ?? "",
             }}
@@ -55,12 +79,12 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
 
         {/* 1. DESKTOP FILTERS (No Embla, Static Wrap) */}
         <div className="hidden md:flex flex-wrap justify-end gap-3 max-w-3xl">
-          {servicesData.services.map((service: ServiceType) => (
+          {servicesData.services.map((service) => (
             <button
               key={`desktop-${service.id}`}
               onClick={() => setSelectedService(service)}
               className={`service-pill transition-all whitespace-nowrap ${
-                selectedService.id === service.id
+                activeService.id === service.id
                   ? "bg-primary-dark text-white shadow-md"
                   : "bg-gray-700 text-gray-300 hover:bg-gray-600"
               }`}
@@ -77,12 +101,12 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
         ref={emblaRef}
       >
         <div className="flex gap-3 touch-pan-y">
-          {servicesData.services.map((service: ServiceType) => (
+          {servicesData.services.map((service) => (
             <button
               key={`mobile-${service.id}`}
               onClick={() => setSelectedService(service)}
               className={`service-pill transition-all whitespace-nowrap flex-none ${
-                selectedService.id === service.id
+                activeService.id === service.id
                   ? "bg-primary-dark text-white shadow-md"
                   : "bg-gray-700 text-gray-300 hover:bg-gray-600"
               }`}
@@ -96,7 +120,7 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
       {/* Service Card Section */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={selectedService?.id ?? ""}
+          key={activeService.id}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -105,9 +129,9 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
         >
           {/* Image */}
           <div className="w-full md:w-1/2 2xl:w-1/3 relative h-64 md:h-85 rounded-2xl overflow-hidden">
-            <Image
-              src={selectedService?.image ?? ""}
-              alt={selectedService?.imageAlt ?? "Service Image"} // Added ?. and fallback
+              <Image
+              src={activeService?.image ?? ""}
+              alt={activeService?.imageAlt ?? "Service Image"}
               fill
               className="object-cover"
             />
@@ -116,23 +140,23 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
           {/* Content */}
           <div className="flex-1 flex flex-col gap-5">
             <h3 className="service-card-title text-gradient">
-              {selectedService?.title ?? ""}
+              {activeService.title}
             </h3>
-            <p
+            <div
               className="service-rich-text text-[#CECECE]"
               dangerouslySetInnerHTML={{
-                __html: selectedService?.description ?? "",
+                __html: activeService.description ?? "",
               }}
             />
 
             <div className="pt-4">
               <Button
-                ariaLabel={selectedService?.ctaText ?? ""}
-                text={`${selectedService?.ctaText ?? ""}`}
+                ariaLabel={activeService?.ctaText ?? ""}
+                text={`${activeService?.ctaText ?? ""}`}
                 icon="/icons/arrow-right.svg"
                 size="medium"
                 radius="full"
-                href={selectedService?.ctaLink ?? ""}
+                href={activeService?.ctaLink ?? ""}
                 variant="glass"
                 className="hidden md:inline-flex"
               />

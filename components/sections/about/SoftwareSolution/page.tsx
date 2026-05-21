@@ -2,7 +2,7 @@
 import React from "react";
 import { useSlider } from "@/components/hooks/Slider";
 import { SoftwareSolutions } from "../../../../data/SoftwareSolution";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { createMarkup } from "@/utils/GlobalFuntions";
 
@@ -35,7 +35,7 @@ const SolutionCard = ({
         <h3 className="relative z-10 service-card-title text-white">
           {member.title}
         </h3>
-        <p
+        <div
           className={`relative z-10 service-rich-text text-muted transition-opacity duration-500
              ${clicked ? "opacity-100 lg:opacity-100" : "opacity-0 lg:opacity-0 lg:group-hover:opacity-100"}
           `}
@@ -79,8 +79,8 @@ const SoftwareSolution = ({ data }: SoftwareSolutionProps) => {
           </h2>
         </div>
 
-        <p
-          className="mb-12 service-section-description text-muted w-full lg:w-[80%] 2xl:w-[70%]"
+        <div
+          className="mb-12 service-section-description service-rich-text text-muted w-full lg:w-[80%] 2xl:w-[70%]"
           dangerouslySetInnerHTML={createMarkup(data.description)}
         />
 

@@ -2,7 +2,7 @@
 import { TechnologyExpertise } from "@/data/technologyExpertiseData";
 import Image from "next/image";
 import { useSlider } from "./hooks/Slider";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 interface TechnologyExpertiseProps {
@@ -15,7 +15,7 @@ const TechnologyExpertiseComponent = ({ data }: TechnologyExpertiseProps) => {
   const [currentSlide, setCurrentSlide] = useState<number | null>(0);
 
   // Only scroll when the target slide is outside the viewport
-  const isSlideFullyVisible = (index: number) => {
+  const isSlideFullyVisible = useCallback((index: number) => {
     if (!emblaApi) return true;
     const nodes = emblaApi.slideNodes();
     const viewport = emblaApi.containerNode();
@@ -27,14 +27,14 @@ const TechnologyExpertiseComponent = ({ data }: TechnologyExpertiseProps) => {
     const nRect = node.getBoundingClientRect();
 
     return nRect.left >= vRect.left && nRect.right <= vRect.right;
-  };
+  }, [emblaApi]);
 
   useEffect(() => {
     if (!emblaApi) return;
     if (currentSlide !== null && !isSlideFullyVisible(currentSlide)) {
       emblaApi.scrollTo(currentSlide);
     }
-  }, [currentSlide, emblaApi]);
+  }, [currentSlide, emblaApi, isSlideFullyVisible]);
 
   // Collapse / Expand logic
   const handleCardClick = (index: number) => {

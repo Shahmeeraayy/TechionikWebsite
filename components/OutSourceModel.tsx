@@ -20,8 +20,8 @@ const OutsourcingModels = ({ data }: OutsourcingModelsProps) => {
           </span>{" "}
         </h2>
 
-        <p
-          className="service-section-description text-muted w-full lg:max-w-[80%] xl:max-w-[70%] 2xl:max-w-[60%]"
+        <div
+          className="service-section-description service-rich-text text-muted w-full lg:max-w-[80%] xl:max-w-[70%] 2xl:max-w-[60%]"
           dangerouslySetInnerHTML={createMarkup(data?.description || "")}
         />
       </div>
