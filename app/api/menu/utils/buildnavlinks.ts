@@ -77,12 +77,6 @@ const FALLBACK_NAV_LINKS: Navlink[] = [
         imageUrl: "/images/megamenu-newsletter.png",
         children: [
           {
-            id: 1301,
-            name: "Hire Developer Overview",
-            slug: "overview",
-            href: "/hire-developers",
-          },
-          {
             id: 1302,
             name: "Hire AI Developers",
             slug: "hire-ai-developers",
