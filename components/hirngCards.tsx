@@ -1,137 +1,91 @@
-﻿"use client";
-import React from 'react';
-// import Link from 'next/link';
-import { HiringPageData } from '../data/hiringCardData';
-import Link from 'next/link';
-import { useSlider } from './hooks/Slider';
-import { ArrowLeft } from 'lucide-react';
-import Image from 'next/image';
+import type { FC } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import type { HiringPageData } from "../data/hiringCardData";
 
-const HiringSection: React.FC<{ data: HiringPageData }> = ({ data }) => {
-    const { emblaRef, emblaApi } = useSlider({ loop: false });
-    const { header, cards } = data;
+const HiringSection: FC<{ data: HiringPageData }> = ({ data }) => {
+  const { header, cards } = data;
 
-    return (
-        <section className="bg-[--color-bg] max-w-full py-24 px-6 lg:px-20">
-            <div className="max-w-8xl mx-auto">
+  return (
+    <section className="bg-[--color-bg] px-6 py-24 lg:px-20">
+      <div className="mx-auto max-w-8xl">
+        <div className="mb-16 max-w-3xl">
+          <h2 className="service-section-heading-lg mb-6 text-white">
+            {header.mainTitle}
+            <br /> <span className="gradient-text">{header.highlightTitle}</span>
+          </h2>
+          <p className="service-section-description whitespace-pre-line text-(--color-muted)">
+            {header.subtitle}
+          </p>
+        </div>
 
-                {/* Section Header - Now fully dynamic via Props */}
-                <div className="mb-16 max-w-3xl">
-                    <h2 className="service-section-heading-lg text-white mb-6">
-                        {header.mainTitle}<br /> <span className="gradient-text">{header.highlightTitle}</span>
-                    </h2>
-                    <p className="service-section-description text-(--color-muted) whitespace-pre-line">
-                        {header.subtitle}
-                    </p>
+        <div className="grid items-stretch gap-6 md:grid-cols-2 xl:grid-cols-3 xl:gap-8">
+          {cards.map((item) => {
+            const iconAlt = `${item.title.trim()} ${item.category?.trim() ?? ""}`.trim();
+
+            return (
+              <article
+                key={item.id}
+                className="flex h-full flex-col rounded-[32px] border border-[#2A2A34] bg-[#16161A] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.25)] lg:p-10"
+              >
+                <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[#303038] bg-[#26262B]">
+                  <Image
+                    src={item.icon}
+                    alt={iconAlt || item.title.trim()}
+                    width={44}
+                    height={44}
+                    className="h-11 w-11 opacity-80"
+                  />
                 </div>
 
-                {/* Grid Layout */}
-<div className="overflow-hidden" ref={emblaRef}>
-  <div className="flex gap-8">
-    {cards.map((item) => (
-      <div
-        key={item.id}
-        className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%]
-        bg-[#16161A] rounded-[32px] p-10 border border-[#2A2A34] flex flex-col h-full shadow-xl"
-      >
-        {/* Icon */}
-        <div className="w-20 h-20 bg-[#26262B] rounded-full border border-[#303038] flex items-center justify-center mb-8">
-          <Image
-            src={item.icon}
-            alt={item.category}
-            width={44}
-            height={44}
-            className="w-11 h-11 opacity-80"
-          />
-        </div>
+                <h3 className="service-card-title mt-8 text-[var(--color-muted)]">
+                  {item.title.trim()}
+                  {item.category?.trim() ? (
+                    <>
+                      <br />
+                      <span className="gradient-text">{item.category.trim()}</span>
+                    </>
+                  ) : null}
+                </h3>
 
-        {/* Title */}
-        <h3 className="service-card-title text-[var(--color-muted)] mb-8">
-          {item.title.trim()}
-          {item.category?.trim() ? (
-            <>
-              <br />
-              <span className="gradient-text">{item.category.trim()}</span>
-            </>
-          ) : null}
-        </h3>
+                <ul className="mt-8 flex-grow space-y-4">
+                  {item.features.map((feature, idx) => (
+                    <li key={idx} className="flex gap-3 service-body text-white">
+                      <span className="mt-0.5 font-bold text-[#F05323]">•</span>
+                      <span className="leading-7">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
 
-        {/* Features */}
-        <ul className="space-y-4 mb-12 flex-grow">
-          {item.features.map((feature, idx) => (
-            <li
-              key={idx}
-              className="flex gap-3 service-body text-white"
-            >
-              <span className="font-bold">•</span>
-              {feature}
-            </li>
-          ))}
-        </ul>
-
-        {/* Button */}
-        <Link href="/contact-us">
-          <button className="flex items-center justify-between bg-[#434345] hover:bg-[#4d4d4f] transition-colors w-full max-w-[180px] py-2 pl-6 pr-2 rounded-full group">
-            <span className="service-body text-white font-medium">Hire Now</span>
-            <div className="w-10 h-10 bg-[#E85D33] rounded-full flex items-center justify-center text-white transition-transform group-hover:translate-x-1">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </div>
-          </button>
-        </Link>
-      </div>
-    ))}
-  </div>
-</div>
-<div className="flex justify-end mt-0 lg:mt-6">
-        <div className="flex gap-4">
-          <button
-            onClick={() => emblaApi?.scrollPrev()}
-            className="p-3 rounded-full border border-primary-dark text-[--color-text] hover:bg-white/10 transition"
-          >
-            <ArrowLeft size={20} />
-          </button>
-
-          <div className="p-[1.5px] rounded-full bg-linear-to-r from-[#F05323] to-[#CACACA]">
-            <button
-              onClick={() => emblaApi?.scrollNext()}
-              className="p-3 rounded-full bg-black flex items-center justify-center"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24">
-                <defs>
-                  <linearGradient id="gradArrow" x1="0" y1="0" x2="24" y2="0">
-                    <stop offset="0%" stopColor="#F05323" />
-                    <stop offset="100%" stopColor="#CACACA" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M5 12h14M13 5l7 7-7 7"
-                  stroke="url(#gradArrow)"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  fill="none"
-                />
-              </svg>
-            </button>
-          </div>
+                <Link
+                  href="/contact-us"
+                  className="group mt-10 inline-flex h-14 w-full max-w-[180px] items-center justify-between rounded-full bg-[#434345] pl-6 pr-2 transition-colors hover:bg-[#4d4d4f]"
+                >
+                  <span className="service-body font-medium text-white">Hire Now</span>
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E85D33] text-white transition-transform group-hover:translate-x-1">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </span>
+                </Link>
+              </article>
+            );
+          })}
         </div>
       </div>
-            </div>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default HiringSection;
-
