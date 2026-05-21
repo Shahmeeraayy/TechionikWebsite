@@ -480,8 +480,8 @@ export const erpSoftwareDevelopmentPageData = {
         title: "Construction and Real Estate",
         description:
           "ERP for project management, budgeting, contracts, vendor coordination, and financial reporting across developments.",
-        link: "/industries/government",
-        bgImage: "/images/industries/Healthcare.webp",
+        link: "/industries/finance",
+        bgImage: "/banners/dollers.webp",
         icon: "*",
       },
       {

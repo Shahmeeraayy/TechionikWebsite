@@ -28,6 +28,7 @@ import { hireAiDevelopersPageData } from "@/data/services/hireAiDevelopersPageDa
 import { customApiDevelopmentPageData } from "@/data/services/customApiDevelopmentPageData";
 import { cmsDevelopmentPageData } from "@/data/services/cmsDevelopmentPageData";
 import { erpSoftwareDevelopmentPageData } from "@/data/services/erpSoftwareDevelopmentPageData";
+import { enterpriseSoftwareDevelopmentPageData } from "@/data/services/enterpriseSoftwareDevelopmentPageData";
 import { businessProcessAutomationPageData } from "@/data/services/businessProcessAutomationPageData";
 import { devopsServicesPageData } from "@/data/services/devopsServicesPageData";
 import { desktopAppDevelopmentPageData } from "@/data/services/desktopAppDevelopmentPageData";
@@ -1517,6 +1518,7 @@ const staticSubServicePageData: Record<string, SubServicePageData> = {
   "integration-api/custom-api": customApiDevelopmentPageData as SubServicePageData,
   "integration-api/cms": cmsDevelopmentPageData as SubServicePageData,
   "integration-api/erp": erpSoftwareDevelopmentPageData as SubServicePageData,
+  "software-development/enterprise": enterpriseSoftwareDevelopmentPageData as SubServicePageData,
   "automation/bpa": businessProcessAutomationPageData as SubServicePageData,
   "infrastructure-devops/devops": devopsServicesPageData as SubServicePageData,
   "application-development/desktop": desktopAppDevelopmentPageData as SubServicePageData,

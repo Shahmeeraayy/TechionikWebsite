@@ -23,7 +23,7 @@ type BpaBlog = {
   slug: string;
 };
 
-const heroImage = "/images/home/Software-Development.webp";
+const heroImage = "/banners/smart-automation.webp";
 
 const defaultReviewImages = [
   {
@@ -71,7 +71,7 @@ export const businessProcessAutomationTechStackData: TechStackData = {
     title: "Business Process Automation",
     middleTitle: "Technologies and Tools",
     description:
-      "Our automation engineers use RPA, workflow engines, OCR, NLP, low-code platforms, and integration tooling to simplify repetitive business processes and improve operational efficiency.",
+      "We combine RPA platforms, AI workflows, OCR, NLP, workflow engines, APIs, cloud services, and governance tooling to automate complex operations safely and at scale.",
   },
   filters: ["Backend", "Cloud/DevOps", "AI/ML"],
   techIcons: [
@@ -100,9 +100,9 @@ export const businessProcessAutomationPageData = {
   templateVariant: "default",
   meta: {
     title:
-      "Business Process Automation Services | Techionik - RPA, AI Workflows, and Automation Consulting",
+      "Business Process Automation Services | Techionik - RPA, AI Workflows & Power Automate",
     description:
-      "Techionik delivers business process automation services that eliminate manual tasks with RPA, AI-driven workflows, Microsoft Power Automate, OCR, and secure workflow integration for SMBs and enterprises.",
+      "Techionik helps SMBs and enterprises automate manual work with RPA, AI-driven workflows, and Microsoft Power Automate to improve efficiency, accuracy, integration, and scalability.",
     keywords: [
       "business process automation services",
       "BPA consulting",
@@ -115,7 +115,8 @@ export const businessProcessAutomationPageData = {
   heroSlides: [
     {
       title: "Business Process Automation Services",
-      subtitle: "Eliminate manual work and improve process efficiency.",
+      subtitle:
+        "RPA, AI workflows, and Microsoft Power Automate for modern operations.",
       description:
         "We deliver full-scale business automation services as a leading business process automation company, helping SMBs and enterprises eliminate up to 80% of manual tasks using RPA, AI-driven workflows, and Microsoft Power Automate to improve day-to-day efficiency, accuracy, and legacy integration.",
       image: heroImage,
@@ -126,16 +127,16 @@ export const businessProcessAutomationPageData = {
   ] satisfies HeroSlide[],
   whatYouGet: {
     id: 1,
-    title1: "Business Process Automation",
-    spanTitle: "Services We Offer",
-    title2: "",
+    title1: "What you get with TECHIONIK",
+    spanTitle: "Business Process Automation",
+    title2: "Services",
     reviews: defaultReviewImages,
     RightDescription1:
       "At Techionik, our Automation Engineers provide end-to-end process automation solutions using RPA, AI, custom software, and low-code/no-code platforms to simplify workflows, handle repetitive tasks, optimize resources, cut costs, and improve enterprise agility, productivity, and profitability.",
     RightDescription2:
-      "Our BPA services reduce errors, accelerate operations, and empower teams to focus on strategic, high-value priorities across finance, operations, HR, supply chain, and customer service.",
-    buttonLabel: "Request an Automation Review",
-    buttonLink: "#contact",
+      "We design practical BPA programs that reduce errors, accelerate operations, and connect across legacy systems so your teams can focus on strategic, high-value priorities instead of repetitive manual work.",
+    buttonLabel: "Talk to an Automation Expert",
+    buttonLink: "/contact-us",
   } satisfies WhatYouGett,
   technologyExpertise: {
     mainTitle: "Business Process Automation Services We Offer",
@@ -189,7 +190,7 @@ export const businessProcessAutomationPageData = {
       },
       {
         id: 6,
-        title: "CRM and ERP Automation",
+        title: "CRM & ERP Automation",
         description: [
           "We modernize CRM and ERP workflows by automating customer data management, lead tracking, and inventory control.",
           "The system supports more accurate data and better decision-making for leaders.",
@@ -229,7 +230,7 @@ export const businessProcessAutomationPageData = {
     title: "Why Choose Techionik",
     spanTitle: "for Business Process Automation Company",
     description:
-      "As the Best RPA Services Company, we partner with businesses to implement intelligent automation solutions, deploy AI analytics to augment operations, accelerate productivity, and minimize operational gaps.",
+      "Trusted by startups, SMBs, and enterprises, our Business Process Automation consulting transforms workflows, automates key processes, and integrates solutions with a focus on strategy, technology, governance, and measurable outcomes.",
     cards: [
       {
         id: 1,
@@ -412,12 +413,13 @@ export const businessProcessAutomationPageData = {
     ],
   } satisfies FAQ,
   contactHero: {
-    title: "Automate manual tasks and create a more efficient operating model.",
+    title: "Ready to streamline",
+    middleTitle: "your business processes?",
     description:
-      "Techionik delivers business process automation services that reduce manual workload, improve accuracy, and connect ERP, CRM, HRIS, and legacy systems with reliable automation.",
-    backgroundImage: heroImage,
-    imageAlt: "Business process automation CTA",
-    buttonText: "Talk to an Automation Consultant",
+      "Tell us which manual tasks, approvals, and legacy workflows are slowing your team down, and we will map the right automation approach.",
+    backgroundImage: "/banners/buissness-banner.webp",
+    imageAlt: "Business process automation contact banner",
+    buttonText: "Let's Talk",
     buttonLink: "/contact-us",
     buttonVariant: "glass",
     buttonIcon: "/icons/arrow-right.svg",
@@ -430,47 +432,47 @@ export const businessProcessAutomationPageData = {
     descriptiption:
       "We guide you from initial analysis to implementation and ongoing support, ensuring your automation delivers efficiency, clarity, and measurable results.",
     mainDescription:
-      "The workflow keeps discovery, modeling, design, testing, rollout, and continuous improvement aligned so BPA stays practical and scalable.",
+      "Each phase is built to improve feasibility, ROI, compliance, adoption, and long-term value while reducing disruption.",
     card: [
       {
         id: 1,
-        title: "Process Discovery and Automation Readiness",
+        title: "Process Discovery & Automation Readiness",
         description:
           "<p>We assess workflows, infrastructure, and automation maturity to identify the highest-impact opportunities and confirm feasibility.</p>",
       },
       {
         id: 2,
-        title: "Workflow Analysis and BPMN Modeling",
+        title: "Workflow Analysis & BPMN Modeling",
         description:
           "<p>We map approvals, exceptions, and dependencies using BPMN standards to create an automation-ready process blueprint.</p>",
       },
       {
         id: 3,
-        title: "Automation Strategy and Intelligent Design",
+        title: "Automation Strategy & Intelligent Design",
         description:
           "<p>We define goals, KPIs, and governance and select the best architecture using Generative AI, rules engines, and data orchestration.</p>",
       },
       {
         id: 4,
-        title: "Automation Development and API Integration",
+        title: "Automation Development & API Integration",
         description:
           "<p>We build secure automation and connect enterprise systems through APIs for reliable data exchange and consistency.</p>",
       },
       {
         id: 5,
-        title: "Testing, Quality Assurance and Optimization",
+        title: "Testing, Quality Assurance & Optimization",
         description:
           "<p>Functional, security, and exception testing ensure automation is resilient and stable across high-volume processes.</p>",
       },
       {
         id: 6,
-        title: "Deployment, Enablement and Change Management",
+        title: "Deployment, Enablement & Change Management",
         description:
           "<p>We deploy with minimal disruption and support adoption through documentation and workforce training.</p>",
       },
       {
         id: 7,
-        title: "Continuous Monitoring, Support and AI Enhancement",
+        title: "Continuous Monitoring, Support & AI Enhancement",
         description:
           "<p>Post-launch monitoring, performance tuning, and integrations keep automation future-ready and scalable.</p>",
       },
@@ -478,15 +480,23 @@ export const businessProcessAutomationPageData = {
   } satisfies WhatWeDo,
   industries: {
     title: "Business Process Automation",
-    gradientTitle: "Solutions Across",
-    afterGradientTitle: "Industries",
+    gradientTitle: "Solutions",
+    afterGradientTitle: "Across All Industries",
     description:
-      "Business process automation accelerates operations across sectors by automating repetitive workflows, tracking performance, and optimizing resources.",
+      "Business process automation accelerates operations across sectors by automating repetitive workflows, tracking performance metrics, optimizing resource management, and executing industry-specific processes.",
     slides: [
       {
-        title: "Banking and Insurance",
+        title: "Banking, Financial Services, and Insurance",
         description:
-          "Automate account opening, credit approvals, KYC/AML, background checks, premium calculation, and claims processing.",
+          "Automate bank account opening, credit approval, KYC/AML verification, customer background checks, premium calculation, and insurance claims processing.",
+        link: "/industries/finance",
+        bgImage: "/banners/dollers.webp",
+        icon: "*",
+      },
+      {
+        title: "Fintech",
+        description:
+          "Automate loan approvals, account management, transaction monitoring, risk assessment, fraud detection, and real-time analytics for faster financial operations.",
         link: "/industries/finance",
         bgImage: "/banners/dollers.webp",
         icon: "*",
@@ -516,9 +526,9 @@ export const businessProcessAutomationPageData = {
         icon: "*",
       },
       {
-        title: "Supply Chain",
+        title: "Supply Chain Management",
         description:
-          "Automate inventory level monitoring, low-stock alerts, order tracking, and supplier portal management.",
+          "Automate inventory level monitoring, low-stock alerts, order fulfillment tracking, and supplier portal management.",
         link: "/industries/manufacturing",
         bgImage: "/images/industries/Manufacturing.webp",
         icon: "*",
@@ -534,23 +544,23 @@ export const businessProcessAutomationPageData = {
       {
         title: "Government",
         description:
-          "Automate citizen services, document verification, case tracking, and compliance workflows for more transparent operations.",
+          "Automate citizen service processing, document verification, case tracking, and regulatory compliance workflows for more transparent operations.",
         link: "/industries/government",
         bgImage: "/images/industries/Healthcare.webp",
         icon: "*",
       },
       {
-        title: "Entertainment and Media",
+        title: "Entertainment & Media",
         description:
-          "Automate scheduling, audience analytics, licensing, production, and digital asset management for smoother delivery.",
+          "Automate content scheduling, audience analytics, licensing workflows, production pipelines, and digital asset management for smoother delivery.",
         link: "/industries/entertainment-media",
         bgImage: "/images/industries/HiTech.webp",
         icon: "*",
       },
       {
-        title: "Startups",
+        title: "Startups & Emerging Businesses",
         description:
-          "Automate routine admin, reporting, and onboarding so startups can focus on innovation and growth.",
+          "Automate routine admin, reporting, and customer onboarding so startups can focus on innovation and market expansion.",
         link: "/industries/startups",
         bgImage: "/images/industries/HiTech.webp",
         icon: "*",

@@ -312,9 +312,9 @@ export const customApiDevelopmentPageData = {
     faq: [
       {
         id: 1,
-        question: "What types of APIs do you develop?",
+        question: "How do you approach API architecture for complex products?",
         answer:
-          "We develop RESTful, GraphQL, SOAP, and gRPC APIs for web, mobile, enterprise, and cloud environments.",
+          "We define the API architecture around product goals, data flow, security, and lifecycle governance so integrations stay reliable as the platform scales.",
       },
       {
         id: 2,
@@ -357,6 +357,42 @@ export const customApiDevelopmentPageData = {
         question: "How do you keep APIs scalable, maintainable, and optimized over time?",
         answer:
           "We design modular architectures with reusable components, caching, rate-limiting, load-balancing, and continuous monitoring for long-term stability.",
+      },
+      {
+        id: 9,
+        question: "Why are APIs critical for modern applications?",
+        answer:
+          "APIs are the connective layer for modern software, and the research you shared shows how central they are: nearly 90% of developers use APIs, with 69% using third-party APIs and 20% using internal or private APIs.",
+      },
+      {
+        id: 10,
+        question: "How do APIs drive business innovation and efficiency?",
+        answer:
+          "An API-first approach helps teams build modular products, accelerate integrations, and ship features faster. Your research notes also show adoption rising from 66% in 2023 to 74% in 2024.",
+      },
+      {
+        id: 11,
+        question: "What types of APIs do you develop?",
+        answer:
+          "We develop RESTful, GraphQL, SOAP, and gRPC APIs, along with custom integrations, legacy modernization, and cloud-connected services.",
+      },
+      {
+        id: 12,
+        question: "How many APIs does a typical application use today?",
+        answer:
+          "Modern applications often rely on dozens of APIs, and the figures you provided suggest the average application now uses between 26 and 50 APIs.",
+      },
+      {
+        id: 13,
+        question: "What is the market potential for API management?",
+        answer:
+          "The API management market continues to expand rapidly, with the research you shared valuing it at USD 5.42 billion in 2024 and projecting growth to USD 32.77 billion by 2032 at a 25% CAGR.",
+      },
+      {
+        id: 14,
+        question: "How are AI capabilities integrated through APIs?",
+        answer:
+          "AI capabilities are commonly embedded through AI APIs that connect models to products, and your research notes point to a projected AI API market of $48.5 billion in 2024 with 31.3% CAGR from 2025 to 2030.",
       },
     ],
   } satisfies FAQ,
