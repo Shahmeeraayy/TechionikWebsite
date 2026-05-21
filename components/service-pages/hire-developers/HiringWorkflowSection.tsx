@@ -20,7 +20,7 @@ function WorkflowGlassCard({
   pulseKey: number;
 }) {
   return (
-    <article className="relative isolate h-[452px] w-full max-w-[350px] overflow-visible rounded-[24px] lg:-translate-x-[5px]">
+    <article className="relative isolate h-[452px] w-full max-w-[350px] overflow-visible rounded-[24px] select-none lg:-translate-x-[5px]">
       <div className="absolute -inset-[26px] rounded-[40px] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.16),transparent_54%),radial-gradient(circle_at_center,rgba(0,0,0,0.3),transparent_68%)] blur-[24px] opacity-70" />
       <div className="absolute inset-0 rounded-[24px] border border-white/12 bg-[rgba(16,16,18,0.82)] shadow-[0_22px_60px_rgba(0,0,0,0.65)] backdrop-blur-[40px]" />
       <div className="absolute inset-[1px] rounded-[23px] bg-[linear-gradient(180deg,rgba(255,255,255,0.07)_0%,rgba(255,255,255,0.03)_32%,rgba(255,255,255,0.01)_100%)]" />
@@ -209,7 +209,7 @@ export default function HiringWorkflowSection({
         <div className="mt-16 hidden xl:grid grid-cols-[350px_minmax(0,1fr)] items-start gap-10">
           <WorkflowGlassCard step={activeStep} pulseKey={pulseToken} />
 
-          <div className="grid grid-cols-[minmax(0,1fr)_280px] items-start gap-6 xl:gap-8">
+          <div className="grid grid-cols-[minmax(0,1fr)_260px] items-start gap-4 xl:gap-5">
             <WorkflowStackArt steps={steps} activeIndex={activeIndex} />
 
             <div className="flex h-[640px] flex-col justify-between py-8">
@@ -222,7 +222,7 @@ export default function HiringWorkflowSection({
                     type="button"
                     onClick={() => activateStep(index)}
                     aria-pressed={isActive}
-                    className={`group flex items-center gap-4 text-left transition-transform duration-300 ${
+                    className={`group flex select-none items-center gap-3 text-left transition-transform duration-300 ${
                       isActive ? "translate-x-1" : "hover:translate-x-1"
                     }`}
                   >
@@ -246,8 +246,8 @@ export default function HiringWorkflowSection({
                       }`}
                     />
                     <span
-                      className={`whitespace-nowrap text-sm font-semibold tracking-[-0.02em] transition-colors duration-300 ${
-                        isActive ? "text-[#D7D7D7]" : "text-[#AFAFAF]"
+                      className={`whitespace-nowrap text-sm font-medium tracking-[-0.02em] transition-colors duration-300 ${
+                        isActive ? "text-[#E3E3E3]" : "text-[#AFAFAF]"
                       }`}
                     >
                       {step.title}
@@ -272,7 +272,7 @@ export default function HiringWorkflowSection({
                   type="button"
                   onClick={() => activateStep(index)}
                   aria-pressed={isActive}
-                  className={`relative rounded-[26px] border p-5 text-left shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-all duration-300 sm:p-6 ${
+                  className={`relative select-none rounded-[26px] border p-5 text-left shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-all duration-300 sm:p-6 ${
                     isActive
                       ? "border-[#F05323]/45 bg-[#151519]"
                       : "border-white/10 bg-[#121214] hover:border-white/15 hover:bg-[#151519]"
