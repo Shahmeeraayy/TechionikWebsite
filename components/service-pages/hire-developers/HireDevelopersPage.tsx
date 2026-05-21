@@ -11,10 +11,12 @@ import OurClientSays from "@/components/OurClientSays";
 import FAQComponent from "@/views/home/FAQs";
 import FooterContact from "@/components/sections/home/footer-content/FooterContent";
 import { hiringData } from "@/data/hiringCardData";
+import type { Feature as HiringCardFeature } from "@/data/hiringCardData";
 import { TechexpertTechStack } from "@/data/TechnicalexpertTechStack";
 import { tailoredSolutions } from "@/data/solutionsData";
 import { outsourcingModelsData } from "@/data/outSourceModel";
 import { faqsData } from "@/data/FAQS";
+import type { FAQ as FAQData } from "@/data/FAQS";
 import type { TechStackData } from "@/data/TechStack/AboutTeckStack";
 
 const sfPro = localFont({
@@ -56,7 +58,7 @@ type PageData = {
       subtitle?: string;
     };
     cards?: Array<{
-      id?: string;
+      id?: string | number;
       title?: string;
       category?: string;
       icon?: string;
@@ -70,7 +72,7 @@ type PageData = {
       subtitle?: string;
     };
     cards?: Array<{
-      id?: string;
+      id?: string | number;
       title?: string;
       category?: string;
       icon?: string;
@@ -85,7 +87,7 @@ type PageData = {
       description?: string;
     };
     cards?: Array<{
-      id?: number;
+      id?: string | number;
       title?: string;
       description?: string;
       bgPattern?: string;
@@ -98,7 +100,7 @@ type PageData = {
       subtitle?: string;
     };
     steps?: Array<{
-      id?: string;
+      id?: string | number;
       title?: string;
       description?: string;
     }>;
@@ -111,7 +113,7 @@ type PageData = {
       brandName?: string;
     };
     cards?: Array<{
-      id?: string;
+      id?: string | number;
       title?: string;
       icon?: string;
       skills?: string[];
@@ -198,6 +200,18 @@ type WhyChooseCard = {
   description: string;
 };
 
+type BulletCard = {
+  title: string;
+  bullets: string[];
+};
+
+type AiProcessStep = {
+  step: string;
+  title: string;
+  description: string;
+  bullets?: string[];
+};
+
 const navLinks: NavLink[] = [
   { label: "Why Choose Us", href: "#why-choose-us" },
   { label: "Technologies", href: "#technologies-we-use" },
@@ -205,6 +219,7 @@ const navLinks: NavLink[] = [
   { label: "Industries", href: "#solutions" },
   { label: "Solutions", href: "#solutions" },
   { label: "Outsourcing Models", href: "#outsourcing-models" },
+  { label: "AI Developers", href: "#ai-developers" },
   { label: "Case Study", href: "#case-study" },
 ];
 
@@ -249,7 +264,7 @@ const hiringJourney: ProcessStep[] = [
   },
   {
     id: "06",
-    title: "Pay and Let’s Start",
+    title: "Pay and Let's Start",
     description:
       "Once everything is approved, your dedicated developers are ready to join your team and start delivery.",
   },
@@ -313,6 +328,224 @@ const whyChooseCards: WhyChooseCard[] = [
     title: "Flexible Pricing and Engagement Models",
     description:
       "Choose the model that matches budget, timeline, and governance without compromising quality.",
+  },
+];
+
+const aiIntroHighlights = [
+  "Pre-vetted AI talent",
+  "Machine learning and NLP expertise",
+  "Two-week onboarding target",
+  "Startup to enterprise support",
+];
+
+const aiTechExpertiseCards: BulletCard[] = [
+  {
+    title: "Hire Python Developer",
+    bullets: [
+      "Build scalable, secure software and integrate it with your infrastructure.",
+      "Extend your TECHIONIK team with cutting-edge Python expertise.",
+      "Ideal for AI, automation, data pipelines, and backend systems.",
+    ],
+  },
+  {
+    title: "Hire Java Developer",
+    bullets: [
+      "High-performance, enterprise-ready solutions using Java, .NET, Node.js, Python, Docker, Kubernetes, and AWS.",
+      "Empower innovation through a future-ready tech stack.",
+      "Perfect for backend systems, cloud apps, and complex enterprise solutions.",
+    ],
+  },
+  {
+    title: "Hire iOS Developer",
+    bullets: [
+      "Build high-performance, scalable iOS applications using Swift, Objective-C, and modern frameworks.",
+      "Integrate with cloud services, Docker, Kubernetes, and AI-powered apps.",
+      "Future-ready, feature-rich mobile solutions that elevate your business.",
+    ],
+  },
+];
+
+const aiDeveloperSolutions: ServiceLine[] = [
+  {
+    title: "AI Developers for Startups",
+    description:
+      "We provide AI experts who help startups build MVPs, AI-powered applications, chatbots, and automation tools. Our developers work with modern frameworks like Python, TensorFlow, and OpenAI APIs to turn innovative ideas into scalable products.",
+  },
+  {
+    title: "AI Developers for SMBs",
+    description:
+      "Our AI developers support small and medium businesses by implementing AI automation, predictive analytics, recommendation systems, and intelligent chatbots. We help SMBs reduce operational costs and improve productivity using smart AI solutions.",
+  },
+  {
+    title: "AI Developers for Enterprises",
+    description:
+      "Leverage enterprise-grade AI development with custom machine learning models, NLP solutions, computer vision systems, and AI automation platforms. Our developers ensure secure architecture, scalable infrastructure, and reliable deployment.",
+  },
+];
+
+const aiHiringSteps: AiProcessStep[] = [
+  {
+    step: "01",
+    title: "AI Technical Assessment",
+    description:
+      "Our AI specialists evaluate candidates based on their expertise in:",
+    bullets: [
+      "Machine learning algorithms",
+      "Deep learning frameworks such as TensorFlow and PyTorch",
+      "Natural language processing (NLP)",
+      "Data modeling and AI architecture",
+      "Python programming and AI libraries",
+    ],
+  },
+  {
+    step: "02",
+    title: "HR Interview",
+    description:
+      "In this stage we evaluate communication skills, collaboration ability, and problem-solving mindset.",
+    bullets: [
+      "AI project experience",
+      "Ability to work in agile teams",
+      "Understanding of business use cases for AI",
+      "Communication and collaboration skills",
+    ],
+  },
+  {
+    step: "03",
+    title: "AI Technical Interview",
+    description:
+      "Our senior AI architects conduct a deep technical interview covering:",
+    bullets: [
+      "Machine learning model development",
+      "AI system architecture design",
+      "Model training and evaluation",
+      "Data engineering and pipelines",
+      "AI deployment and optimization",
+    ],
+  },
+];
+
+const aiTechnicalSkills = [
+  "Strong expertise in Python, R, and AI programming frameworks.",
+  "Experience with machine learning, deep learning, and neural networks.",
+  "Knowledge of natural language processing (NLP) and computer vision.",
+  "Experience building AI models, predictive analytics, and recommendation systems.",
+  "Expertise in AI deployment, MLOps, and cloud platforms (AWS, Azure, GCP).",
+];
+
+const aiNonTechnicalSkills = [
+  "Strong analytical thinking and problem-solving ability.",
+  "Ability to translate business problems into AI solutions.",
+  "Excellent collaboration with product and data teams.",
+  "Clear communication for complex AI concepts.",
+  "Continuous learning of new AI technologies and innovations.",
+];
+
+const aiCooperationModels: BulletCard[] = [
+  {
+    title: "AI Development Outsourcing",
+    bullets: [
+      "Build AI-powered applications with experienced AI engineers.",
+      "Skilled AI developers with expertise in machine learning and deep learning.",
+      "AI model training, testing, and deployment.",
+      "End-to-end AI development services.",
+      "Full-cycle project management and delivery assurance.",
+    ],
+  },
+  {
+    title: "Dedicated AI Development Team",
+    bullets: [
+      "Full-stack AI development handled with expertise.",
+      "Skilled AI engineers integrated with your internal team.",
+      "Perfect for long-term AI development projects.",
+      "Agile AI development process.",
+      "Faster product innovation using AI technologies.",
+    ],
+  },
+  {
+    title: "AI Automation Outsourcing",
+    bullets: [
+      "Automate business operations with intelligent AI systems.",
+      "AI workflow automation and smart process optimization.",
+      "AI chatbots and virtual assistants.",
+      "AI-powered analytics and predictive systems.",
+      "Reduced operational costs using automation.",
+    ],
+  },
+  {
+    title: "AI Product Development Team",
+    bullets: [
+      "Build intelligent AI products with a dedicated development team.",
+      "Custom AI product development.",
+      "AI SaaS platform development.",
+      "AI recommendation engines.",
+      "AI integration with existing systems.",
+    ],
+  },
+];
+
+const aiWhyChooseCards: WhyChooseCard[] = [
+  {
+    title: "On-Demand AI Scalability",
+    description:
+      "With TECHIONIK, you can quickly hire AI developers within days and scale your AI team based on project requirements.",
+  },
+  {
+    title: "AI Talent Screening",
+    description:
+      "Our AI engineers pass strict technical screening including machine learning algorithms, NLP, deep learning frameworks, and data modeling.",
+  },
+  {
+    title: "150+ Pre-Vetted AI Developers",
+    description:
+      "Access a global pool of AI engineers, machine learning specialists, and data scientists ready to build intelligent solutions.",
+  },
+  {
+    title: "Flexible AI Engagement Models",
+    description:
+      "Choose from AI outsourcing, dedicated AI teams, or project-based AI development depending on your business needs.",
+  },
+];
+
+const aiFaqs = [
+  {
+    question: "How quickly can I hire AI developers from Techionik?",
+    answer:
+      "Our pre-vetted AI developers can typically join your team in about two weeks, depending on the exact skills and team size you need.",
+  },
+  {
+    question: "What AI skills do your developers bring?",
+    answer:
+      "Our developers work with machine learning, deep learning, NLP, computer vision, automation, predictive analytics, Python, TensorFlow, PyTorch, and OpenAI APIs.",
+  },
+  {
+    question: "Can I hire developers for front-end, back-end, or full-stack work too?",
+    answer:
+      "Yes. We can provide front-end, back-end, and full-stack developers alongside AI specialists so you can build complete product teams.",
+  },
+  {
+    question: "Do you work with startups and enterprise teams?",
+    answer:
+      "Absolutely. We support startups, SMBs, and enterprise organizations with engagement models that match the scope, speed, and governance requirements of each team.",
+  },
+  {
+    question: "How do you screen AI developers?",
+    answer:
+      "Candidates go through an AI technical assessment, an HR interview, and a senior technical interview before they are added to the team.",
+  },
+  {
+    question: "Can your developers work in my time zone?",
+    answer:
+      "Yes. We build distributed teams that can align with your preferred time zone and collaboration style for smoother delivery.",
+  },
+  {
+    question: "Can I scale the team up or down during the project?",
+    answer:
+      "Yes. Our engagement models are flexible, so you can expand or reduce the team as priorities change without restarting the entire project.",
+  },
+  {
+    question: "What makes Techionik a good AI hiring partner?",
+    answer:
+      "We combine pre-vetted talent, transparent hiring, AI engineering experience, and flexible engagement models so you can move faster without sacrificing quality.",
   },
 ];
 
@@ -460,6 +693,64 @@ function CtaBanner({
   );
 }
 
+function AiCard({
+  title,
+  step,
+  children,
+}: {
+  title: string;
+  step?: string;
+  children: ReactNode;
+}) {
+  return (
+    <article className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#121214] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.25)] sm:p-8">
+      {step ? (
+        <div className="mb-5 inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 px-3 text-sm font-semibold text-white">
+          {step}
+        </div>
+      ) : null}
+      <h3 className="text-xl font-semibold tracking-[-0.03em] text-white sm:text-2xl">
+        {title}
+      </h3>
+      <div className="mt-4 text-sm leading-7 text-white/75 sm:text-base">
+        {children}
+      </div>
+    </article>
+  );
+}
+
+function normalizeHiringCards(
+  cards: Array<{
+    id?: string | number;
+    title?: string;
+    category?: string;
+    icon?: string;
+    features?: string[];
+  }>,
+): HiringCardFeature[] {
+  return cards.map((card, index) => ({
+    id: typeof card.id === "number" ? card.id : index + 1,
+    title: card.title ?? "",
+    category: card.category ?? "",
+    icon: card.icon ?? "",
+    features: card.features ?? [],
+  }));
+}
+
+function normalizeFaqItems(
+  faqItems: Array<{
+    id?: string | number;
+    question?: string;
+    answer?: string;
+  }>,
+): FAQData["faq"] {
+  return faqItems.map((item, index) => ({
+    id: typeof item.id === "number" ? item.id : index + 1,
+    question: item.question ?? "",
+    answer: item.answer ?? "",
+  }));
+}
+
 export default function HireDevelopersPage({
   pageData,
   schema,
@@ -478,8 +769,16 @@ export default function HireDevelopersPage({
   const faqData = {
     mainTitle: "Software Development",
     spanTitle: "FAQs",
-    faq: pageData?.faq || faqsData.faq,
+    faq: pageData?.faq ? normalizeFaqItems(pageData.faq) : faqsData.faq,
   };
+  const aiFaqData = {
+    mainTitle: "Hire AI Developers",
+    spanTitle: "FAQs",
+    faq: normalizeFaqItems(aiFaqs),
+  };
+  const hiringPageCards = pageData?.hiringPageData?.cards
+    ? normalizeHiringCards(pageData.hiringPageData.cards)
+    : hiringData.cards;
 
   return (
     <main className={`${sfPro.className} overflow-x-hidden bg-black text-white`}>
@@ -600,7 +899,7 @@ export default function HireDevelopersPage({
                 pageData?.hiringPageData?.header?.subtitle ||
                 hiringData.header.subtitle,
             },
-            cards: pageData?.hiringPageData?.cards || hiringData.cards,
+            cards: hiringPageCards,
           }}
         />
       </div>
@@ -812,6 +1111,197 @@ export default function HireDevelopersPage({
       <section id="case-study" className="scroll-mt-28 py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <OurClientSays />
+        </div>
+      </section>
+
+      <section id="ai-developers" className="scroll-mt-28 py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(135deg,#121214_0%,#17171b_55%,#0d0d10_100%)] px-6 py-10 shadow-[0_4px_20px_rgba(0,0,0,0.25)] sm:px-10 sm:py-14 lg:px-14 lg:py-16">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(240,83,35,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.06),transparent_35%)]" />
+            <div className="relative z-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/50">
+                Hire AI Developers
+              </p>
+              <h2 className="mt-4 max-w-4xl text-3xl font-semibold tracking-[-0.05em] text-white sm:text-4xl lg:text-[3.1rem] lg:leading-[1.05]">
+                Hire AI Developers for Custom AI & Machine Learning Solutions
+              </h2>
+              <p className="mt-5 max-w-4xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
+                We help businesses create AI and machine learning solutions
+                that grow with your operations, automate key processes, and
+                drive smarter, faster results. Our pre-vetted AI developers can
+                join your team in just two weeks.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {aiIntroHighlights.map((highlight) => (
+                  <span
+                    key={highlight}
+                    className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70 backdrop-blur-sm"
+                  >
+                    {highlight}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 space-y-16">
+            <section className="scroll-mt-28">
+              <SectionHeading
+                title="Technical Experts in Various Tech Stacks"
+                description={
+                  <>
+                    <p>
+                      Leverage top-tier global talent to enhance innovation
+                      and execution across your AI, backend, cloud, and mobile
+                      projects.
+                    </p>
+                  </>
+                }
+                centered
+              />
+
+              <div className="mt-12 grid gap-6 lg:grid-cols-3">
+                {aiTechExpertiseCards.map((card) => (
+                  <AiCard key={card.title} title={card.title}>
+                    <ul className="space-y-3">
+                      {card.bullets.map((bullet) => (
+                        <li key={bullet} className="flex gap-3">
+                          <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#F05323]" />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </AiCard>
+                ))}
+              </div>
+            </section>
+
+            <section className="scroll-mt-28">
+              <SectionHeading
+                title="Our Tailored AI Development Solutions for Businesses of All Sizes"
+                description="Expand your business with expert AI developers who build intelligent automation, machine learning models, and scalable AI solutions for startups, SMBs, and enterprises."
+                centered
+              />
+
+              <div className="mt-12 grid gap-6 lg:grid-cols-3">
+                {aiDeveloperSolutions.map((card) => (
+                  <AiCard key={card.title} title={card.title}>
+                    <p>{card.description}</p>
+                  </AiCard>
+                ))}
+              </div>
+            </section>
+
+            <section className="scroll-mt-28">
+              <SectionHeading
+                title="How We Hire AI Developers"
+                description="Our technical recruitment team follows a strict process to hire the best AI engineers and machine learning experts."
+              />
+
+              <div className="mt-12 grid gap-6 lg:grid-cols-3">
+                {aiHiringSteps.map((step) => (
+                  <AiCard key={step.title} title={step.title} step={step.step}>
+                    <>
+                      <p>{step.description}</p>
+                      {step.bullets ? (
+                        <div className="mt-4">
+                          <ul className="space-y-3">
+                            {step.bullets.map((bullet) => (
+                              <li key={bullet} className="flex gap-3">
+                                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#F05323]" />
+                                <span>{bullet}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : null}
+                    </>
+                  </AiCard>
+                ))}
+              </div>
+            </section>
+
+            <section className="scroll-mt-28">
+              <SectionHeading
+                title="Hire the Best AI Developers with TECHIONIK"
+                description="Our AI outsourcing models help companies integrate advanced artificial intelligence capabilities into their products and services."
+                centered
+              />
+
+              <div className="mt-12 grid gap-6 lg:grid-cols-2">
+                <AiCard title="Technical AI Developer Skills">
+                  <ol className="space-y-3">
+                    {aiTechnicalSkills.map((skill) => (
+                      <li key={skill} className="flex gap-3">
+                        <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#F05323]" />
+                        <span>{skill}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </AiCard>
+
+                <AiCard title="Non-Technical Skills">
+                  <ol className="space-y-3">
+                    {aiNonTechnicalSkills.map((skill) => (
+                      <li key={skill} className="flex gap-3">
+                        <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#F05323]" />
+                        <span>{skill}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </AiCard>
+              </div>
+            </section>
+
+            <section className="scroll-mt-28">
+              <SectionHeading
+                title="Choose the Best Suitable AI Development Cooperation Model"
+                description="Hire top AI experts to accelerate innovation, automate business processes, and build intelligent products powered by artificial intelligence."
+                centered
+              />
+
+              <div className="mt-12 grid gap-6 lg:grid-cols-2">
+                {aiCooperationModels.map((model) => (
+                  <AiCard key={model.title} title={model.title}>
+                    <ul className="space-y-3">
+                      {model.bullets.map((bullet) => (
+                        <li key={bullet} className="flex gap-3">
+                          <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#F05323]" />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </AiCard>
+                ))}
+              </div>
+            </section>
+
+            <section className="scroll-mt-28">
+              <SectionHeading
+                title="Why Choose TECHIONIK for AI Development?"
+                description="We deliver powerful AI software solutions and intelligent automation that help businesses innovate faster and scale globally."
+                centered
+              />
+
+              <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+                {aiWhyChooseCards.map((card, index) => (
+                  <AiCard
+                    key={card.title}
+                    title={card.title}
+                    step={`0${index + 1}`}
+                  >
+                    <p>{card.description}</p>
+                  </AiCard>
+                ))}
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FAQComponent data={aiFaqData} />
         </div>
       </section>
 

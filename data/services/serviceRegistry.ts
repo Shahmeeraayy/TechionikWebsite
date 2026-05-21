@@ -24,7 +24,6 @@ import { aiConsultingPageData } from "@/data/services/aiConsultingPageData";
 import { agenticAiDevelopmentPageData } from "@/data/services/agenticAiDevelopmentPageData";
 import { aiSoftwareDevelopmentPageData } from "@/data/services/aiSoftwareDevelopmentPageData";
 import { generativeAiDevelopmentPageData } from "@/data/services/generativeAiDevelopmentPageData";
-import { hireAiDevelopersPageData } from "@/data/services/hireAiDevelopersPageData";
 import { customApiDevelopmentPageData } from "@/data/services/customApiDevelopmentPageData";
 import { cmsDevelopmentPageData } from "@/data/services/cmsDevelopmentPageData";
 import { erpSoftwareDevelopmentPageData } from "@/data/services/erpSoftwareDevelopmentPageData";
@@ -1522,7 +1521,6 @@ const staticSubServicePageData: Record<string, SubServicePageData> = {
   "ai-ml/ai-software-development": aiSoftwareDevelopmentPageData as SubServicePageData,
   "ai-ml/generative-ai": generativeAiDevelopmentPageData as SubServicePageData,
   "ai-ml/machine-learning": machineLearningDevelopmentPageData as SubServicePageData,
-  "ai-ml/hire-ai-developers": hireAiDevelopersPageData as SubServicePageData,
   "ai-ml/agentic-ai": agenticAiDevelopmentPageData as SubServicePageData,
   "integration-api/custom-api": customApiDevelopmentPageData as SubServicePageData,
   "integration-api/cms": cmsDevelopmentPageData as SubServicePageData,

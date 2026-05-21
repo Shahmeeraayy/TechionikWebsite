@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const canonicalUrl = `${protocol}://${host}/hire-developers`;
   const imageUrl = `${protocol}://${host}/images/home/dedicated-team.png`;
   const description =
-    "Hire offshore developers from Techionik and scale your team with pre-vetted software talent across frontend, backend, full-stack, and mobile roles.";
+    "Hire offshore developers from Techionik and scale your team with pre-vetted software talent across frontend, backend, full-stack, mobile, and AI roles.";
   const title = "Hire Offshore Developers | Techionik";
 
   return {
@@ -31,6 +31,8 @@ export async function generateMetadata(): Promise<Metadata> {
       "hire full stack developers",
       "hire frontend developers",
       "hire backend developers",
+      "hire AI developers",
+      "machine learning developers",
     ],
     openGraph: {
       title,
@@ -70,7 +72,7 @@ export default async function HireDevelopersRoute() {
       name: "Hire Offshore Developers | Techionik",
       url: "https://www.techionik.com/hire-developers",
       description:
-        "Hire offshore developers with Techionik and build high-performing remote teams.",
+        "Hire offshore developers with Techionik and build high-performing remote teams, including AI and machine learning specialists.",
       publisher: {
         "@type": "Organization",
         name: "Techionik",

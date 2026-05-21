@@ -48,7 +48,6 @@ const STATIC_ROUTES = [
   "/services/ai-ml/generative-ai",
   "/services/ai-ml/machine-learning",
   "/services/ai-ml/agentic-ai",
-  "/staffing/hire-developers/hire-ai-developers",
   "/services/data-analytics",
   "/services/data-analytics/business-intelligence",
   "/services/data-analytics/data-engineering",

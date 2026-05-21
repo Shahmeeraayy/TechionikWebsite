@@ -86,7 +86,7 @@ const FALLBACK_NAV_LINKS: Navlink[] = [
             id: 1302,
             name: "Hire AI Developers",
             slug: "hire-ai-developers",
-            href: "/staffing/hire-developers/hire-ai-developers",
+            href: "/hire-developers#ai-developers",
           },
         ],
       },
