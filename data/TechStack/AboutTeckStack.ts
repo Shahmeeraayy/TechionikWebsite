@@ -2,9 +2,14 @@ export type Category =
   | "Frontend"
   | "Backend"
   | "Mobile Platforms"
+  | "Mobile App"
   | "Database"
   | "Cloud/DevOps"
-  | "AI/ML";
+  | "AI/ML"
+  | "Full Stack"
+  | "Automation"
+  | "Platforms"
+  | "AI & ML";
 export interface heading {
   title: string;
   middleTitle?: string;

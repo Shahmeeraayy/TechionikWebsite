@@ -47,8 +47,13 @@ const HiringSection: React.FC<{ data: HiringPageData }> = ({ data }) => {
 
         {/* Title */}
         <h3 className="service-card-title text-[var(--color-muted)] mb-8">
-          {item.title} <br />
-          <span className="gradient-text">{item.category}</span>
+          {item.title.trim()}
+          {item.category?.trim() ? (
+            <>
+              <br />
+              <span className="gradient-text">{item.category.trim()}</span>
+            </>
+          ) : null}
         </h3>
 
         {/* Features */}
@@ -65,7 +70,7 @@ const HiringSection: React.FC<{ data: HiringPageData }> = ({ data }) => {
         </ul>
 
         {/* Button */}
-        <Link href="/contact">
+        <Link href="/contact-us">
           <button className="flex items-center justify-between bg-[#434345] hover:bg-[#4d4d4f] transition-colors w-full max-w-[180px] py-2 pl-6 pr-2 rounded-full group">
             <span className="service-body text-white font-medium">Hire Now</span>
             <div className="w-10 h-10 bg-[#E85D33] rounded-full flex items-center justify-center text-white transition-transform group-hover:translate-x-1">
