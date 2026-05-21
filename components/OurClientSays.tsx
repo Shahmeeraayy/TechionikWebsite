@@ -15,13 +15,13 @@ const OurClientSays = () => {
         {/* Fix: Added min-width and flex-shrink-0 to prevent button cutting */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
           <div className="flex-1 space-y-4">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-(--color-muted)">
+            <h2 className="service-section-heading-lg text-(--color-muted)">
               {ourClientSaysData.title}{" "}
               <span className="text-dark-gradient">
                 {ourClientSaysData.highlightedText}
               </span>{" "}
             </h2>
-            <p className="text-gray-400 text-lg max-w-xl">
+            <p className="service-section-description text-muted max-w-xl">
               {ourClientSaysData.description}
             </p>
           </div>
@@ -53,10 +53,10 @@ const OurClientSays = () => {
                     <div className="bg-(--color-secondary-dark) rounded-4xl p-8 md:p-12 border border-white/15 relative h-full">
                       <div className="flex justify-between items-start mb-8">
                         <div>
-                          <h3 className="text-gradient text-2xl md:text-3xl font-bold mb-2">
+                          <h3 className="service-card-title text-gradient mb-2">
                             {testimonial.name}
                           </h3>
-                          <p className="text-(--color-primary-light) text-sm font-medium">
+                          <p className="service-body text-(--color-primary-light) font-medium">
                             {testimonial.position} at {testimonial.company}
                           </p>
                         </div>
@@ -69,7 +69,7 @@ const OurClientSays = () => {
                           />
                         </div>
                       </div>
-                      <p className="text-(--color-muted) text-base md:text-lg leading-relaxed mb-8">
+                      <p className="service-section-description text-(--color-muted) mb-8">
                         {testimonial.content}
                       </p>
                       <div className="flex gap-1">

@@ -47,10 +47,10 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ caseStudies }) => {
       {/* HEADER */}
       <div className="w-full mb-16 flex flex-col md:flex-row md:items-start md:justify-between gap-6">
         <div className="flex flex-col md:flex-1">
-          <h2 className="text-4xl md:text-[44px] font-bold text-gradient tracking-wide">
+          <h2 className="service-section-heading text-gradient">
             Case <span className="text-dark-gradient">Studies</span>
           </h2>
-          <p className="text-[#8B8B8B] mt-4 text-sm md:text-base font-normal">
+          <p className="service-section-description text-muted mt-4">
             Discover how Techionik transforms challenges into success stories with AI driven solutions.
           </p>
         </div>

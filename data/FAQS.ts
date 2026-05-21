@@ -9,6 +9,8 @@ export interface FAQ {
   mainTitle: string;
   spanTitle: string;
   faq: MultipleFAQs[];
+  description?: string | null;
+  expandAll?: boolean;
 }
 
 export const faqsData: FAQ = {

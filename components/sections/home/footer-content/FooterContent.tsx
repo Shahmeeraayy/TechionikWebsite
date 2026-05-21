@@ -138,20 +138,20 @@ const FooterContact = () => {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
           {/* LEFT CONTENT */}
           <div>
-            <h2 className="text-3xl font-semibold text-white">
+            <h2 className="service-section-heading text-white">
               Tell Us How We Can <span className="gradient-text">Help?</span>
             </h2>
 
-            <p className="mt-3 max-w-md text-sm text-gray-400">
+            <p className="service-section-description text-gray-400 mt-3 max-w-md">
               Describe your request - we typically respond within a couple of
               business hours.
             </p>
 
-            <h3 className="mt-8 text-lg font-semibold text-white">
+            <h3 className="service-card-title-sm mt-8 text-white">
               What <span className="gradient-text">Happens</span> Next?
             </h3>
 
-            <ul className="mt-6 space-y-4 text-sm text-gray-300">
+            <ul className="mt-6 space-y-4 service-body text-gray-300">
               <li className="flex items-start gap-3">
                 <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#26262B] text-xs font-bold text-black shadow-[0_4px_20px_0_rgba(0,0,0,0.25)] ">
                   <Image
@@ -196,7 +196,7 @@ const FooterContact = () => {
 
             {/* TRUSTED BY */}
             <div className="mt-10">
-              <h3 className="py-2 gradient-text font-medium">
+              <h3 className="py-2 gradient-text service-card-title-sm">
                 Customers who trust us
               </h3>
 

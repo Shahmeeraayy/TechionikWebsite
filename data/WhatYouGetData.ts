@@ -6,6 +6,7 @@ export interface Reviews {
 
 export interface WhatYouGett {
   id: number;
+  fullTitle?: string;
   title1: string;
   spanTitle: string;
   title2: string;

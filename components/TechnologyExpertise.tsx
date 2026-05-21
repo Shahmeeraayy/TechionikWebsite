@@ -13,6 +13,9 @@ const TechnologyExpertiseComponent = ({ data }: TechnologyExpertiseProps) => {
   const { emblaRef, emblaApi } = useSlider();
 
   const [currentSlide, setCurrentSlide] = useState<number | null>(0);
+  const showHeader = Boolean(
+    data.mainTitle?.trim() || data.mainDescription?.trim(),
+  );
 
   // Only scroll when the target slide is outside the viewport
   const isSlideFullyVisible = useCallback((index: number) => {
@@ -67,16 +70,81 @@ const TechnologyExpertiseComponent = ({ data }: TechnologyExpertiseProps) => {
     setCurrentSlide(prevIndex);
   };
 
+  if (data.showAllDescriptions) {
+    return (
+      <div className="px-4">
+        {showHeader && (
+          <div className="mb-10 w-full md:w-[80%] lg:w-[60%] xl:w-[50%]">
+            {data.mainTitle && (
+              <h2 className="service-section-heading text-gradient">
+                {data.mainTitle}
+              </h2>
+            )}
+            {data.mainDescription && (
+              <p className="service-section-description text-muted mt-3">
+                {data.mainDescription}
+              </p>
+            )}
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {data.cards.map((item) => (
+            <article
+              key={item.id}
+              className="border border-[#2A2A34] bg-[#16161A] rounded-2xl p-6 shadow-[0_4px_20px_0px_#00000040]"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#26262B]">
+                  <Image
+                    src={item.icon || "/icons/box-icon.png"}
+                    alt="box icon"
+                    width={30}
+                    height={30}
+                    className="h-8 w-8 object-contain"
+                  />
+                </div>
+                <span className="text-sm font-medium text-white/60">
+                  {String(item.id).padStart(2, "0")}
+                </span>
+              </div>
+
+              <h3 className="service-card-title mt-6">{item.title}</h3>
+
+              <div className="mt-4 service-rich-text text-muted">
+                {Array.isArray(item.description) ? (
+                  <ul className="list-disc space-y-2 pl-5">
+                    {item.description.map((desc, i) => (
+                      <li key={i}>{desc}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>{item.description}</p>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="px-4">
-      <div className="mb-10 w-full md:w-[80%] lg:w-[60%] xl:w-[50%]">
-        <h2 className="service-section-heading text-gradient">
-          {data.mainTitle}
-        </h2>
-        <p className="service-section-description text-muted mt-3">
-          {data.mainDescription}
-        </p>
-      </div>
+      {showHeader && (
+        <div className="mb-10 w-full md:w-[80%] lg:w-[60%] xl:w-[50%]">
+          {data.mainTitle && (
+            <h2 className="service-section-heading text-gradient">
+              {data.mainTitle}
+            </h2>
+          )}
+          {data.mainDescription && (
+            <p className="service-section-description text-muted mt-3">
+              {data.mainDescription}
+            </p>
+          )}
+        </div>
+      )}
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {data.cards.map((item, index) => {
@@ -147,11 +215,15 @@ const TechnologyExpertiseComponent = ({ data }: TechnologyExpertiseProps) => {
                 {/* DESCRIPTION */}
                 {isActive && (
                   <div className="mt-4 h-[220px] overflow-y-auto pr-3 service-rich-text text-muted">
-                    <ul className="list-disc space-y-2 pl-5">
-                      {item.description.map((desc, i) => (
-                        <li key={i}>{desc}</li>
-                      ))}
-                    </ul>
+                    {Array.isArray(item.description) ? (
+                      <ul className="list-disc space-y-2 pl-5">
+                        {item.description.map((desc, i) => (
+                          <li key={i}>{desc}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p>{item.description}</p>
+                    )}
                   </div>
                 )}
                 {/* <div className="mt-4 h-[80px]" /> */}

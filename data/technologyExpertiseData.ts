@@ -1,7 +1,7 @@
 export interface TTechnologyExpertiseCardData{
     id: number;
     title: string;
-    description: string[];
+    description: string[] | string;
     icon: string;
     
 
@@ -10,6 +10,7 @@ export interface TechnologyExpertise {
     mainTitle: string;
     mainDescription?: string
     cards: TTechnologyExpertiseCardData[]
+    showAllDescriptions?: boolean;
 }
 
 export const TechnologyExpertiseData: TechnologyExpertise = {

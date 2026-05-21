@@ -21,6 +21,8 @@ export default function IndustriesSection({
 }: IndustriesSectionProps) {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const autoSlideTimer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const showViewAllButton = !industries.hideViewAllButton;
+  const showCardButtons = !industries.hideCardButtons;
 
   // ─── Responsive carousel (loop: true for endless scrolling) ────────────────────
   const [carouselRef, carouselApi] = useEmblaCarousel({
@@ -95,6 +97,47 @@ export default function IndustriesSection({
 
   const bgImage = industries.slides[activeIndex]?.bgImage || "";
 
+  if (industries.showAllDescriptions) {
+    return (
+      <section className="bg-[-var(--color-bg)] pb-10">
+        <div className="max-w-full mx-auto md:px-10 px-4 pb-10 sm:px-6 lg:px-20">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-8">
+            <div className="flex flex-col md:flex-1 space-y-4 pb-6">
+              <h2 className="service-section-heading text-gradient">
+                {industries.title}
+                {"  "}
+                <span className="text-dark-gradient">
+                  {industries.gradientTitle}
+                </span>
+                {"  "}
+                {industries.afterGradientTitle}
+              </h2>
+              <p className="service-section-description text-muted mt-2 w-full lg:max-w-[80%] xl:max-w-[70%] 2xl:max-w-[60%]">
+                {industries.description}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-full mx-auto md:px-10 px-4 sm:px-6 lg:px-20">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {industries.slides.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-2xl border border-white/10 bg-[#16161A] p-6 shadow-[0_4px_20px_0px_#00000040]"
+              >
+                <h3 className="service-card-title-sm text-white mb-3">
+                  {item.title}
+                </h3>
+                <p className="service-body text-zinc-300">{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   // Duplicate slides to guarantee Embla has enough elements to perform the loop
   // Only duplicate if the total slides are less than or equal to the visible slides
   const loopSafeSlides =
@@ -122,18 +165,20 @@ export default function IndustriesSection({
             </p>
           </div>
 
-          <div className="mt-4 md:mt-0">
-            <Button
-              ariaLabel="View All Industries"
-              text="View All Industries"
-              icon="/icons/arrow-right.svg"
-              size="medium"
-              radius="full"
-              href="/industries"
-              variant="glass"
-              className="inline-flex text-foreground md:w-auto justify-between"
-            />
-          </div>
+          {showViewAllButton && (
+            <div className="mt-4 md:mt-0">
+              <Button
+                ariaLabel="View All Industries"
+                text="View All Industries"
+                icon="/icons/arrow-right.svg"
+                size="medium"
+                radius="full"
+                href="/industries"
+                variant="glass"
+                className="inline-flex text-foreground md:w-auto justify-between"
+              />
+            </div>
+          )}
         </div>
       </div>
 
@@ -198,16 +243,18 @@ export default function IndustriesSection({
                       >
                         {item.description}
                       </p>
-                      <Button
-                        ariaLabel="Explore More"
-                        text="Explore More"
-                        icon="/icons/arrow-right.svg"
-                        size="medium"
-                        radius="full"
-                        href={item.link}
-                        variant="glass"
-                        className="inline-flex w-auto justify-between"
-                      />
+                      {showCardButtons && (
+                        <Button
+                          ariaLabel="Explore More"
+                          text="Explore More"
+                          icon="/icons/arrow-right.svg"
+                          size="medium"
+                          radius="full"
+                          href={item.link}
+                          variant="glass"
+                          className="inline-flex w-auto justify-between"
+                        />
+                      )}
                     </motion.div>
                   </div>
                 </motion.div>

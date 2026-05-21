@@ -18,6 +18,7 @@ export default function TechStack({
 }: Props) {
   const { emblaRef } = useSlider();
   const [active, setActive] = useState<Category | null>(defaultActiveCategory);
+  const showViewAllButton = !data.headingData.hideViewAllButton;
 
   useEffect(() => {
     setActive(defaultActiveCategory);
@@ -74,18 +75,20 @@ export default function TechStack({
           </div>
 
           {/* Button - Full width centered on mobile, shrink-to-fit on desktop */}
-          <div className="shrink-0 w-full lg:w-auto flex justify-start lg:block p-3">
-            <Button
-              ariaLabel="View All Technologies"
-              text="View All Technologies"
-              icon="/icons/arrow-right.svg"
-              size="medium"
-              radius="full"
-              href="/technology"
-              variant="glass"
-              className="inline-flex w-auto md:w-auto text-foreground justify-between"
-            />
-          </div>
+          {showViewAllButton && (
+            <div className="shrink-0 w-full lg:w-auto flex justify-start lg:block p-3">
+              <Button
+                ariaLabel="View All Technologies"
+                text="View All Technologies"
+                icon="/icons/arrow-right.svg"
+                size="medium"
+                radius="full"
+                href="/technology"
+                variant="glass"
+                className="inline-flex w-auto md:w-auto text-foreground justify-between"
+              />
+            </div>
+          )}
         </div>
       </div>
 

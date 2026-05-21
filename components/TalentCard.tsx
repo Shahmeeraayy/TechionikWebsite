@@ -37,10 +37,10 @@ const Card = ({ image, active, name, designation, stack }: CardProps) => {
 
       {/* Name and Designation */}
       <div className="text-center mb-4 md:mb-6">
-        <h3 className="text-gradient text-xl md:text-2xl lg:text-3xl font-bold tracking-tight leading-tight">
+        <h3 className="service-card-title text-gradient tracking-tight leading-tight">
           {name}
         </h3>
-        <p className="text-primary text-sm md:text-base lg:text-lg font-medium mt-1 md:mt-2">
+        <p className="service-body text-primary font-medium mt-1 md:mt-2">
           {designation}
         </p>
       </div>

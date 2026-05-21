@@ -10,6 +10,7 @@ export interface heading {
   middleTitle?: string;
   lastTitle?: string;
   description: string;
+  hideViewAllButton?: boolean;
 }
 export interface TechIcon {
   name: string;

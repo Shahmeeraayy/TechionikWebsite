@@ -12,4 +12,7 @@ export type IndustriesData = {
   afterGradientTitle?: string;
   description: string;
   slides: IndustrySlide[];
+  hideViewAllButton?: boolean;
+  hideCardButtons?: boolean;
+  showAllDescriptions?: boolean;
 };

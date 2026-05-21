@@ -9,16 +9,24 @@ interface WhatYouGetProps {
 }
 
 const WhatYouGet = ({ data }: WhatYouGetProps) => {
+  const hasFullTitle = Boolean(data.fullTitle?.trim());
+
   return (
     <section className="w-full px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col lg:flex-row gap-10">
         {/* Left Side */}
         <div className="w-full lg:w-1/2 flex flex-col space-y-6">
-          <h2 className="service-section-heading text-gradient w-full max-w-4xl">
-            {data.title1}{" "}
-            <span className="text-dark-gradient">{data.spanTitle}</span>{" "}
-            {data.title2}
-          </h2>
+          {hasFullTitle ? (
+            <h2 className="service-section-heading text-gradient w-full max-w-4xl">
+              {data.fullTitle}
+            </h2>
+          ) : (
+            <h2 className="service-section-heading text-gradient w-full max-w-4xl">
+              {data.title1}{" "}
+              <span className="text-dark-gradient">{data.spanTitle}</span>{" "}
+              {data.title2}
+            </h2>
+          )}
 
           {data.reviews.length > 0 && (
             <div className="flex flex-wrap items-center gap-4">
@@ -57,14 +65,18 @@ const WhatYouGet = ({ data }: WhatYouGetProps) => {
 
         {/* Right Side */}
         <div className="w-full lg:w-1/2 flex flex-col space-y-5 text-muted break-words">
-          <div
-            className="voice-summary service-rich-text"
-            dangerouslySetInnerHTML={{ __html: data.RightDescription1 }}
-          />
-          <div
-            className="service-rich-text"
-            dangerouslySetInnerHTML={{ __html: data.RightDescription2 }}
-          />
+          {data.RightDescription1 && (
+            <div
+              className="voice-summary service-rich-text"
+              dangerouslySetInnerHTML={{ __html: data.RightDescription1 }}
+            />
+          )}
+          {data.RightDescription2 && (
+            <div
+              className="service-rich-text"
+              dangerouslySetInnerHTML={{ __html: data.RightDescription2 }}
+            />
+          )}
         </div>
       </div>
     </section>

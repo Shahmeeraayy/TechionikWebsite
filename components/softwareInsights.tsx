@@ -20,7 +20,7 @@ const SoftwareDevelopmentInsights = ({ data }: SoftwareInsightProps) => {
       <div className="space-y-10">
         {/* Main Heading Section */}
         <div>
-          <h2 className="text-muted text-4xl font-bold">
+          <h2 className="service-section-heading text-muted">
             {data.startTitle}{" "}
             <span className="gradient-text">{data.spanTitle}</span>{" "}
             {data.endTitle}
@@ -44,13 +44,13 @@ const SoftwareDevelopmentInsights = ({ data }: SoftwareInsightProps) => {
               >
                 {/* Column Heading */}
                 <div>
-                  <h3 className="gradient-text text-xl font-semibold">{item.mainHeading}</h3>
+                  <h3 className="service-card-title-sm gradient-text">{item.mainHeading}</h3>
                 </div>
                 {/* Links List */}
                 <div>
                   <ul className="space-y-2">
                     {item.descriptionList.map((list, listIndex) => (
-                      <li key={listIndex} className="text-muted hover:text-white transition-colors cursor-pointer">
+                      <li key={listIndex} className="service-body text-muted hover:text-white transition-colors cursor-pointer">
                         {list}
                       </li>
                     ))}

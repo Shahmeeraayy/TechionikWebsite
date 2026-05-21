@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Button from "./Button";
+import type { CaseStudyType } from "@/views/home/CaseStudies";
 
 function MobileCard({
   data,
@@ -11,12 +12,13 @@ function MobileCard({
   total,
   setActiveIndex,
 }: {
-  data: any;
+  data: CaseStudyType;
   index: number;
   activeIndex: number;
   total: number;
   setActiveIndex: (index: number) => void;
 }) {
+  const stats = data.stats ?? [];
   let offset = index - activeIndex;
   if (offset < 0) offset += total;
 
@@ -88,15 +90,15 @@ function MobileCard({
           <div className="flex flex-col gap-5">
 
             {/* Brand name */}
-            <h4 className="text-[20px] font-black text-[#E5E5E5] tracking-widest uppercase text-center w-full">
-              {data.brand}
+            <h4 className="service-card-title-sm font-black text-[#E5E5E5] tracking-widest uppercase text-center w-full">
+              {data.brand ?? ""}
             </h4>
 
             {/* Image */}
             <div className="relative w-full" style={{ height: "200px" }}>
               <Image
-                src={data.imageDesktop}
-                alt={data.brand}
+                src={data.imageDesktop ?? ""}
+                alt={data.brand ?? ""}
                 fill
                 className="object-contain object-center"
                 sizes="100vw"
@@ -104,24 +106,24 @@ function MobileCard({
             </div>
 
             {/* Title */}
-            <h3 className="text-xl font-bold text-white leading-snug">
-              {data.title} with {data.brand}
+            <h3 className="service-card-title text-white leading-snug">
+              {data.title} with {data.brand ?? ""}
             </h3>
 
             {/* Solution */}
-            <p className="text-[#D1D1D1] text-sm">
+            <p className="service-section-description text-[#D1D1D1]">
               <span className="gradient-text font-semibold mr-1">Solution Delivered:</span>
-              {data.solution}
+              {data.solution ?? ""}
             </p>
 
             {/* Stats */}
             <div className="flex flex-col gap-3">
-              {data.stats.map((stat: any, idx: number) => (
+              {stats.map((stat, idx) => (
                 <div key={idx} className="flex items-center gap-4">
-                  <p className="text-2xl font-bold gradient-text w-[64px] leading-none shrink-0">
+                  <p className="service-card-title-sm gradient-text w-[64px] leading-none shrink-0">
                     {stat.value}
                   </p>
-                  <p className="text-[#8B8B8B] text-xs font-medium leading-snug">{stat.label}</p>
+                  <p className="service-body text-[#8B8B8B] font-medium leading-snug">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -149,7 +151,7 @@ function MobileCard({
 }
 
 interface CaseStudyStackMobileProps {
-  data: any[];
+  data: CaseStudyType[];
 }
 
 export default function CaseStudyStackMobile({ data }: CaseStudyStackMobileProps) {
@@ -166,7 +168,7 @@ export default function CaseStudyStackMobile({ data }: CaseStudyStackMobileProps
   return (
     <div className="relative w-full" style={{ paddingTop: "40px" }}>
       <div className="relative w-full" style={{ minHeight: "540px" }}>
-        {data.map((item: any, i: number) => (
+        {data.map((item, i: number) => (
           <MobileCard
             key={i}
             data={item}

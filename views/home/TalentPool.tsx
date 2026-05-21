@@ -19,7 +19,7 @@ const TalentPool = ({ data }: Props) => {
       {/* Header + description — padded to match site layout */}
       <div className="">
         <div className="flex flex-col justify-between space-y-7 md:flex-row ">
-          <h2 className="text-gradient">
+          <h2 className="service-section-heading text-gradient">
             {data.title}{" "}
             <span className="gradient-text">{data.highlightedText}</span>
           </h2>
@@ -36,7 +36,7 @@ const TalentPool = ({ data }: Props) => {
         </div>
 
         <div className="mb-8 md:mb-12">
-          <p className="text-muted max-w-3xl text-sm md:text-base leading-relaxed">
+          <p className="service-section-description text-muted max-w-3xl">
             {data.description}
           </p>
           <Button

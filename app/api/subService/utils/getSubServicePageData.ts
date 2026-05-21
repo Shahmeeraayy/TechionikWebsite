@@ -196,6 +196,7 @@ export interface SubServicePageData {
   blogs: SubServiceBlogFrontend[];
   industries: MappedIndustriesData;
   addScheema?: string;
+  hideDefaultSections?: boolean;
 }
 
 // ── Map Industries ──

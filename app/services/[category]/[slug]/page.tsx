@@ -237,9 +237,11 @@ const SubServicePage = async ({
         />
       )}
 
-      <div className="subservice-voice-narrative" style={{ display: "none" }}>
-        {`Techionik provides expert ${apiData.heroSlides?.[0]?.title}. ${apiData.whatYouGet?.RightDescription1}. Our expertise includes ${apiData.technologyExpertise?.cards?.map((c: { title?: string }) => c.title ?? "").filter(Boolean).join(", ")}.${apiData.techStackData?.headingData?.title ? ` The page also highlights ${apiData.techStackData.headingData.title}.` : ""}`}
-      </div>
+      {!apiData.hideDefaultSections && (
+        <div className="subservice-voice-narrative" style={{ display: "none" }}>
+          {`Techionik provides expert ${apiData.heroSlides?.[0]?.title}. ${apiData.whatYouGet?.RightDescription1}. Our expertise includes ${apiData.technologyExpertise?.cards?.map((c: { title?: string }) => c.title ?? "").filter(Boolean).join(", ")}.${apiData.techStackData?.headingData?.title ? ` The page also highlights ${apiData.techStackData.headingData.title}.` : ""}`}
+        </div>
+      )}
       {/* Hero Section */}
       <div className="">
         <HeroSection slides={apiData?.heroSlides ?? []} />
@@ -327,9 +329,11 @@ const SubServicePage = async ({
       )}
 
       {/* Certifications */}
-      <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 py-10 lg:py-8">
-        <Certifications />
-      </div>
+      {!apiData.hideDefaultSections && (
+        <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 py-10 lg:py-8">
+          <Certifications />
+        </div>
+      )}
 
       {/* Blogs */}
       {(apiData?.blogs?.length ?? 0) > 0 && (
@@ -339,9 +343,11 @@ const SubServicePage = async ({
       )}
 
       {/* Client Testimonials */}
-      <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 pt-10">
-        <OurClientSays />
-      </div>
+      {!apiData.hideDefaultSections && (
+        <div className="max-w-8xl mx-auto md:px-10 px-4 sm:px-6 lg:px-20 pt-10">
+          <OurClientSays />
+        </div>
+      )}
 
       {/* FAQs */}
       {apiData?.faq && (

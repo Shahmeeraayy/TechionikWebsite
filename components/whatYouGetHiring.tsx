@@ -11,15 +11,14 @@ const WhatYouGetHiringComponent = ({ data }: WhatYouGetHiringProps) => (
     
     {/* Added w-full lg:w-1/2 to balance the text side */}
     <div className="space-y-4 w-full lg:w-1/2">
-      {/* Added a default text-4xl so it doesn't look too massive on mobile before hitting md */}
-      <h2 className="max-w-3xl text-4xl md:text-6xl font-bold text-(--color-muted)">
+      <h2 className="service-section-heading-lg max-w-3xl text-(--color-muted)">
         {data.firstTitle} <span className="text-dark-gradient">{data.spanTitle}</span>
       </h2>
-      <p className="text-(--color-muted) leading-relaxed max-w-xl">
+      <p className="service-section-description text-(--color-muted) max-w-xl">
         {data.description1}
       </p>
       <br />
-      <p className="text-(--color-muted) leading-relaxed max-w-xl">
+      <p className="service-section-description text-(--color-muted) max-w-xl">
         {data.description2}
       </p>
     </div>

@@ -2,11 +2,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 import Button from "./Button";
+import type { CaseStudyType } from "@/views/home/CaseStudies";
 
 interface CaseStudyCardProps {
-  data: any;
+  data: CaseStudyType;
   index: number;
   activeIndex: number;
   setActiveIndex: (index: number) => void;
@@ -18,8 +18,7 @@ export default function CaseStudyCard({
   activeIndex,
   setActiveIndex,
 }: CaseStudyCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
+  const stats = data.stats ?? [];
   // Calculate position relative to the active card
   const offset = index - activeIndex;
 
@@ -76,8 +75,6 @@ export default function CaseStudyCard({
         transformOrigin: "top center",
         pointerEvents: opacity === 1 ? "auto" : "none",
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       onClick={() => setActiveIndex(index)}
     >
       <div
@@ -94,27 +91,27 @@ export default function CaseStudyCard({
           <div className="flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-12 h-full w-full">
             {/* Left Content */}
             <div className="md:w-[55%] flex flex-col justify-center h-full">
-              <h3 className="text-2xl md:text-3xl lg:text-[36px] font-bold text-white leading-snug mb-4 md:mb-6">
+                <h3 className="service-card-title text-white leading-snug mb-4 md:mb-6">
                 {data.title} <br className="hidden md:block" />
                 {/* with  */}
-                {data.brand}
+                {data.brand ?? ""}
               </h3>
 
-              <p className="text-[#D1D1D1] text-sm md:text-base lg:text-lg mb-6 md:mb-8 lg:mb-10">
+              <p className="service-section-description text-[#D1D1D1] mb-6 md:mb-8 lg:mb-10">
                 <span className="gradient-text font-semibold mr-2">
                   Solution Delivered:
                 </span>
-                {data.solution}
+                {data.solution ?? ""}
               </p>
 
               {/* Scaled gaps and margins for medium screens */}
               <div className="flex flex-col gap-4 md:gap-6 lg:gap-8 mb-6 md:mb-8 lg:mb-10">
-                {data.stats.map((stat: any, idx: number) => (
+                {stats.map((stat, idx) => (
                   <div key={idx} className="flex items-center gap-4 md:gap-6">
-                    <p className="text-2xl md:text-[32px] font-bold gradient-text w-[60px] md:w-[70px] leading-none">
+                    <p className="service-card-title-sm gradient-text w-[60px] md:w-[70px] leading-none">
                       {stat.value}
                     </p>
-                    <p className="text-[#8B8B8B] text-xs md:text-sm lg:text-base font-medium leading-snug">
+                    <p className="service-body text-[#8B8B8B] font-medium leading-snug">
                       {stat.label}
                     </p>
                   </div>
@@ -136,15 +133,15 @@ export default function CaseStudyCard({
             </div>
 
             {/* Right Content */}
-            <div className="md:w-[45%] flex flex-col items-center justify-center relative w-full mt-6 md:mt-0">
-              <h4 className="text-[28px] md:text-[32px] lg:text-[40px] font-black text-[#E5E5E5] tracking-widest mb-4 uppercase text-center w-full">
-                {data.brand}
-              </h4>
+              <div className="md:w-[45%] flex flex-col items-center justify-center relative w-full mt-6 md:mt-0">
+                <h4 className="service-card-title-sm font-black text-[#E5E5E5] tracking-widest mb-4 uppercase text-center w-full">
+                  {data.brand ?? ""}
+                </h4>
               {/* Scaled image height for smaller devices */}
               <div className="relative w-full flex-1 min-h-[200px] md:min-h-[250px] lg:min-h-[350px]">
                 <Image
-                  src={data.imageDesktop}
-                  alt={data.brand}
+                  src={data.imageDesktop ?? ""}
+                  alt={data.brand ?? ""}
                   fill
                   className="object-contain object-bottom"
                   sizes="(max-width: 768px) 100vw, 50vw"
