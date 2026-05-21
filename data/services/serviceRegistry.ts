@@ -21,6 +21,11 @@ import { SoftwareInsightData } from "@/data/softwareInsightsData";
 import { caseStudyData } from "@/data/caseStudyData";
 import { DummyBlogData } from "@/data/blogData";
 import { aiConsultingPageData } from "@/data/services/aiConsultingPageData";
+import { agenticAiDevelopmentPageData } from "@/data/services/agenticAiDevelopmentPageData";
+import { aiSoftwareDevelopmentPageData } from "@/data/services/aiSoftwareDevelopmentPageData";
+import { generativeAiDevelopmentPageData } from "@/data/services/generativeAiDevelopmentPageData";
+import { hireAiDevelopersPageData } from "@/data/services/hireAiDevelopersPageData";
+import { machineLearningDevelopmentPageData } from "@/data/services/machineLearningDevelopmentPageData";
 import { backendDevelopmentPageData } from "@/data/services/backendDevelopmentPageData";
 import { mvpDevelopmentPageData } from "@/data/services/mvpDevelopmentPageData";
 import { uiUxDesignPageData } from "@/data/services/uiUxDesignPageData";
@@ -621,7 +626,7 @@ export const serviceMenuItems: ServiceMenuItem[] = [
       { id: 303, name: "Generative AI Development", slug: "generative-ai", href: "/services/ai-ml/generative-ai" },
       { id: 304, name: "Machine Learning Services", slug: "machine-learning", href: "/services/ai-ml/machine-learning" },
       { id: 305, name: "Agentic AI Development", slug: "agentic-ai", href: "/services/ai-ml/agentic-ai" },
-      { id: 306, name: "AI Hire Developers", slug: "hire-ai-developers", href: "/services/ai-ml/hire-ai-developers" },
+      { id: 306, name: "Hire AI Developers", slug: "hire-ai-developers", href: "/services/ai-ml/hire-ai-developers" },
     ],
   },
   {
@@ -1495,6 +1500,11 @@ function buildGenericSubServicePageData(
 
 const staticSubServicePageData: Record<string, SubServicePageData> = {
   "ai-ml/consulting": aiConsultingPageData as SubServicePageData,
+  "ai-ml/ai-software-development": aiSoftwareDevelopmentPageData as SubServicePageData,
+  "ai-ml/generative-ai": generativeAiDevelopmentPageData as SubServicePageData,
+  "ai-ml/machine-learning": machineLearningDevelopmentPageData as SubServicePageData,
+  "ai-ml/hire-ai-developers": hireAiDevelopersPageData as SubServicePageData,
+  "ai-ml/agentic-ai": agenticAiDevelopmentPageData as SubServicePageData,
   "software-development/backend": backendDevelopmentPageData as SubServicePageData,
   "software-development/mvp": mvpDevelopmentPageData as SubServicePageData,
   "design/ui-ux": uiUxDesignPageData as SubServicePageData,
