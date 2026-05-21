@@ -27,21 +27,22 @@ export default function TechStack({
     ? data.techIcons.filter((icon) => icon.category.includes(active))
     : data.techIcons;
   const firstRow = [...filteredStacks, ...filteredStacks];
-  const secondRow = [...filteredStacks.reverse(), ...filteredStacks.reverse()];
+  const reversedStacks = [...filteredStacks].reverse();
+  const secondRow = [...reversedStacks, ...reversedStacks];
 
   return (
     <>
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 my-12">
         {/* Left Side: Heading & Description */}
         <div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-dark-gradient">
+          <h2 className="service-section-heading text-dark-gradient">
             {data.headingData.title}
             <span className="text-gradient">
               {" "}
               {data.headingData.middleTitle}
             </span>
           </h2>
-          <p className="text-muted mt-3 max-w-xl">
+          <p className="service-section-description text-muted mt-3 max-w-xl">
             {data.headingData.description}
           </p>
         </div>
@@ -59,7 +60,7 @@ export default function TechStack({
                       ? setActive(null)
                       : setActive(item as Category)
                   }
-                  className={`h-10 px-4 py-2 rounded-full text-sm md:text-base font-medium transition-all whitespace-nowrap shrink-0
+                  className={`service-pill transition-all shrink-0
             ${
               active === item
                 ? "text-white bg-primary-dark"
@@ -98,20 +99,19 @@ export default function TechStack({
           shadow-[0_0_80px_rgba(230, 230, 230, 0.18)]"
       >
         <div className="overflow-hidden">
-          <div className="flex gap-0 md:gap-6 w-max animate-scroll pause-on-hover">
+          <div className="flex gap-4 md:gap-6 w-max animate-scroll pause-on-hover">
             {firstRow.map((tech, idx) => (
               <div
                 key={idx}
-                className="relative flex items-center justify-center
-        min-w-28 md:min-w-37.5 min-h-28 md:min-h-35
-        hover:border-orange-500/40 transition"
+                className="service-tech-tile hover:border-orange-500/40 hover:-translate-y-0.5 transition will-change-transform"
               >
                 <Image
                   src={tech?.icon ?? ""}
                   alt={tech.name}
                   fill
-                  className="object-cover "
+                  className="service-tech-icon"
                   loading="lazy"
+                  sizes="(min-width: 768px) 136px, 112px"
                 />
               </div>
             ))}
@@ -119,20 +119,19 @@ export default function TechStack({
         </div>
 
         <div className="overflow-hidden mt-3 md:mt-6">
-          <div className="flex gap-0 md:gap-6 w-max animate-scrollRight pause-on-hover">
+          <div className="flex gap-4 md:gap-6 w-max animate-scrollRight pause-on-hover">
             {secondRow.map((tech, idx) => (
               <div
                 key={idx}
-                className="relative flex items-center justify-center
-        min-w-28 md:min-w-37.5 min-h-28 md:min-h-35
-        hover:border-orange-500/40 transition"
+                className="service-tech-tile hover:border-orange-500/40 hover:-translate-y-0.5 transition will-change-transform"
               >
                 <Image
                   src={tech?.icon ?? ""}
                   alt={tech.name}
                   fill
-                  className="object-cover"
+                  className="service-tech-icon"
                   loading="lazy"
+                  sizes="(min-width: 768px) 136px, 112px"
                 />
               </div>
             ))}

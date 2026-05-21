@@ -38,7 +38,7 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
       <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 md:mb-12 gap-6">
         {/* Title and Description */}
         <div className="max-w-2xl">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gradient">
+          <h2 className="service-section-heading text-gradient">
             {servicesData?.title}{" "}
             <span className="text-dark-gradient">
               {servicesData?.gradientText}{" "}
@@ -46,7 +46,7 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
             {servicesData?.afterGradientText}
           </h2>
           <p
-            className="text-gray-400 mt-4"
+            className="service-section-description text-muted mt-4"
             dangerouslySetInnerHTML={{
               __html: servicesData?.description ?? "",
             }}
@@ -59,7 +59,7 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
             <button
               key={`desktop-${service.id}`}
               onClick={() => setSelectedService(service)}
-              className={`px-6 py-2 rounded-full text-base font-medium transition-all whitespace-nowrap ${
+              className={`service-pill transition-all whitespace-nowrap ${
                 selectedService.id === service.id
                   ? "bg-primary-dark text-white shadow-md"
                   : "bg-gray-700 text-gray-300 hover:bg-gray-600"
@@ -81,7 +81,7 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
             <button
               key={`mobile-${service.id}`}
               onClick={() => setSelectedService(service)}
-              className={`h-10 px-6 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap flex-none ${
+              className={`service-pill transition-all whitespace-nowrap flex-none ${
                 selectedService.id === service.id
                   ? "bg-primary-dark text-white shadow-md"
                   : "bg-gray-700 text-gray-300 hover:bg-gray-600"
@@ -115,11 +115,11 @@ const TechServices: React.FC<any> = ({ servicesData }) => {
 
           {/* Content */}
           <div className="flex-1 flex flex-col gap-5">
-            <h3 className="text-gradient text-2xl md:text-4xl font-semibold">
+            <h3 className="service-card-title text-gradient">
               {selectedService?.title ?? ""}
             </h3>
             <p
-              className="text-[#CECECE] text-base md:text-lg leading-relaxed"
+              className="service-rich-text text-[#CECECE]"
               dangerouslySetInnerHTML={{
                 __html: selectedService?.description ?? "",
               }}

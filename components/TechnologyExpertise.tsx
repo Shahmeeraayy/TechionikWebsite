@@ -70,8 +70,12 @@ const TechnologyExpertiseComponent = ({ data }: TechnologyExpertiseProps) => {
   return (
     <div className="px-4">
       <div className="mb-10 w-full md:w-[80%] lg:w-[60%] xl:w-[50%]">
-        <h2 className="text-gradient">{data.mainTitle}</h2>
-        <p className="text-gradient">{data.mainDescription}</p>
+        <h2 className="service-section-heading text-gradient">
+          {data.mainTitle}
+        </h2>
+        <p className="service-section-description text-muted mt-3">
+          {data.mainDescription}
+        </p>
       </div>
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
@@ -133,7 +137,7 @@ const TechnologyExpertiseComponent = ({ data }: TechnologyExpertiseProps) => {
 
                 {/* TITLE */}
                 <h3
-                  className={`transition-all duration-500 ${
+                  className={`service-card-title transition-all duration-500 ${
                     isActive ? "mt-24 text-left" : "text-center"
                   }`}
                 >
@@ -142,7 +146,7 @@ const TechnologyExpertiseComponent = ({ data }: TechnologyExpertiseProps) => {
 
                 {/* DESCRIPTION */}
                 {isActive && (
-                  <div className="mt-4 h-[220px] overflow-y-auto pr-3">
+                  <div className="mt-4 h-[220px] overflow-y-auto pr-3 service-rich-text text-muted">
                     <ul className="list-disc space-y-2 pl-5">
                       {item.description.map((desc, i) => (
                         <li key={i}>{desc}</li>

@@ -24,19 +24,19 @@ const SolutionCard = ({
       onClick={() => setClicked((prev) => !prev)}
       className="
            group shrink-0 basis-full md:basis-1/2 lg:basis-1/3
-           max-w-86.5 h-102.75 flex flex-col rounded-sm bg-[#111111]
+           max-w-86.5 h-102.75 flex flex-col rounded-2xl bg-[#111111]
            border border-white/5 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.5)]
            overflow-hidden cursor-pointer mx-2
            
            "
     >
-      <div className="relative h-1/2 pl-7.75 pt-10 pr-7 space-y-4">
+      <div className="relative h-1/2 pl-8 pt-10 pr-8 space-y-4">
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-        <h3 className="relative z-10 text-white text-xl font-bold leading-snug">
+        <h3 className="relative z-10 service-card-title text-white">
           {member.title}
         </h3>
         <p
-          className={`relative z-10 text-muted [&_*]:text-muted leading-6! transition-opacity duration-500
+          className={`relative z-10 service-rich-text text-muted transition-opacity duration-500
              ${clicked ? "opacity-100 lg:opacity-100" : "opacity-0 lg:opacity-0 lg:group-hover:opacity-100"}
           `}
           dangerouslySetInnerHTML={createMarkup(member.description)}
@@ -72,7 +72,7 @@ const SoftwareSolution = ({ data }: SoftwareSolutionProps) => {
     <section className="bg-[--color-bg] overflow-hidden font-sans py-16 px-6 md:px-12">
       <div className="">
         <div className="flex flex-col w-full lg:w-[70%] 2xl:w-[60%] md:flex-row md:items-center justify-between gap-6 mb-4">
-          <h2 className="text-3xl md:text-5xl font-bold text-gradient">
+          <h2 className="service-section-heading text-gradient">
             {data.title}{" "}
             <span className="text-dark-gradient">{data.middleTitle} </span>
             {data.lastTitle}
@@ -80,7 +80,7 @@ const SoftwareSolution = ({ data }: SoftwareSolutionProps) => {
         </div>
 
         <p
-          className="mb-12 text-muted [&_*]:text-muted w-full lg:w-[80%] 2xl:w-[70%]"
+          className="mb-12 service-section-description text-muted w-full lg:w-[80%] 2xl:w-[70%]"
           dangerouslySetInnerHTML={createMarkup(data.description)}
         />
 

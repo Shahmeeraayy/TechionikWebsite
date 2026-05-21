@@ -69,10 +69,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       </Swiper>
 
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-20">
-        <div className="w-[80%] md:w-[70%] lg:w-[60%]">
+        <div className="w-full max-w-5xl mx-auto">
           <h1
             key={activeIndex}
-            className="opacity-0 animate-fadeIn text-2xl! md:text-5xl! lg:text-6xl! leading-tight! md:leading-normal!"
+            className="opacity-0 animate-fadeIn service-section-heading-lg text-white"
           >
             <span className="gradient-text">{activeSlide.title}</span>
             {subtitle ? (
@@ -84,7 +84,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           </h1>
 
           {activeSlide.description && (
-            <p className="mt-6 text-gray-200 text-base sm:text-lg opacity-0 animate-fadeIn delay-200">
+            <p className="mt-6 service-section-description text-white/80 opacity-0 animate-fadeIn delay-200">
               {activeSlide.description}
             </p>
           )}

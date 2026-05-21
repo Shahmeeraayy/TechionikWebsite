@@ -30,21 +30,20 @@ const ServicesCTA = ({ data, opacity = false }: ServiceCTAProps) => {
         )}
 
         {/* Content */}
-        <div className="relative max-w-8xl lg:max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between p-6 md:p-8 lg:p-17 z-20">
-          
-          <div className="flex flex-col space-y-3">
-            <h2 className="text-muted">
+        <div className="relative max-w-8xl lg:max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 p-6 md:p-8 lg:p-16 z-20">
+          <div className="flex flex-col space-y-4 max-w-4xl">
+            <h2 className="service-section-heading text-white">
               {data.startTitle}{" "}
               <span className="gradient-text">{data.spanTitle}</span>{" "}
               {data.endTitle}
             </h2>
 
-            <p className="text-muted leading-relaxed max-w-150">
+            <p className="service-section-description text-white/80 max-w-3xl">
               {data.description}
             </p>
           </div>
 
-          <div className="">
+          <div className="shrink-0">
             <Button
               ariaLabel="Talk to an Expert Button"
               text={data.buttonLabel}

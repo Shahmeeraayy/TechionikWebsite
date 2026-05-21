@@ -14,7 +14,7 @@ const WhatYouGet = ({ data }: WhatYouGetProps) => {
       <div className="flex flex-col lg:flex-row gap-10">
         {/* Left Side */}
         <div className="w-full lg:w-1/2 flex flex-col space-y-6">
-          <h2 className="text-gradient w-full xl:w-[80%] wrap-break-word">
+          <h2 className="service-section-heading text-gradient w-full max-w-4xl">
             {data.title1}{" "}
             <span className="text-dark-gradient">{data.spanTitle}</span>{" "}
             {data.title2}
@@ -58,10 +58,13 @@ const WhatYouGet = ({ data }: WhatYouGetProps) => {
         {/* Right Side */}
         <div className="w-full lg:w-1/2 flex flex-col space-y-5 text-muted break-words">
           <p
-            className="voice-summary"
+            className="voice-summary service-rich-text"
             dangerouslySetInnerHTML={{ __html: data.RightDescription1 }}
           />
-          <p dangerouslySetInnerHTML={{ __html: data.RightDescription2 }} />
+          <p
+            className="service-rich-text"
+            dangerouslySetInnerHTML={{ __html: data.RightDescription2 }}
+          />
         </div>
       </div>
     </section>

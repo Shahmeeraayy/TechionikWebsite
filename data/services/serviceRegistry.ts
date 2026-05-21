@@ -640,7 +640,6 @@ export const serviceMenuItems: ServiceMenuItem[] = [
       { id: 303, name: "Generative AI Development", slug: "generative-ai", href: "/services/ai-ml/generative-ai" },
       { id: 304, name: "Machine Learning Services", slug: "machine-learning", href: "/services/ai-ml/machine-learning" },
       { id: 305, name: "Agentic AI Development", slug: "agentic-ai", href: "/services/ai-ml/agentic-ai" },
-      { id: 306, name: "Hire AI Developers", slug: "hire-ai-developers", href: "/staffing/hire-developers/hire-ai-developers" },
     ],
   },
   {

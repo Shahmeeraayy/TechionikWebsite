@@ -3,10 +3,11 @@ import { useState } from "react";
 import { FAQ, MultipleFAQs } from "@/data/FAQS";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface FAQProps{
-  data: FAQ
+interface FAQProps {
+  data: FAQ;
 }
-const FAQComponent = ({data}: FAQProps) => {
+
+const FAQComponent = ({ data }: FAQProps) => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
   const toggleFAQ = (id: number) => {
@@ -15,11 +16,13 @@ const FAQComponent = ({data}: FAQProps) => {
 
   return (
     <div className="w-full">
-      <h2 className="text-gradient">
-        {data.mainTitle} <span className="text-dark-gradient">{data.spanTitle}</span>
+      <h2 className="service-section-heading text-gradient">
+        {data.mainTitle}{" "}
+        <span className="text-dark-gradient">{data.spanTitle}</span>
       </h2>
-      <p className="text-gray-400 mb-10 ">
-        Find quick answers to the most common questions about our services and solutions.
+      <p className="service-section-description text-muted mb-10">
+        Find quick answers to the most common questions about our services and
+        solutions.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-6">
@@ -29,12 +32,14 @@ const FAQComponent = ({data}: FAQProps) => {
             className="bg-[#16161A] border border-[#2A2A34] rounded-xl shadow-[0_4px_20px_0px_#00000040] p-5 cursor-pointer"
           >
             <div
-              className="flex justify-between items-center"
+              className="flex justify-between items-center gap-4"
               onClick={() => toggleFAQ(faq.id)}
             >
-              <h3 className="text-white">{faq.id}. {faq.question}</h3>
+              <h3 className="service-card-title-sm text-white">
+                {faq.id}. {faq.question}
+              </h3>
               <span className="text-orange-500 font-bold text-xl">
-                {openFAQ === faq.id ? "−" : "+"}
+                {openFAQ === faq.id ? "-" : "+"}
               </span>
             </div>
 
@@ -45,7 +50,7 @@ const FAQComponent = ({data}: FAQProps) => {
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="mt-3 body-2 text-muted"
+                  className="mt-3 service-rich-text text-muted"
                 >
                   {faq.answer}
                 </motion.div>

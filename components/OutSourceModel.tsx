@@ -13,7 +13,7 @@ const OutsourcingModels = ({ data }: OutsourcingModelsProps) => {
     <section className="bg-[var(--color-bg)] pb-20 px-4 sm:px-8 lg:px-16 2xl:px-20 overflow-hidden font-sans">
       {/* ───────── HEADER ───────── */}
       <div className="max-w-8xl 2xl:max-w-8xl mx-auto mb-10">
-        <h2 className="text-3xl sm:text-4xl xl:text-5xl 2xl:text-5xl font-bold mb-4 xl:mb-6 leading-tight text-gradient">
+        <h2 className="service-section-heading mb-4 xl:mb-6 text-gradient">
           {data?.title}{" "}
           <span className="text-dark-gradient">
             {data?.MiddleTitle} {data?.lastTitle}
@@ -21,7 +21,7 @@ const OutsourcingModels = ({ data }: OutsourcingModelsProps) => {
         </h2>
 
         <p
-          className="text-sm sm:text-base xl:text-lg text-(--color-muted) w-full lg:max-w-[80%] xl:max-w-[70%] 2xl:max-w-[60%] leading-relaxed"
+          className="service-section-description text-muted w-full lg:max-w-[80%] xl:max-w-[70%] 2xl:max-w-[60%]"
           dangerouslySetInnerHTML={createMarkup(data?.description || "")}
         />
       </div>
@@ -156,10 +156,8 @@ const OutsourcingModels = ({ data }: OutsourcingModelsProps) => {
                   <h3
                     className="
                     text-gradient
-                    text-2xl sm:text-3xl xl:text-3xl 2xl:text-4xl
-                    font-bold
+                    service-card-title
                     mb-4 xl:mb-6 2xl:mb-8
-                    leading-tight
                   "
                   >
                     {slide?.title}
@@ -169,7 +167,7 @@ const OutsourcingModels = ({ data }: OutsourcingModelsProps) => {
                   </p> */}
 
                   <div
-                    className="[&>ul]:space-y-2 xl:[&>ul]:space-y-3 [&_li]:list-disc lg:[&_li]:list-none [&_li]:text-(--color-muted) [&_li]:text-xs sm:[&_li]:text-sm xl:[&_li]:text-sm 2xl:[&_li]:text-[15px] [&_li]:leading-relaxed [&_li]:transition-colors group-hover:[&_li]:text-[-var(--color-outsource-hover)]"
+                    className="service-rich-text text-muted group-hover:text-[var(--color-outsource-hover)] [&>ul]:space-y-2 xl:[&>ul]:space-y-3"
                     dangerouslySetInnerHTML={createMarkup(
                       slide?.description || "",
                     )}

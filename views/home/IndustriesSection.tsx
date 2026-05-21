@@ -109,7 +109,7 @@ export default function IndustriesSection({
       <div className="max-w-full mx-auto md:px-10 px-4 pb-10 sm:px-6 lg:px-20">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-8">
           <div className="flex flex-col md:flex-1 space-y-4 pb-6">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gradient">
+            <h2 className="service-section-heading text-gradient">
               {industries.title}
               {"  "}
               <span className="text-dark-gradient">
@@ -118,7 +118,7 @@ export default function IndustriesSection({
               {"  "}
               {industries.afterGradientTitle}
             </h2>
-            <p className="text-gray-400 mt-2 w-full lg:max-w-[80%] xl:max-w-[70%] 2xl:max-w-[60%] text-sm sm:text-base">
+            <p className="service-section-description text-muted mt-2 w-full lg:max-w-[80%] xl:max-w-[70%] 2xl:max-w-[60%]">
               {industries.description}
             </p>
           </div>
@@ -182,7 +182,7 @@ export default function IndustriesSection({
                   transition={{ duration: 0.4, ease: "easeInOut" }}
                 >
                   <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6">
-                    <h3 className="text-lg md:text-xl font-semibold mb-2 text-white">
+                    <h3 className="service-card-title-sm text-white mb-2">
                       {item.title}
                     </h3>
 
@@ -195,7 +195,7 @@ export default function IndustriesSection({
                       transition={{ duration: 0.3 }}
                     >
                       <p
-                        className={`text-xs ${isActive ? "block opacity-100" : "hidden"} md:text-sm text-zinc-300 mb-3 md:mb-4 transition-all duration-300`}
+                        className={`service-body ${isActive ? "block opacity-100" : "hidden"} text-zinc-300 mb-3 md:mb-4 transition-all duration-300`}
                       >
                         {item.description}
                       </p>
