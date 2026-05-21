@@ -111,7 +111,7 @@ const ContactHero: React.FC<ContactHeroProps> = ({
                   />
                 </div>
                 {/* --- Left Side Images --- */}
-                <div className="absolute top-10 left-[5%]w-[180px] h-[180px] flex items-center justify-center">
+                <div className="absolute top-10 left-[5%] w-[180px] h-[180px] flex items-center justify-center">
                   <Image
                     width={171}
                     height={169}
@@ -195,7 +195,7 @@ const ContactHero: React.FC<ContactHeroProps> = ({
 
         {/* 5. Main Text Content Layer */}
         <div className="relative w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 lg:p-12 text-center space-y-4 sm:space-y-6 md:space-y-8 z-20 min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[530px]">
-          <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient leading-tight max-w-4xl">
+          <p className="service-section-heading-lg text-gradient max-w-4xl">
             {/* {content.title.split(content.highlight || "").map((part: string, idx: number, arr: string[]) => (
                 <React.Fragment key={idx}>
                   {part}
@@ -210,7 +210,7 @@ const ContactHero: React.FC<ContactHeroProps> = ({
           </p>
 
           <p
-            className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl px-4"
+            className="service-section-description text-gray-300 max-w-2xl px-4"
             dangerouslySetInnerHTML={createMarkup(content.description)}
           />
 
@@ -223,7 +223,7 @@ const ContactHero: React.FC<ContactHeroProps> = ({
                     className="h-full w-full"
                   />
                 </div>
-                <span className="text-black font-semibold text-sm sm:text-base lg:text-lg">
+                <span className="service-body text-black font-semibold">
                   {content.features?.[0]?.text || "100% Safe Payment"}
                 </span>
               </div>
@@ -235,7 +235,7 @@ const ContactHero: React.FC<ContactHeroProps> = ({
                     className="h-full w-full"
                   />
                 </div>
-                <span className="text-black font-semibold text-sm sm:text-base lg:text-lg">
+                <span className="service-body text-black font-semibold">
                   {content.features?.[1]?.text || "1k+ People Trust Us"}
                 </span>
               </div>

@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 
 interface PriceItem {
   pkgTitle: string;
@@ -30,19 +30,19 @@ export default function PriceList({ data }: PriceListProps) {
     <section className="bg-[--color-bg] px-6 py-20 md:px-12 lg:px-20">
       {/* Header */}
       <div className="max-w-8xl mx-auto mb-14">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-5">
+        <h2 className="service-section-heading-lg mb-5">
           <span className="text-[#9a9a9a]">{firstLine}</span>
           <br />
           <span className="text-white">{secondLine}</span>
         </h2>
         <div
-          className="text-[#9a9a9a] text-sm md:text-base max-w-lg leading-relaxed [&_p]:m-0"
+          className="service-section-description text-[#9a9a9a] max-w-lg [&_p]:m-0"
           dangerouslySetInnerHTML={{ __html: description }}
         />
       </div>
 
       {/* Cards Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {items.map((item, index) => (
           <div
             key={index}
@@ -50,7 +50,7 @@ export default function PriceList({ data }: PriceListProps) {
           >
             {/* Title + Price Badge */}
             <div className="flex items-center gap-3 flex-wrap">
-              <h3 className="text-white font-bold text-xl leading-none">
+              <h3 className="service-card-title-sm text-white leading-none">
                 {item.pkgTitle}
               </h3>
               {item.priceRange && (
@@ -62,10 +62,10 @@ export default function PriceList({ data }: PriceListProps) {
 
             {/* Description */}
             <div
-              className="text-[#9a9a9a] text-sm leading-relaxed
+              className="service-body text-[#9a9a9a]
                 [&_ul]:list-none [&_ul]:space-y-2 [&_ul]:m-0 [&_ul]:p-0
                 [&_li]:flex [&_li]:items-start [&_li]:gap-2
-                [&_li]:before:content-['·'] [&_li]:before:text-[#c0522a] [&_li]:before:font-bold
+                [&_li]:before:content-['•'] [&_li]:before:text-[#c0522a] [&_li]:before:font-bold
                 [&_p]:m-0 [&_p]:text-[#7a7a7a] [&_p]:text-xs [&_p]:mb-3"
               dangerouslySetInnerHTML={{ __html: item.description }}
             />
@@ -88,13 +88,13 @@ export const sampleDataa: PriceListData = {
       pkgTitle: "Tier 1",
       priceRange: "$2000 - $2500 (Monthly)",
       description:
-        "<ul><li>1 Android Developer</li><li>4–6 years of Android Development experience</li><li>Managed 4 – 5 projects</li><li>Completed over 800+ development hours</li><li>Suitable for general-level projects</li></ul>",
+        "<ul><li>1 Android Developer</li><li>4â€“6 years of Android Development experience</li><li>Managed 4 â€“ 5 projects</li><li>Completed over 800+ development hours</li><li>Suitable for general-level projects</li></ul>",
     },
     {
       pkgTitle: "Tier 2",
       priceRange: "$2000 - $2500 (Monthly)",
       description:
-        "<ul><li>1 Android Developer</li><li>4–6 years of Android Development experience</li><li>Managed 4 – 5 projects</li><li>Completed over 800+ development hours</li><li>Suitable for general-level projects</li></ul>",
+        "<ul><li>1 Android Developer</li><li>4â€“6 years of Android Development experience</li><li>Managed 4 â€“ 5 projects</li><li>Completed over 800+ development hours</li><li>Suitable for general-level projects</li></ul>",
     },
     {
       pkgTitle: "Build",
@@ -104,3 +104,4 @@ export const sampleDataa: PriceListData = {
     },
   ],
 };
+

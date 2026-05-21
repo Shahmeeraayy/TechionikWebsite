@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from 'react';
 // import Link from 'next/link';
 import { HiringPageData } from '../data/hiringCardData';
@@ -17,10 +17,10 @@ const HiringSection: React.FC<{ data: HiringPageData }> = ({ data }) => {
 
                 {/* Section Header - Now fully dynamic via Props */}
                 <div className="mb-16 max-w-3xl">
-                    <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                    <h2 className="service-section-heading-lg text-white mb-6">
                         {header.mainTitle}<br /> <span className="gradient-text">{header.highlightTitle}</span>
                     </h2>
-                    <p className="text-(--color-muted) text-xl font-light whitespace-pre-line">
+                    <p className="service-section-description text-(--color-muted) whitespace-pre-line">
                         {header.subtitle}
                     </p>
                 </div>
@@ -46,7 +46,7 @@ const HiringSection: React.FC<{ data: HiringPageData }> = ({ data }) => {
         </div>
 
         {/* Title */}
-        <h3 className="text-[var(--color-muted)] text-3xl font-bold leading-tight mb-8">
+        <h3 className="service-card-title text-[var(--color-muted)] mb-8">
           {item.title} <br />
           <span className="gradient-text">{item.category}</span>
         </h3>
@@ -56,7 +56,7 @@ const HiringSection: React.FC<{ data: HiringPageData }> = ({ data }) => {
           {item.features.map((feature, idx) => (
             <li
               key={idx}
-              className="flex gap-3 text-white text-lg leading-snug"
+              className="flex gap-3 service-body text-white"
             >
               <span className="font-bold">•</span>
               {feature}
@@ -67,7 +67,7 @@ const HiringSection: React.FC<{ data: HiringPageData }> = ({ data }) => {
         {/* Button */}
         <Link href="/contact">
           <button className="flex items-center justify-between bg-[#434345] hover:bg-[#4d4d4f] transition-colors w-full max-w-[180px] py-2 pl-6 pr-2 rounded-full group">
-            <span className="text-white font-medium text-lg">Hire Now</span>
+            <span className="service-body text-white font-medium">Hire Now</span>
             <div className="w-10 h-10 bg-[#E85D33] rounded-full flex items-center justify-center text-white transition-transform group-hover:translate-x-1">
               <svg
                 width="20"
@@ -129,3 +129,4 @@ const HiringSection: React.FC<{ data: HiringPageData }> = ({ data }) => {
 };
 
 export default HiringSection;
+

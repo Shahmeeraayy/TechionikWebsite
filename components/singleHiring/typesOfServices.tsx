@@ -37,13 +37,13 @@ export default function TypeOfServices({ data }: TypeOfServicesProps) {
       <div className="max-w-8xl mx-auto">
         {/* Header */}
         <div className="mb-10 max-w-8xl">
-          <h2 className="text-5xl md:text-6xl lg:text-8xl font-bold leading-tight mb-4">
+          <h2 className="service-section-heading-lg mb-4 max-w-5xl">
             <span className="text-white">{title} </span>
             <span className="text-[#c0522a]">{middleTitle} </span>
             <span className="text-white">{lastTitle}</span>
           </h2>
           <div
-            className="text-[#9a9a9a] text-sm md:text-base leading-relaxed [&_p]:m-0 mt-4"
+            className="service-section-description text-[#9a9a9a] [&_p]:m-0 mt-4"
             dangerouslySetInnerHTML={{ __html: description }}
           />
         </div>
@@ -95,7 +95,7 @@ export default function TypeOfServices({ data }: TypeOfServicesProps) {
                   <button
                     key={service.slug}
                     onClick={() => handleServiceClick(service.slug)}
-                    className={`w-full text-left px-7 py-4 text-sm font-medium transition-all duration-200 flex items-center gap-3 group cursor-pointer
+                    className={`w-full text-left px-7 py-4 service-body transition-all duration-200 flex items-center gap-3 group cursor-pointer
                       ${isActive
                         ? "text-white bg-[#1e1e22]"
                         : "text-[#7a7a7a] hover:text-[#c8c8c8] hover:bg-[#191919]"

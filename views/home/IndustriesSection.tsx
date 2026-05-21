@@ -99,7 +99,7 @@ export default function IndustriesSection({
 
   if (industries.showAllDescriptions) {
     return (
-      <section className="bg-[-var(--color-bg)] pb-10">
+      <section className="bg-[var(--color-bg)] pb-10">
         <div className="max-w-full mx-auto md:px-10 px-4 pb-10 sm:px-6 lg:px-20">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-8">
             <div className="flex flex-col md:flex-1 space-y-4 pb-6">
@@ -146,7 +146,7 @@ export default function IndustriesSection({
       : industries.slides;
 
   return (
-    <section className="bg-[-var(--color-bg)] pb-10">
+    <section className="bg-[var(--color-bg)] pb-10">
       {/* ── Header ────────────────────────────────────────────────────────────── */}
       <div className="max-w-full mx-auto md:px-10 px-4 pb-10 sm:px-6 lg:px-20">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-8">

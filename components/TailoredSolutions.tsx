@@ -11,12 +11,12 @@ const TailoredSolutions: React.FC<{ data: SolutionsData }> = ({ data }) => {
       <div className="max-w-8xl mx-auto">
         {/* Section Header */}
         <div className="mb-10 max-w-4xl">
-          <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-8 leading-tight">
+          <h2 className="service-section-heading text-gradient mb-8">
             {header.title}{" "}
             <span className="text-dark-gradient">{header.middleTitle}</span>{" "}
             {header.lastTitle}
           </h2>
-          <p className="text-muted text-lg font-light leading-relaxed max-w-2xl"
+          <p className="service-section-description text-muted max-w-2xl"
              dangerouslySetInnerHTML={createMarkup(header.description)}
           />
         </div>
@@ -30,10 +30,10 @@ const TailoredSolutions: React.FC<{ data: SolutionsData }> = ({ data }) => {
             >
               {/* Content */}
               <div className="relative z-10">
-                <h3 className="text-white text-3xl font-bold mb-6 leading-tight">
+                <h3 className="service-card-title text-white mb-6">
                   {card.title}
                 </h3>
-                <p className="text-gray-400 text-base leading-relaxed font-light"
+                <p className="service-body text-gray-400"
                    dangerouslySetInnerHTML={createMarkup(card.description)}
                 />
               </div>

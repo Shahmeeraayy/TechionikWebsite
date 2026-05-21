@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 
 interface ActionItem {
   title: string;
@@ -23,7 +23,7 @@ export default function ActionSection({ data }: ActionSectionProps) {
     <section className="bg-[#111113] py-20 px-6 md:px-12 lg:px-20">
       {/* Header */}
       <div className="max-w-8xl mx-auto mb-14">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+        <h2 className="service-section-heading-lg text-white">
           {title}{" "}
           <span className="block">
             {subtitle.split(" ").map((word, i) =>
@@ -40,7 +40,7 @@ export default function ActionSection({ data }: ActionSectionProps) {
           </span>
         </h2>
         <div
-          className="text-[#9a9a9a] text-sm md:text-base max-w-md leading-relaxed prose-p:m-0"
+          className="service-section-description text-[#9a9a9a] max-w-md prose-p:m-0"
           dangerouslySetInnerHTML={{ __html: description }}
         />
       </div>
@@ -53,20 +53,20 @@ export default function ActionSection({ data }: ActionSectionProps) {
             className="bg-[#1a1a1d] rounded-2xl p-8 flex flex-col gap-10 border border-[#2a2a2d] hover:border-[#c0522a]/40 transition-colors duration-300"
           >
             {/* Number */}
-            <span className="text-[#c0522a] text-7xl font-bold leading-none tracking-tighter select-none">
+            <span className="text-[#c0522a] text-6xl md:text-7xl font-bold leading-none tracking-tighter select-none">
               {String(index + 1).padStart(2, "0")}
             </span>
 
             {/* Content */}
             <div>
-              <h3 className="text-white font-bold text-xl mb-4 leading-snug">
+              <h3 className="service-card-title text-white mb-4">
                 {item.title}
               </h3>
               <div
-                className="text-[#9a9a9a] text-sm leading-relaxed
+                className="service-body text-[#9a9a9a]
                   [&_ul]:list-none [&_ul]:space-y-2 [&_ul]:m-0 [&_ul]:p-0
                   [&_li]:flex [&_li]:items-start [&_li]:gap-2
-                  [&_li]:before:content-['·'] [&_li]:before:text-[#c0522a] [&_li]:before:font-bold [&_li]:before:mt-0
+                  [&_li]:before:content-['•'] [&_li]:before:text-[#c0522a] [&_li]:before:font-bold [&_li]:before:mt-0
                   [&_p]:m-0"
                 dangerouslySetInnerHTML={{ __html: item.description }}
               />
@@ -104,3 +104,4 @@ export const sampleData: ActionSectionData = {
     },
   ],
 };
+

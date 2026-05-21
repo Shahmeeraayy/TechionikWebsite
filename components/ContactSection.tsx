@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -31,22 +30,31 @@ const ContactSection: React.FC<ContactSectionData> = ({ data }) => {
   );
   const { badge, image, imageAlt, title, highlightedWord, description } = data;
 
-  useEffect(() => {
-    if (activeField && transcript) {
+  const getFieldValue = (field: keyof typeof formData) =>
+    activeField === field ? transcript || formData[field] : formData[field];
+
+  const syncTranscriptToForm = (field: keyof typeof formData) => {
+    if (transcript) {
       setFormData((prev) => ({
         ...prev,
-        [activeField]: transcript,
+        [field]: transcript,
       }));
     }
-  }, [transcript, activeField]);
+  };
 
   const startListening = (field: keyof typeof formData) => {
+    if (activeField && activeField !== field) {
+      syncTranscriptToForm(activeField);
+    }
     setActiveField(field);
     resetTranscript();
     SpeechRecognition.startListening({ continuous: true });
   };
 
   const stopListening = () => {
+    if (activeField) {
+      syncTranscriptToForm(activeField);
+    }
     SpeechRecognition.stopListening();
     setActiveField(null);
   };
@@ -61,6 +69,9 @@ const ContactSection: React.FC<ContactSectionData> = ({ data }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (activeField) {
+      syncTranscriptToForm(activeField);
+    }
     setLoading(true);
 
     setTimeout(() => {
@@ -140,14 +151,14 @@ const ContactSection: React.FC<ContactSectionData> = ({ data }) => {
             <span className="text-white text-sm font-medium">{badge}</span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-muted)] leading-[1.1]">
+          <h2 className="service-section-heading-lg text-[var(--color-muted)] max-w-4xl">
             {titleParts[0]}
             <span className="text-dark-gradient">{highlightedWord}</span>
             {titleParts[1]}
           </h2>
 
           <p
-            className="text-[var(--color-text)] text-lg md:text-xl max-w-lg"
+            className="service-section-description text-[var(--color-text)] max-w-lg"
             dangerouslySetInnerHTML={{ __html: description }}
           />
         </div>
@@ -160,15 +171,15 @@ const ContactSection: React.FC<ContactSectionData> = ({ data }) => {
             tooldescription="Sends a general business inquiry to the Techionik team for project discussions."
             toolautosubmit="true"
           >
-            <h2 className="text-4xl font-bold text-white">{data?.formTitle}</h2>
-            <p className="text-gray-300">{data?.formDesc}</p>
+            <h2 className="service-card-title text-white">{data?.formTitle}</h2>
+            <p className="service-body text-gray-300">{data?.formDesc}</p>
 
             {/* Name */}
             <div className="flex flex-col gap-2">
-              <label className="text-white">Name</label>
+              <label className="service-body text-white">Name</label>
               <div className="flex gap-2">
                 <input
-                  value={formData.name}
+                  value={getFieldValue("name")}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
@@ -179,7 +190,7 @@ const ContactSection: React.FC<ContactSectionData> = ({ data }) => {
                 <button
                   type="button"
                   onClick={() => toggleListening("name")}
-                  className="p-2 "
+                  className="p-2"
                 >
                   {activeField === "name" ? (
                     <MicOff size={16} className="text-red-500" />
@@ -192,10 +203,10 @@ const ContactSection: React.FC<ContactSectionData> = ({ data }) => {
 
             {/* Email */}
             <div className="flex flex-col gap-2">
-              <label className="text-white">Email</label>
+              <label className="service-body text-white">Email</label>
               <div className="flex gap-2">
                 <input
-                  value={formData.email}
+                  value={getFieldValue("email")}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
@@ -206,7 +217,7 @@ const ContactSection: React.FC<ContactSectionData> = ({ data }) => {
                 <button
                   type="button"
                   onClick={() => toggleListening("email")}
-                  className="p-2 s"
+                  className="p-2"
                 >
                   {activeField === "email" ? (
                     <MicOff size={16} className="text-red-500" />
@@ -219,10 +230,10 @@ const ContactSection: React.FC<ContactSectionData> = ({ data }) => {
 
             {/* Phone */}
             <div className="flex flex-col gap-2">
-              <label className="text-white">Phone</label>
+              <label className="service-body text-white">Phone</label>
               <div className="flex gap-2">
                 <input
-                  value={formData.phone}
+                  value={getFieldValue("phone")}
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })
                   }
@@ -233,7 +244,7 @@ const ContactSection: React.FC<ContactSectionData> = ({ data }) => {
                 <button
                   type="button"
                   onClick={() => toggleListening("phone")}
-                  className="p-2 "
+                  className="p-2"
                 >
                   {activeField === "phone" ? (
                     <MicOff size={16} className="text-red-500" />
@@ -246,11 +257,11 @@ const ContactSection: React.FC<ContactSectionData> = ({ data }) => {
 
             {/* Message */}
             <div className="flex flex-col gap-2">
-              <label className="text-white">Message</label>
+              <label className="service-body text-white">Message</label>
               <div className="flex gap-2">
                 <textarea
                   rows={3}
-                  value={formData.message}
+                  value={getFieldValue("message")}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
@@ -261,7 +272,7 @@ const ContactSection: React.FC<ContactSectionData> = ({ data }) => {
                 <button
                   type="button"
                   onClick={() => toggleListening("message")}
-                  className="p-2 "
+                  className="p-2"
                 >
                   {activeField === "message" ? (
                     <MicOff size={16} className="text-red-500" />

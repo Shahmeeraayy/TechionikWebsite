@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { stepsData, WhyChooseNext } from "@/data/chooseNextjs";
+import { WhyChooseNext } from "@/data/chooseNextjs";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface ThreeColumnSectionProps {
@@ -21,15 +21,15 @@ const ThreeColumnSection = ({ stepsData }: ThreeColumnSectionProps) => {
   const rowHeight = 108;
 
   return (
-    <section className="max-w-8xl mx-auto px-6 pb-10 sm: hidden md:hidden lg:block">
-      <div className="mb-15 sm:hidden md:hidden lg:block">
-        <h2 className="capitalize text-muted lg:w-[60%] xl:w-[50%]">
+    <section className="max-w-8xl mx-auto px-6 pb-10 sm:hidden md:hidden lg:block">
+      <div className="mb-12 sm:hidden md:hidden lg:block">
+        <h2 className="service-section-heading capitalize text-muted lg:w-[60%] xl:w-[50%]">
           {stepsData.mainTitle}{" "}
           <span className="gradient-text">{stepsData.middleTitle}</span>
           {stepsData.endTitle}
         </h2>
         <p
-          className="text-muted lg:w-[60%] xl:w-[50%]"
+          className="service-section-description text-muted lg:w-[60%] xl:w-[50%]"
           dangerouslySetInnerHTML={{ __html: stepsData.mainDescription }}
         />
       </div>
@@ -53,16 +53,16 @@ const ThreeColumnSection = ({ stepsData }: ThreeColumnSectionProps) => {
                 height={50}
               />
 
-              <div className="mt-6 text-4xl font-bold text-muted">
+              <div className="mt-6 service-card-title text-muted">
                 {activeStep.id.toString().padStart(2, "0")}
               </div>
 
-              <h3 className="text-2xl font-semibold text-white mt-4">
+              <h3 className="service-card-title text-white mt-4">
                 {activeStep.title}
               </h3>
 
               <p
-                className="text-muted mt-4 leading-relaxed"
+                className="service-body text-muted mt-4"
                 dangerouslySetInnerHTML={{ __html: activeStep.description }}
               />
             </motion.div>
@@ -77,7 +77,7 @@ const ThreeColumnSection = ({ stepsData }: ThreeColumnSectionProps) => {
             return (
               <div
                 key={index}
-                className="flex items-center justify-center relative left-13"
+                className="flex items-center justify-center relative left-[3.25rem]"
                 style={{
                   height: rowHeight,
                   marginTop: index === 0 ? 0 : -18,
@@ -118,7 +118,7 @@ const ThreeColumnSection = ({ stepsData }: ThreeColumnSectionProps) => {
               />
 
               <span
-                className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-semibold transition-all ${
+                className={`w-12 h-12 rounded-full flex items-center justify-center service-card-title-sm transition-all ${
                   index === activeIndex
                     ? "bg-orange-500 text-white"
                     : "bg-transparent text-muted group-hover:text-white"
@@ -128,7 +128,7 @@ const ThreeColumnSection = ({ stepsData }: ThreeColumnSectionProps) => {
               </span>
 
               <span
-                className={`ml-3 transition-all ${
+                className={`ml-3 service-body transition-all ${
                   index === activeIndex
                     ? "text-[--color-text]"
                     : "text-muted group-hover:text-white"

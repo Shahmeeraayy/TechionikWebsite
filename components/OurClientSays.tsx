@@ -10,7 +10,7 @@ const OurClientSays = () => {
   const { emblaRef, emblaApi } = useSlider();
 
   return (
-    <section className="bg-[-var(--color-bg)] overflow-hidden font-sans my-10 lg:my-0">
+    <section className="bg-[var(--color-bg)] overflow-hidden font-sans my-10 lg:my-0">
       <div className="space-y-10 lg:space-y-0">
         {/* Fix: Added min-width and flex-shrink-0 to prevent button cutting */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">

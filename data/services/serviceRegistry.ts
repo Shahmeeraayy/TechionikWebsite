@@ -81,7 +81,7 @@ type SubServicePageData = {
     cards: {
       id: number;
       title: string;
-      description: string[];
+      description: string[] | string;
       icon: string;
     }[];
   } | null;

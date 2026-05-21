@@ -24,14 +24,14 @@ export default function HireTechStack({ data }: Props) {
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 my-12">
         <div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-dark-gradient">
+          <h2 className="service-section-heading text-dark-gradient">
             {data.headingData.title}
             <span className="text-gradient">
               {" "}
               {data.headingData.middleTitle}
             </span>
           </h2>
-          <p className="text-muted mt-3 max-w-xl">
+          <p className="service-section-description text-muted mt-3 max-w-xl">
             {data.headingData.description}
           </p>
         </div>
@@ -58,12 +58,12 @@ export default function HireTechStack({ data }: Props) {
           ref={emblaRef}
         >
           {data.filters.map((item: string) => (
-            <button
-              key={item}
-              onClick={() =>
-                active === item ? setActive(null) : setActive(item as Category)
-              }
-              className={`whitespace-nowrap shrink-0 md:w-full text-left px-5 py-3 rounded-full text-sm font-medium transition-all duration-200
+              <button
+                key={item}
+                onClick={() =>
+                  active === item ? setActive(null) : setActive(item as Category)
+                }
+                className={`service-pill whitespace-nowrap shrink-0 md:w-full text-left transition-all duration-200
                 ${
                   active === item
                     ? "bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-[0_0_20px_rgba(234,88,12,0.3)]"
@@ -97,16 +97,16 @@ export default function HireTechStack({ data }: Props) {
                 key={`${tech.name}-${idx}`}
                 className="flex flex-col items-center justify-center gap-2 group"
               >
-                <div className="relative w-16 h-16 md:w-20 md:h-20 bg-zinc-900 rounded-2xl border border-white/5 hover:border-orange-500/40 transition-all duration-200 overflow-hidden">
+                <div className="service-tech-tile bg-zinc-900 hover:border-orange-500/40 transition-all duration-200 overflow-hidden">
                   <Image
                     src={tech?.icon ?? ""}
                     alt={tech.name}
                     fill
-                    className="object-contain p-2"
+                    className="service-tech-icon"
                     loading="lazy"
                   />
                 </div>
-                <span className="text-xs text-gray-500 group-hover:text-gray-300 transition-colors text-center">
+                <span className="service-body text-gray-500 group-hover:text-gray-300 transition-colors text-center">
                   {tech.name}
                 </span>
               </div>

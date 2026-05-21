@@ -1,4 +1,4 @@
-"use client"; // Required for hooks and click events
+﻿"use client"; // Required for hooks and click events
 import React from "react";
 import { useSlider } from "@/components/hooks/Slider";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -15,12 +15,12 @@ const HiringProcess: React.FC<{ data: HiringProcessData }> = ({ data }) => {
       <div className="max-w-8xl mx-auto">
         {/* Header Section */}
         <div className="mb-10 max-w-2xl">
-          <h2 className="text-5xl md:text-6xl font-bold text-dark-gradient mb-6">
+          <h2 className="service-section-heading-lg text-dark-gradient mb-6">
             {header.mainTitle}{" "}
             <span className="text-dark-gradient">{header.highlightTitle}</span>
           </h2>
           <p
-            className="text-[var(--color-muted)] leading-relaxed"
+            className="service-section-description text-[var(--color-muted)]"
             dangerouslySetInnerHTML={createMarkup(header.description ?? "")}
           />
         </div>
@@ -48,7 +48,7 @@ const HiringProcess: React.FC<{ data: HiringProcessData }> = ({ data }) => {
                     {step.id}
                   </span>
                   <div>
-                    <h3 className="text-white text-lg font-semibold">
+                    <h3 className="service-card-title-sm text-white">
                       {step.title}
                     </h3>
                     <div className="flex gap-1 mt-2">
@@ -62,13 +62,13 @@ const HiringProcess: React.FC<{ data: HiringProcessData }> = ({ data }) => {
                 {/* Text Content */}
                 <div className="space-y-6">
                   <p
-                    className="text-[var(--color-text)] text-sm leading-relaxed uppercase tracking-wide"
+                    className="service-body text-[var(--color-text)]"
                     dangerouslySetInnerHTML={{ __html: step.description }}
                   />
 
                   {step.extraContent && (
                     <p
-                      className="text-[var(--color-text)] text-sm leading-relaxed uppercase tracking-wide"
+                      className="service-body text-[var(--color-text)]"
                       dangerouslySetInnerHTML={createMarkup(
                         step.extraContent ?? "",
                       )}
@@ -80,7 +80,7 @@ const HiringProcess: React.FC<{ data: HiringProcessData }> = ({ data }) => {
                       {step.bulletPoints.map((bp, i) => (
                         <li
                           key={i}
-                          className="text-[var(--color-text)] text-sm leading-relaxed"
+                          className="service-body text-[var(--color-text)]"
                         >
                           <strong className="text-[var(--color-text)]">
                             • {bp.label}:
@@ -117,3 +117,4 @@ const HiringProcess: React.FC<{ data: HiringProcessData }> = ({ data }) => {
 };
 
 export default HiringProcess;
+

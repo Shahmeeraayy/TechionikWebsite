@@ -14,14 +14,14 @@ const ProgrammerSkills: React.FC<{ data: ProgrammerSkillsData }> = ({
       <div className="max-w-full">
         {/* Section Header */}
         <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-(--color-muted) mb-6 leading-tight">
+          <h2 className="service-section-heading-lg text-(--color-muted) mb-6">
             {header.mainTitle}{" "}
             <span className="text-dark-gradient">{header.highlightTitle}</span>{" "}
             <br className="hidden md:block" />
             {header.brandName}
           </h2>
           <p
-            className="text-[var(--color-muted)] leading-relaxed"
+            className="service-section-description text-[var(--color-muted)]"
             dangerouslySetInnerHTML={createMarkup(header.description ?? "")}
           />
         </div>
@@ -31,21 +31,21 @@ const ProgrammerSkills: React.FC<{ data: ProgrammerSkillsData }> = ({
           {cards.map((card) => (
             <div
               key={card.id}
-              className="bg-[var(--color-secondary-dark)] rounded-[32px] p-10 border-tr border-tl border-[#2A2A34] flex flex-col h-full shadow-2xl relative overflow-hidden group hover:bg-[#16161A1A] hover:border-t border-[#E85D33]/20 transition-all"
+              className="bg-[var(--color-secondary-dark)] rounded-[32px] p-10 border border-[#2A2A34] flex flex-col h-full shadow-2xl relative overflow-hidden group hover:bg-[#16161A1A] hover:border-[#E85D33]/20 transition-all"
             >
               {/* Icon Container */}
-              <div className="w-25 h-25 bg-[var(--color-secondary-dark)]  rounded-full border border-[#303038] flex items-center justify-center mb-10 shadow-inner">
+              <div className="w-24 h-24 bg-[var(--color-secondary-dark)] rounded-full border border-[#303038] flex items-center justify-center mb-10 shadow-inner">
                 <Image
                   src={card.icon}
                   alt={card.title}
                   width={60}
                   height={60}
-                  className="w-15 h-15 opacity-70 group-hover:opacity-100 transition-opacity"
+                  className="w-14 h-14 opacity-70 group-hover:opacity-100 transition-opacity"
                 />
               </div>
 
               {/* Card Title */}
-              <h3 className="gradient-text text-2xl font-bold mb-8">
+              <h3 className="service-card-title gradient-text mb-8">
                 {card.title}
               </h3>
 
@@ -53,7 +53,7 @@ const ProgrammerSkills: React.FC<{ data: ProgrammerSkillsData }> = ({
               <div className="flex-grow">
                 {card.description ? (
                   <div
-                    className="text-gray-400 text-lg leading-relaxed prose prose-invert"
+                    className="service-body text-gray-400 prose prose-invert"
                     dangerouslySetInnerHTML={createMarkup(card.description)}
                   />
                 ) : card.skills && card.skills.length > 0 ? (
@@ -61,7 +61,7 @@ const ProgrammerSkills: React.FC<{ data: ProgrammerSkillsData }> = ({
                     {card.skills.map((skill, index) => (
                       <li
                         key={index}
-                        className="flex gap-4 text-gray-400 text-lg leading-relaxed"
+                        className="flex gap-4 service-body text-gray-400"
                       >
                         <span className="text-gray-600 font-medium">
                           {index + 1}.
