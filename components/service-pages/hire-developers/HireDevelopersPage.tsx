@@ -719,6 +719,131 @@ function AiCard({
   );
 }
 
+function WorkflowGlassCard({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
+  return (
+    <article className="relative isolate h-[452px] w-full max-w-[350px] overflow-visible rounded-[24px]">
+      <div className="absolute -inset-[26px] rounded-[40px] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.16),transparent_54%),radial-gradient(circle_at_center,rgba(0,0,0,0.3),transparent_68%)] blur-[24px] opacity-70" />
+      <div className="absolute inset-0 rounded-[24px] border border-white/12 bg-[rgba(16,16,18,0.82)] shadow-[0_22px_60px_rgba(0,0,0,0.65)] backdrop-blur-[40px]" />
+      <div className="absolute inset-[1px] rounded-[23px] bg-[linear-gradient(180deg,rgba(255,255,255,0.07)_0%,rgba(255,255,255,0.03)_32%,rgba(255,255,255,0.01)_100%)]" />
+      <div className="relative z-10 flex h-full flex-col px-6 py-[22px] sm:px-7 sm:py-6">
+        <div className="inline-flex items-center rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.34em] text-white/45">
+          Request Review
+        </div>
+
+        <div className="mt-8 flex h-14 w-14 items-center justify-center rounded-[18px] bg-[linear-gradient(180deg,#ff8b4c_0%,#f05323_100%)] shadow-[0_12px_30px_rgba(240,83,35,0.34)]">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M20 5.5c0-1.1-.9-2-2-2H6C4.9 3.5 4 4.4 4 5.5v8c0 1.1.9 2 2 2h2.4l2.7 2.5c.4.4 1 .4 1.4 0L15.2 15H18c1.1 0 2-.9 2-2v-7.5Z"
+              fill="#111111"
+            />
+            <path d="M8 8.5h8" stroke="#F5F5F5" strokeWidth="1.8" strokeLinecap="round" />
+            <path d="M8 11.5h5.5" stroke="#F5F5F5" strokeWidth="1.8" strokeLinecap="round" />
+          </svg>
+        </div>
+
+        <h3 className="mt-6 text-[1.45rem] font-semibold tracking-[-0.05em] text-white sm:text-[1.5rem]">
+          {title}
+        </h3>
+        <p className="mt-5 max-w-[20ch] text-[0.95rem] leading-6 text-white/70">
+          {description}
+        </p>
+      </div>
+    </article>
+  );
+}
+
+function WorkflowStackArt() {
+  const slabGroups = hiringJourney.map((step, index) => ({
+    ...step,
+    translateY: index * 94,
+    translateX: index === 0 ? 0 : -8,
+    active: index === 0,
+  }));
+
+  return (
+    <div className="relative h-[640px] w-full overflow-visible">
+      <svg
+        viewBox="0 0 720 640"
+        className="absolute inset-0 h-full w-full overflow-visible"
+        role="img"
+        aria-label="Stacked workflow illustration"
+      >
+        <defs>
+          <linearGradient id="workflowGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#F05323" stopOpacity="0.28" />
+            <stop offset="100%" stopColor="#F05323" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="topOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FF7A33" />
+            <stop offset="100%" stopColor="#E14010" />
+          </linearGradient>
+          <linearGradient id="leftOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#D44A1B" />
+            <stop offset="100%" stopColor="#7F2A10" />
+          </linearGradient>
+          <linearGradient id="rightOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#C53D13" />
+            <stop offset="100%" stopColor="#9E300E" />
+          </linearGradient>
+          <linearGradient id="topDark" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#23232B" />
+            <stop offset="100%" stopColor="#14141A" />
+          </linearGradient>
+          <linearGradient id="leftDark" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#111116" />
+            <stop offset="100%" stopColor="#09090D" />
+          </linearGradient>
+          <linearGradient id="rightDark" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#1D1D24" />
+            <stop offset="100%" stopColor="#17171D" />
+          </linearGradient>
+          <filter id="slabShadow" x="-30%" y="-30%" width="160%" height="180%">
+            <feDropShadow
+              dx="0"
+              dy="16"
+              stdDeviation="14"
+              floodColor="#000000"
+              floodOpacity="0.45"
+            />
+          </filter>
+          <filter id="topGlow" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="20" />
+          </filter>
+        </defs>
+
+        <ellipse cx="330" cy="70" rx="210" ry="58" fill="url(#workflowGlow)" filter="url(#topGlow)" opacity="0.9" />
+
+        {slabGroups.map((layer) => (
+          <g
+            key={layer.id}
+            transform={`translate(${layer.translateX} ${layer.translateY})`}
+            filter="url(#slabShadow)"
+          >
+            <polygon
+              points="52,28 474,0 684,116 262,144"
+              fill={layer.active ? "url(#topOrange)" : "url(#topDark)"}
+            />
+            <polygon
+              points="52,28 262,144 262,206 52,90"
+              fill={layer.active ? "url(#leftOrange)" : "url(#leftDark)"}
+            />
+            <polygon
+              points="474,0 684,116 684,178 474,62"
+              fill={layer.active ? "url(#rightOrange)" : "url(#rightDark)"}
+            />
+          </g>
+        ))}
+      </svg>
+    </div>
+  );
+}
+
 function normalizeHiringCards(
   cards: Array<{
     id?: string | number;
@@ -906,59 +1031,78 @@ export default function HireDevelopersPage({
 
       <section id="workflow" className="scroll-mt-28 py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            title={
-              <>
-                How You Can Hire Offshore Developers Through{" "}
-                <span className="bg-[linear-gradient(90deg,#F05323_0%,#F2F2F2_100%)] bg-clip-text text-transparent">
-                  TECHIONIK
-                </span>
-                ?
-              </>
-            }
-            description="Explore and follow our simplified and transparent hiring procedures to hire developers from us."
-          />
+          <div className="max-w-[900px]">
+            <h2 className="text-3xl font-semibold tracking-[-0.06em] text-[#B7B7B7] sm:text-4xl lg:text-[4rem] lg:leading-[1.02]">
+              <span className="block">How you can hire offshore</span>
+              <span className="block">
+                <span className="text-[#F05323]">developers</span> through{" "}
+                <span className="text-[#D7D7D7]">TECHIONIK</span>?
+              </span>
+            </h2>
+            <p className="mt-6 max-w-3xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
+              Explore and follow our simplified and transparent hiring
+              procedures to hire developers from us.
+            </p>
+          </div>
 
-          <div className="mt-12 grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
-            <article className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#16161A] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.25)]">
-              <div className="absolute -left-16 top-0 h-48 w-48 rounded-full bg-[#F05323]/10 blur-3xl" />
-              <div className="relative z-10">
-                <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-white/50">
-                  Request Review
-                </div>
-                <h3 className="mt-6 text-2xl font-semibold tracking-[-0.04em] text-white sm:text-3xl">
-                  {processCard.title}
-                </h3>
-                <p className="mt-5 text-base leading-8 text-white/70">
-                  {processCard.description}
-                </p>
-              </div>
-            </article>
+          <div className="mt-16 hidden xl:grid grid-cols-[350px_minmax(0,1fr)] items-start gap-10">
+            <WorkflowGlassCard
+              title={processCard.title}
+              description={processCard.description}
+            />
 
-            <div className="relative">
-              <div className="absolute left-6 top-4 bottom-4 hidden border-l border-dashed border-white/10 lg:block" />
-              <div className="space-y-4">
+            <div className="grid grid-cols-[minmax(0,1fr)_280px] items-start gap-6 xl:gap-8">
+              <WorkflowStackArt />
+
+              <div className="flex h-[640px] flex-col justify-between py-8">
                 {hiringJourney.map((step) => (
-                  <div
-                    key={step.id}
-                    className="relative rounded-[26px] border border-white/10 bg-[#121214] p-6 pl-6 shadow-[0_4px_20px_rgba(0,0,0,0.25)] sm:p-7 sm:pl-7 lg:pl-20"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#F05323]/70 bg-[#F05323] text-sm font-semibold text-white shadow-[0_8px_24px_rgba(240,83,35,0.35)]">
-                        {step.id}
-                      </div>
-                      <div className="min-w-0">
-                        <h4 className="text-lg font-semibold tracking-[-0.03em] text-white sm:text-xl">
-                          {step.title}
-                        </h4>
-                        <p className="mt-2 max-w-3xl text-sm leading-7 text-white/70 sm:text-base">
-                          {step.description}
-                        </p>
-                      </div>
-                    </div>
+                  <div key={step.id} className="flex items-center gap-4">
+                    <div className="h-px w-24 border-t border-dashed border-white/25" />
+                    <span
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border text-sm font-semibold shadow-[0_10px_24px_rgba(0,0,0,0.35)] ${
+                        step.id === "01"
+                          ? "border-[#F05323]/70 bg-[#F05323] text-white"
+                          : "border-white/10 bg-[#2a2a30] text-white/70"
+                      }`}
+                    >
+                      {step.id}
+                    </span>
+                    <span className="whitespace-nowrap text-sm font-semibold tracking-[-0.02em] text-[#AFAFAF]">
+                      {step.title}
+                    </span>
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+
+          <div className="mt-16 grid gap-6 xl:hidden lg:grid-cols-[350px_minmax(0,1fr)]">
+            <WorkflowGlassCard
+              title={processCard.title}
+              description={processCard.description}
+            />
+
+            <div className="space-y-4">
+              {hiringJourney.map((step) => (
+                <div
+                  key={step.id}
+                  className="relative rounded-[26px] border border-white/10 bg-[#121214] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.25)] sm:p-6"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#F05323]/70 bg-[#F05323] text-sm font-semibold text-white shadow-[0_8px_24px_rgba(240,83,35,0.35)]">
+                      {step.id}
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="text-lg font-semibold tracking-[-0.03em] text-white sm:text-xl">
+                        {step.title}
+                      </h4>
+                      <p className="mt-2 max-w-3xl text-sm leading-7 text-white/70 sm:text-base">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
