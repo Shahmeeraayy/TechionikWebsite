@@ -727,7 +727,7 @@ function WorkflowGlassCard({
   description: string;
 }) {
   return (
-    <article className="relative isolate h-[452px] w-full max-w-[350px] overflow-visible rounded-[24px]">
+    <article className="relative isolate h-[452px] w-full max-w-[350px] overflow-visible rounded-[24px] lg:-translate-x-[5px]">
       <div className="absolute -inset-[26px] rounded-[40px] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.16),transparent_54%),radial-gradient(circle_at_center,rgba(0,0,0,0.3),transparent_68%)] blur-[24px] opacity-70" />
       <div className="absolute inset-0 rounded-[24px] border border-white/12 bg-[rgba(16,16,18,0.82)] shadow-[0_22px_60px_rgba(0,0,0,0.65)] backdrop-blur-[40px]" />
       <div className="absolute inset-[1px] rounded-[23px] bg-[linear-gradient(180deg,rgba(255,255,255,0.07)_0%,rgba(255,255,255,0.03)_32%,rgba(255,255,255,0.01)_100%)]" />
@@ -1031,7 +1031,7 @@ export default function HireDevelopersPage({
 
       <section id="workflow" className="scroll-mt-28 py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-[900px]">
+          <div className="max-w-[900px] lg:-ml-8">
             <h2 className="text-3xl font-semibold tracking-[-0.06em] text-[#B7B7B7] sm:text-4xl lg:text-[4rem] lg:leading-[1.02]">
               <span className="block">How you can hire offshore</span>
               <span className="block">
