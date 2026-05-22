@@ -82,19 +82,27 @@ function slugify(value: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
-function makeHtmlContent(
-  title: string,
-  categoryLabel: string,
-  description: string,
-): string {
+function makeHtmlContent({
+  title,
+  categoryLabel,
+  overview,
+  projectFocus,
+  platformSupports,
+}: {
+  title: string;
+  categoryLabel: string;
+  overview: string;
+  projectFocus: string;
+  platformSupports: string;
+}): string {
   return `
     <h2>Overview</h2>
-    <p>${title} is a web case study in the ${categoryLabel} category.</p>
-    <p>${description}</p>
+    <p>${title} is a ${categoryLabel} case study.</p>
+    <p>${overview}</p>
     <h2>Project Focus</h2>
-    <p>This project highlights a digital workflow built for clarity, business efficiency, and better day-to-day operations.</p>
+    <p>${projectFocus}</p>
     <h2>What This Platform Supports</h2>
-    <p>${description}</p>
+    <p>${platformSupports}</p>
   `;
 }
 
@@ -234,6 +242,28 @@ export const supplementalCaseStudyDetails: Record<
     }));
 
     const categoryLabel = study.categories.join(" / ");
+    const isAssetraCaseStudy =
+      study.slug === "assetra-wealth-management-software";
+    const content = isAssetraCaseStudy
+      ? makeHtmlContent({
+          title: study.title,
+          categoryLabel,
+          overview:
+            "It centers on a subscription-based wealth management platform that brings assets, tenants, company records, and AI-assisted lease analysis into one secure view for family offices.",
+          projectFocus:
+            "The project was shaped around clarity, business efficiency, and smoother day-to-day portfolio management for wealth teams.",
+          platformSupports:
+            "Centralized asset visibility, structured recordkeeping, AI-assisted lease review, and secure access for internal teams.",
+        })
+      : makeHtmlContent({
+          title: study.title,
+          categoryLabel,
+          overview: study.shortDescription,
+          projectFocus:
+            "The project focuses on clearer workflows, better visibility, and smoother day-to-day execution.",
+          platformSupports:
+            "A more organized way to manage information, coordinate work, and keep teams aligned.",
+        });
 
     return [
       study.slug,
@@ -242,11 +272,7 @@ export const supplementalCaseStudyDetails: Record<
         title: study.title,
         slug: study.slug,
         shortDescription: study.shortDescription,
-        content: makeHtmlContent(
-          study.title,
-          categoryLabel,
-          study.shortDescription,
-        ),
+        content,
         layout: study.layout,
         ogImage: study.image,
         publishedAt: study.date,

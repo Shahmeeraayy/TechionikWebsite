@@ -5,6 +5,8 @@ import {
   supplementalCaseStudyDetails,
 } from "@/data/webCaseStudies";
 
+const ASSETRA_CASE_STUDY_SLUG = "assetra-wealth-management-software";
+
 export interface TransformedCaseStudyDetail {
   id: string;
   title: string;
@@ -92,12 +94,17 @@ export async function getTransformedCaseStudyDetail(
       return null;
     }
 
+    const normalizedContent =
+      slug === ASSETRA_CASE_STUDY_SLUG
+        ? supplementalCaseStudy?.content ?? item?.content ?? " "
+        : item?.content ?? supplementalCaseStudy?.content ?? " ";
+
     return {
       id: item?.id ?? " ",
       title: item?.title ?? " ",
       slug: item?.slug ?? " ",
       shortDescription: item?.shortDescription ?? " ",
-      content: item?.content ?? " ",
+      content: normalizedContent,
       layout: item?.layout ?? "image-top",
 
       ogImage:
