@@ -102,7 +102,7 @@ const Page = async () => {
               "@type": "CreativeWork",
               name: cs.title,
               description: cs.shortDescription,
-              url: `https://www.techionik.com/case-study/${cs.slug}`,
+              url: `https://www.techionik.com${cs.href || `/case-study/${cs.slug}`}`,
               image: cs.image || "/banners/caseStudy.webp",
             },
           })),

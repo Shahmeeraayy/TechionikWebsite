@@ -4,6 +4,8 @@ export type AiAutomationCaseStudy = {
   title: string;
   badge: string;
   description: string;
+  date: string;
+  categories: string[];
   image: string;
   imageAlt: string;
   heroSummary: string;
@@ -54,6 +56,8 @@ const rawAiAutomationCaseStudies: AiAutomationCaseStudy[] = [
     badge: "Case Study \u203a Business Automation",
     description:
       "Automating approvals, internal handoffs, and operational workflows to reduce manual effort and improve execution speed.",
+    date: "2026-05-22T00:00:00.000Z",
+    categories: ["Business Automation", "AI Automation"],
     image: "/banners/buissness-banner.webp",
     imageAlt: "Business automation case study banner",
     heroSummary:
@@ -92,6 +96,8 @@ const rawAiAutomationCaseStudies: AiAutomationCaseStudy[] = [
     badge: "Case Study \u203a Customer Onboarding Automation",
     description:
       "Streamlining intake, verification, and activation flows to deliver a faster and more structured onboarding experience.",
+    date: "2026-05-22T00:00:00.000Z",
+    categories: ["Customer Onboarding Automation", "AI Automation"],
     image: "/513541ea13a60ecfd75bea894b9fdfebd44a00ce.jpg",
     imageAlt: "Customer onboarding automation case study banner",
     heroSummary:
@@ -130,6 +136,8 @@ const rawAiAutomationCaseStudies: AiAutomationCaseStudy[] = [
     badge: "Case Study \u203a Gen AI Image Generation",
     description:
       "Building a controlled image-generation workflow for faster content creation, creative review, and brand-aligned outputs.",
+    date: "2026-05-22T00:00:00.000Z",
+    categories: ["Gen AI Image Generation", "AI Automation"],
     image: "/banners/smart-automation.webp",
     imageAlt: "Gen AI image generation case study banner",
     heroSummary:
@@ -168,6 +176,8 @@ const rawAiAutomationCaseStudies: AiAutomationCaseStudy[] = [
     badge: "Case Study \u203a Lead Outreach & Nurturing",
     description:
       "Automating outreach sequences and nurture logic to keep lead engagement timely, relevant, and easier to manage at scale.",
+    date: "2026-05-22T00:00:00.000Z",
+    categories: ["Lead Outreach & Nurturing", "AI Automation"],
     image: "/3bfd051f51f4ccd9c9abe10674e2cd060cfee26b.png",
     imageAlt: "Lead outreach and nurturing case study banner",
     heroSummary:
@@ -206,6 +216,8 @@ const rawAiAutomationCaseStudies: AiAutomationCaseStudy[] = [
     badge: "Case Study \u203a Social Media Agent",
     description:
       "Creating an AI-assisted social media operations flow for planning, caption generation, reviews, and publishing support.",
+    date: "2026-05-22T00:00:00.000Z",
+    categories: ["Social Media Agent", "AI Automation"],
     image: "/879587540b91e93c5048ef637642b401c8bc0f8c.jpg",
     imageAlt: "Social media agent case study banner",
     heroSummary:

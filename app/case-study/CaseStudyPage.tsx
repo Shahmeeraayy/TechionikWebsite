@@ -129,6 +129,17 @@ const WEBSITE_SERVICE_TAG_ALIASES: Record<string, string[]> = {
 };
 
 const STUDY_SERVICE_HINTS: Record<string, string[]> = {
+  "business-automation": ["Automation & Process"],
+  "customer-onboarding-automation": [
+    "Automation & Process",
+    "Application Development",
+  ],
+  "gen-ai-image-generation": ["AI & Machine Learning", "Design"],
+  "lead-outreach-nurturing": [
+    "Automation & Process",
+    "Data & Analytics",
+  ],
+  "social-media-agent": ["AI & Machine Learning", "Automation & Process"],
   "erp-enterprise-resource-planning-system": [
     "Integration & APIs",
     "Automation & Process",
@@ -364,6 +375,14 @@ function getStudyDescription(study: getMainCaseStudy): string {
   return "Explore how Techionik turned a complex requirement into a scalable digital outcome.";
 }
 
+function getStudyHref(study: getMainCaseStudy): string {
+  const href = study.href?.trim();
+
+  if (href) return href;
+
+  return `/case-study/${study.slug}`;
+}
+
 function PrimaryPillLink({
   href,
   label,
@@ -424,7 +443,7 @@ function StoryCard({
   if (variant === "overlay") {
     return (
       <LoadingLink
-        href={`/case-study/${study.slug}`}
+        href={getStudyHref(study)}
         className="group relative block min-h-[440px] overflow-hidden rounded-[28px] border border-white/10 bg-[#121219] shadow-[0_28px_90px_rgba(0,0,0,0.4)]"
       >
         <Image
@@ -459,7 +478,7 @@ function StoryCard({
 
   return (
     <LoadingLink
-      href={`/case-study/${study.slug}`}
+      href={getStudyHref(study)}
       className="group relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#141419] shadow-[0_24px_70px_rgba(0,0,0,0.35)]"
     >
       <div className="relative h-60 overflow-hidden">
@@ -526,7 +545,7 @@ function FeaturedStory({
 
           <div className="relative flex flex-wrap items-center gap-4 pt-3">
             <PrimaryPillLink
-              href={`/case-study/${study.slug}`}
+              href={getStudyHref(study)}
               label="Explore"
             />
             <span className="flex items-center gap-2 text-sm text-[#C5C5D0]">
@@ -575,14 +594,14 @@ const CaseStudyPage = ({
     );
   }, [activeCategory, allCaseStudies]);
 
-  const leadStories = filteredCaseStudies.slice(0, 3);
   const featuredStory =
-    filteredCaseStudies.find((study) => study.slug === "rastah") ||
     filteredCaseStudies.find((study) => study.isFeatured) ||
     filteredCaseStudies[0];
-  const archiveStories = filteredCaseStudies.filter(
-    (study) => study.id !== featuredStory?.id,
+  const remainingStories = filteredCaseStudies.filter(
+    (study) => study.slug !== featuredStory?.slug,
   );
+  const leadStories = remainingStories.slice(0, 3);
+  const archiveStories = remainingStories.slice(3);
 
   return (
     <div className="bg-black text-white">
