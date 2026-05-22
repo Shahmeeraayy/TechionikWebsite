@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-// "use client";
-// import HeroSection from "@/components/sections/home/hero/HeroSection";
 import CaseStudyPage from "./CaseStudyPage";
-import { BlogData } from "@/data/blogContentData";
-import AboutSection from "@/components/sections/home/hero/AboutSection";
 import { getCaseStudyCategories } from "../api/caseStudy-Category/utils/caseStudyCategoryUtils";
 import { getMainCaseStudyData } from "../api/All-CaseStudies/utils/getCaseStudies";
 
@@ -129,15 +125,10 @@ const Page = async () => {
           Our case studies showcase success stories like ${featuredProjects}, and more. 
           We specialize in custom software and advanced AI solutions for global clients.`}
       </div>
-      <div>
-        <AboutSection slides={BlogData} />
-      </div>
-      <div>
-        <CaseStudyPage
-          allCaseStudies={allCaseStudies}
-          caseStudyCategories={caseStudiesCategories}
-        />
-      </div>
+      <CaseStudyPage
+        allCaseStudies={allCaseStudies}
+        caseStudyCategories={caseStudiesCategories}
+      />
     </main>
   );
 };

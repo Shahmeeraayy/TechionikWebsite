@@ -7,6 +7,8 @@ export interface CaseStudyCategory {
   name: string;
   slug: string;
   imageUrl?: string;
+  parentCategoryName?: string;
+  parentCategorySlug?: string;
 }
 
 export async function getCaseStudyCategories(): Promise<CaseStudyCategory[]> {
@@ -26,6 +28,8 @@ export async function getCaseStudyCategories(): Promise<CaseStudyCategory[]> {
     name: item?.name ?? "",
     slug: item?.slug ?? " ",
     imageUrl: item?.imageUrl || undefined,
+    parentCategoryName: item?.parentCategoryName || undefined,
+    parentCategorySlug: item?.parentCategorySlug || undefined,
   }));
  }catch(error){
   console.log("this is the error ", error)
