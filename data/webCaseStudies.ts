@@ -60,6 +60,19 @@ export interface SupplementalCaseStudyDetail {
 
 const SUPPLEMENTAL_CASE_STUDY_DATE = "2026-05-22T00:00:00.000Z";
 
+export const REMOVED_LEGACY_CASE_STUDY_SLUGS = [
+  "ai-agents",
+  "rastah",
+  "development-of-an-ai-powered-chatbot-for-a-restaurant",
+  "case-study-how-ai-automation-is-transforming-the-real-estate-industry",
+] as const;
+
+export function isRemovedLegacyCaseStudySlug(slug: string): boolean {
+  return REMOVED_LEGACY_CASE_STUDY_SLUGS.includes(
+    slug as (typeof REMOVED_LEGACY_CASE_STUDY_SLUGS)[number],
+  );
+}
+
 function slugify(value: string): string {
   return value
     .trim()

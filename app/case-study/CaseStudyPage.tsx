@@ -32,6 +32,125 @@ const DISPLAY_GROUP_ORDER: DisplayGroupName[] = [
   "Technologies & Platforms",
 ];
 
+const twoLineClamp = {
+  display: "-webkit-box",
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: 2,
+  overflow: "hidden",
+} as CSSProperties;
+
+const threeLineClamp = {
+  display: "-webkit-box",
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: 3,
+  overflow: "hidden",
+} as CSSProperties;
+
+function normalizeKey(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+const WEBSITE_SERVICE_DISPLAY_CATEGORIES: DisplayCategory[] = [
+  {
+    id: "software-development",
+    name: "Software Development",
+    group: "Services",
+  },
+  {
+    id: "application-development",
+    name: "Application Development",
+    group: "Services",
+  },
+  {
+    id: "ai-ml",
+    name: "AI & Machine Learning",
+    group: "Services",
+  },
+  {
+    id: "data-analytics",
+    name: "Data & Analytics",
+    group: "Services",
+  },
+  {
+    id: "design",
+    name: "Design",
+    group: "Services",
+  },
+  {
+    id: "quality-assurance",
+    name: "Quality Assurance",
+    group: "Services",
+  },
+  {
+    id: "infrastructure-devops",
+    name: "Infrastructure & DevOps",
+    group: "Services",
+  },
+  {
+    id: "integration-api",
+    name: "Integration & APIs",
+    group: "Services",
+  },
+  {
+    id: "automation",
+    name: "Automation & Process",
+    group: "Services",
+  },
+];
+
+const WEBSITE_SERVICE_NAME_BY_KEY = Object.fromEntries(
+  WEBSITE_SERVICE_DISPLAY_CATEGORIES.map((category) => [
+    normalizeKey(category.name),
+    category.name,
+  ]),
+) as Record<string, string>;
+
+const WEBSITE_SERVICE_TAG_ALIASES: Record<string, string[]> = {
+  "artificial-intelligence": ["AI & Machine Learning"],
+  "machine-learning": ["AI & Machine Learning"],
+  "ai-platform": ["AI & Machine Learning"],
+  "ai-automation": ["AI & Machine Learning", "Automation & Process"],
+  "web-development": ["Application Development"],
+  "cloud-migration": ["Infrastructure & DevOps"],
+  "ui-ux-design": ["Design"],
+  erp: ["Integration & APIs"],
+  "business-automation": ["Automation & Process"],
+  "business-process-automation": ["Automation & Process"],
+  automation: ["Automation & Process"],
+  "business-intelligence": ["Data & Analytics"],
+  "data-intelligence": ["Data & Analytics"],
+  "api-integrations": ["Integration & APIs"],
+  devops: ["Infrastructure & DevOps"],
+};
+
+const STUDY_SERVICE_HINTS: Record<string, string[]> = {
+  "erp-enterprise-resource-planning-system": [
+    "Integration & APIs",
+    "Automation & Process",
+  ],
+  "assetra-wealth-management-software": [
+    "Software Development",
+    "Data & Analytics",
+  ],
+  "homecert-ie-real-estate-compliance-platform": [
+    "Application Development",
+    "Quality Assurance",
+  ],
+  "data-driven-real-estate-acquisition-platform": [
+    "Application Development",
+    "Data & Analytics",
+  ],
+  "layoffhub-ai-review-management-software": [
+    "AI & Machine Learning",
+    "Software Development",
+  ],
+};
+
 const FALLBACK_DISPLAY_GROUPS: Record<DisplayGroupName, DisplayCategory[]> = {
   Industries: [
     { id: "fashion-retail", name: "Fashion & Retail", group: "Industries" },
@@ -51,28 +170,7 @@ const FALLBACK_DISPLAY_GROUPS: Record<DisplayGroupName, DisplayCategory[]> = {
     { id: "proptech", name: "PropTech", group: "Industries" },
     { id: "lifestyle", name: "Lifestyle Brands", group: "Industries" },
   ],
-  Services: [
-    {
-      id: "artificial-intelligence",
-      name: "Artificial Intelligence",
-      group: "Services",
-    },
-    {
-      id: "business-strategy",
-      name: "Business & Strategy",
-      group: "Services",
-    },
-    {
-      id: "application-development",
-      name: "Application Development",
-      group: "Services",
-    },
-    { id: "salesforce", name: "Salesforce", group: "Services" },
-    { id: "web-development", name: "Web Development", group: "Services" },
-    { id: "cloud-migration", name: "Cloud Migration", group: "Services" },
-    { id: "ui-ux-design", name: "UI/UX Design", group: "Services" },
-    { id: "machine-learning", name: "Machine Learning", group: "Services" },
-  ],
+  Services: WEBSITE_SERVICE_DISPLAY_CATEGORIES,
   "Technologies & Platforms": [
     {
       id: "react-nextjs",
@@ -109,58 +207,25 @@ const FALLBACK_DISPLAY_GROUPS: Record<DisplayGroupName, DisplayCategory[]> = {
   ],
 };
 
-const STUDY_CATEGORY_HINTS: Record<string, string[]> = {
-  "ai-agents": [
-    "Artificial Intelligence",
-    "Machine Learning",
-    "AI Automation",
-    "Cloud Infrastructure",
-  ],
-  rastah: [
-    "UI/UX Design",
-    "Web Development",
-    "Fashion & Retail",
-    "Customer Experience",
-  ],
-  "development-of-an-ai-powered-chatbot-for-a-restaurant": [
-    "Artificial Intelligence",
-    "Application Development",
-    "Google Dialogflow",
-    "Hospitality",
-  ],
-  "case-study-how-ai-automation-is-transforming-the-real-estate-industry": [
-    "Artificial Intelligence",
-    "Business & Strategy",
-    "Cloud Migration",
-    "Real Estate",
-  ],
-};
+function resolveWebsiteServiceNames(value: string): string[] {
+  const normalized = normalizeKey(value);
+  if (!normalized) return [];
 
-const FALLBACK_IMAGES: Record<string, string> = {
-  rastah: "/images/our-clients/Rastah.png",
-};
+  const directMatch = WEBSITE_SERVICE_NAME_BY_KEY[normalized];
+  const aliasMatches = WEBSITE_SERVICE_TAG_ALIASES[normalized] ?? [];
 
-const twoLineClamp = {
-  display: "-webkit-box",
-  WebkitBoxOrient: "vertical",
-  WebkitLineClamp: 2,
-  overflow: "hidden",
-} as CSSProperties;
+  return Array.from(
+    new Set([...(directMatch ? [directMatch] : []), ...aliasMatches]),
+  );
+}
 
-const threeLineClamp = {
-  display: "-webkit-box",
-  WebkitBoxOrient: "vertical",
-  WebkitLineClamp: 3,
-  overflow: "hidden",
-} as CSSProperties;
+function getStudyServiceTags(study: getMainCaseStudy): string[] {
+  const categoryMatches = (study.categories || []).flatMap((category) =>
+    resolveWebsiteServiceNames(category),
+  );
+  const slugMatches = STUDY_SERVICE_HINTS[study.slug] || [];
 
-function normalizeKey(value: string): string {
-  return value
-    .trim()
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+  return Array.from(new Set([...categoryMatches, ...slugMatches]));
 }
 
 function normalizeGroupLabel(value?: string): DisplayGroupName | null {
@@ -181,10 +246,27 @@ function normalizeGroupLabel(value?: string): DisplayGroupName | null {
 
 function buildDisplayGroups(
   apiCategories: CaseStudyCategory[],
+  allCaseStudies: getMainCaseStudy[],
 ): Record<DisplayGroupName, DisplayCategory[]> {
+  const availableServiceKeys = new Set(
+    allCaseStudies.flatMap((study) =>
+      getStudyServiceTags(study).map((serviceName) => normalizeKey(serviceName)),
+    ),
+  );
+
+  const serviceCategories =
+    availableServiceKeys.size > 0
+      ? WEBSITE_SERVICE_DISPLAY_CATEGORIES.filter((category) =>
+          availableServiceKeys.has(normalizeKey(category.name)),
+        )
+      : WEBSITE_SERVICE_DISPLAY_CATEGORIES;
+
   const mergedGroups = DISPLAY_GROUP_ORDER.reduce(
     (accumulator, groupName) => {
-      accumulator[groupName] = [...FALLBACK_DISPLAY_GROUPS[groupName]];
+      accumulator[groupName] =
+        groupName === "Services"
+          ? [...serviceCategories]
+          : [...FALLBACK_DISPLAY_GROUPS[groupName]];
       return accumulator;
     },
     {} as Record<DisplayGroupName, DisplayCategory[]>,
@@ -205,6 +287,26 @@ function buildDisplayGroups(
   for (const category of apiCategories) {
     const group = normalizeGroupLabel(category.parentCategoryName);
     if (!group) continue;
+
+    if (group === "Services") {
+      const resolvedServiceNames = resolveWebsiteServiceNames(category.name);
+
+      for (const serviceName of resolvedServiceNames) {
+        const normalizedServiceName = normalizeKey(serviceName);
+        if (!normalizedServiceName || seenByGroup[group].has(normalizedServiceName)) {
+          continue;
+        }
+
+        seenByGroup[group].add(normalizedServiceName);
+        mergedGroups[group].push({
+          id: normalizedServiceName,
+          name: serviceName,
+          group,
+        });
+      }
+
+      continue;
+    }
 
     const normalizedName = normalizeKey(category.name);
     if (!normalizedName || seenByGroup[group].has(normalizedName)) continue;
@@ -237,14 +339,12 @@ function getStudyImage(study: getMainCaseStudy): string {
   const remoteImage = study.image?.trim();
   if (remoteImage) return remoteImage;
 
-  return FALLBACK_IMAGES[study.slug] || "/banners/caseStudy.webp";
+  return "/banners/caseStudy.webp";
 }
 
 function getStudyTags(study: getMainCaseStudy): string[] {
   const apiCategories = (study.categories || []).filter(Boolean);
-  const hintedCategories = STUDY_CATEGORY_HINTS[study.slug] || [];
-
-  return Array.from(new Set([...apiCategories, ...hintedCategories]));
+  return Array.from(new Set([...apiCategories, ...getStudyServiceTags(study)]));
 }
 
 function getStudyLabel(study: getMainCaseStudy): string {
@@ -253,7 +353,7 @@ function getStudyLabel(study: getMainCaseStudy): string {
     return normalized && normalized !== "technology" && normalized !== "case-study";
   });
 
-  return apiLabel || STUDY_CATEGORY_HINTS[study.slug]?.[0] || "Case Study";
+  return apiLabel || "Case Study";
 }
 
 function getStudyDescription(study: getMainCaseStudy): string {
@@ -456,8 +556,8 @@ const CaseStudyPage = ({
   allCaseStudies = [],
 }: BlogPageClientProps) => {
   const displayGroups = useMemo(
-    () => buildDisplayGroups(caseStudyCategories),
-    [caseStudyCategories],
+    () => buildDisplayGroups(caseStudyCategories, allCaseStudies),
+    [allCaseStudies, caseStudyCategories],
   );
 
   const [activeGroup, setActiveGroup] = useState<DisplayGroupName>("Services");

@@ -1,6 +1,9 @@
 import { BASE_URL, ENDPOINTS } from "../../config/apiConfig";
 import { CaseStudyDetailPage } from "../types/casetudyDetail.type";
-import { supplementalCaseStudyDetails } from "@/data/webCaseStudies";
+import {
+  isRemovedLegacyCaseStudySlug,
+  supplementalCaseStudyDetails,
+} from "@/data/webCaseStudies";
 
 export interface TransformedCaseStudyDetail {
   id: string;
@@ -46,6 +49,10 @@ export interface TransformedCaseStudyDetail {
 export async function getTransformedCaseStudyDetail(
   slug: string,
 ): Promise<TransformedCaseStudyDetail | null> {
+  if (isRemovedLegacyCaseStudySlug(slug)) {
+    return null;
+  }
+
   const supplementalCaseStudy = supplementalCaseStudyDetails[slug];
 
   try {
@@ -80,6 +87,10 @@ export async function getTransformedCaseStudyDetail(
     }
 
     const item = json.data;
+
+    if (isRemovedLegacyCaseStudySlug(item?.slug ?? "")) {
+      return null;
+    }
 
     return {
       id: item?.id ?? " ",

@@ -1,3 +1,5 @@
+import { supplementalCaseStudySummaries } from "./webCaseStudies";
+
 export interface CaseStudy {
   id: number;
   brand: string;
@@ -9,109 +11,54 @@ export interface CaseStudy {
   href: string;
 }
 
-export const caseStudies: CaseStudy[] = [
+const CASE_STUDY_SHOWCASE_COPY: Record<
+  string,
   {
-    id: 1,
-    brand: "RASTAH",
-    title: "Empowering South Asian Fashion Identity",
-    solution: "Custom Surveillance Software",
-    stats: [
-      { value: "50%", label: "Less Time Spent on Manual Reviews" },
-      { value: "2X", label: "Boost in Productivity" },
-    ],
-    imageDesktop: "/banners/caseStudy.webp",
-    imageMobile: "/images/rastah-mobile.png",
-    href: "/case-study/rastah",
+    brand: string;
+    title: string;
+    solution: string;
+  }
+> = {
+  "erp-enterprise-resource-planning-system": {
+    brand: "ERP",
+    title: "Centralized operations and business management",
+    solution: "ERP / Business Automation",
   },
-   {
-    id: 2,
-    brand: "RASTAH",
-    title: "2nd",
-    solution: "Custom Surveillance Software",
-    stats: [
-      { value: "50%", label: "Less Time Spent on Manual Reviews" },
-      { value: "2X", label: "Boost in Productivity" },
-    ],
-    imageDesktop: "/banners/caseStudy.webp",
-    imageMobile: "/banners/caseStudy.webp",
-    href: "/case-study/rastah",
+  "assetra-wealth-management-software": {
+    brand: "Assetra",
+    title: "Portfolio visibility and wealth operations",
+    solution: "Finance / WealthTech",
   },
-   {
-    id: 3,
-    brand: "RASTAH",
-    title: "Empowering South Asian Fashion Identity",
-    solution: "Custom Surveillance Software",
-    stats: [
-      { value: "50%", label: "Less Time Spent on Manual Reviews" },
-      { value: "2X", label: "Boost in Productivity" },
-    ],
-    imageDesktop: "/banners/caseStudy.webp",
-    imageMobile: "/banners/caseStudy.webp",
-    href: "/case-study/rastah",
+  "homecert-ie-real-estate-compliance-platform": {
+    brand: "Homecert.ie",
+    title: "Property compliance and certification workflows",
+    solution: "Real Estate / Compliance",
   },
-   {
-    id: 4,
-    brand: "RASTAH",
-    title: "Empowering South Asian Fashion Identity",
-    solution: "Custom Surveillance Software",
-    stats: [
-      { value: "50%", label: "Less Time Spent on Manual Reviews" },
-      { value: "2X", label: "Boost in Productivity" },
-    ],
-    imageDesktop: "/banners/caseStudy.webp",
-    imageMobile: "/banners/caseStudy.webp",
-    href: "/case-study/rastah",
+  "data-driven-real-estate-acquisition-platform": {
+    brand: "Investors Buying Houses",
+    title: "Data-driven real estate acquisition workflows",
+    solution: "PropTech / Real Estate",
   },
-   {
-    id: 5,
-    brand: "RASTAH",
-    title: "Empowering South Asian Fashion Identity",
-    solution: "Custom Surveillance Software",
-    stats: [
-      { value: "50%", label: "Less Time Spent on Manual Reviews" },
-      { value: "2X", label: "Boost in Productivity" },
-    ],
-    imageDesktop: "/banners/caseStudy.webp",
-    imageMobile: "/banners/caseStudy.webp",
-    href: "/case-study/rastah",
+  "layoffhub-ai-review-management-software": {
+    brand: "Layoffhub.ai",
+    title: "Customer review collection and analysis",
+    solution: "SaaS / AI Platform",
   },
-  {
-    id: 6,
-    brand: "RASTAH",
-    title: "Empowering South Asian Fashion Identity",
-    solution: "Custom Surveillance Software",
-    stats: [
-      { value: "50%", label: "Less Time Spent on Manual Reviews" },
-      { value: "2X", label: "Boost in Productivity" },
-    ],
-    imageDesktop: "/banners/caseStudy.webp",
-    imageMobile: "/banners/caseStudy.webp",
-    href: "/case-study/rastah",
+};
+
+export const caseStudies: CaseStudy[] = supplementalCaseStudySummaries.map(
+  (study, index) => {
+    const copy = CASE_STUDY_SHOWCASE_COPY[study.slug];
+
+    return {
+      id: index + 1,
+      brand: copy.brand,
+      title: copy.title,
+      solution: copy.solution,
+      stats: [],
+      imageDesktop: study.image,
+      imageMobile: study.image,
+      href: `/case-study/${study.slug}`,
+    };
   },
-  {
-    id: 7,
-    brand: "RASTAH",
-    title: "Empowering South Asian Fashion Identity",
-    solution: "Custom Surveillance Software",
-    stats: [
-      { value: "50%", label: "Less Time Spent on Manual Reviews" },
-      { value: "2X", label: "Boost in Productivity" },
-    ],
-    imageDesktop: "/banners/caseStudy.webp",
-    imageMobile: "/banners/caseStudy.webp",
-    href: "/case-study/rastah",
-  },
-  {
-    id: 8,
-    brand: "RASTAH",
-    title: "Empowering South Asian Fashion Identity",
-    solution: "Custom Surveillance Software",
-    stats: [
-      { value: "50%", label: "Less Time Spent on Manual Reviews" },
-      { value: "2X", label: "Boost in Productivity" },
-    ],
-    imageDesktop: "/banners/caseStudy.webp",
-    imageMobile: "/banners/caseStudy.webp",
-    href: "/case-study/rastah",
-  },
-];
+);

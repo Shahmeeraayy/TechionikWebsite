@@ -82,7 +82,31 @@ export const MegaMenuResponses: Record<string, MenuResponse> = {
         slug: "case-study",
         icon: "/icons/cloud.svg",
         children: [
-          { id: 1301, name: "Rastah", slug: "rastah" }
+          {
+            id: 1301,
+            name: "ERP Enterprise Resource Planning System",
+            slug: "erp-enterprise-resource-planning-system",
+          },
+          {
+            id: 1302,
+            name: "Assetra Wealth Management Software",
+            slug: "assetra-wealth-management-software",
+          },
+          {
+            id: 1303,
+            name: "Homecert.ie Real Estate Compliance Platform",
+            slug: "homecert-ie-real-estate-compliance-platform",
+          },
+          {
+            id: 1304,
+            name: "Data-Driven Real Estate Acquisition Platform",
+            slug: "data-driven-real-estate-acquisition-platform",
+          },
+          {
+            id: 1305,
+            name: "Layoffhub.ai Review Management Software",
+            slug: "layoffhub-ai-review-management-software",
+          },
         ]
       },
       {

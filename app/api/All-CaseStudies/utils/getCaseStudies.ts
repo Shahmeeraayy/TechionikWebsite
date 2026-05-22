@@ -1,6 +1,9 @@
 import { BASE_URL, ENDPOINTS } from "../../config/apiConfig";
 import { MainCaseStudyPage } from "../types/caseStudy.type";
-import { supplementalCaseStudySummaries } from "@/data/webCaseStudies";
+import {
+  isRemovedLegacyCaseStudySlug,
+  supplementalCaseStudySummaries,
+} from "@/data/webCaseStudies";
 
 
 export interface getMainCaseStudy {
@@ -28,17 +31,19 @@ export async function getMainCaseStudyData(): Promise<getMainCaseStudy[]> {
 
     const json: MainCaseStudyPage = await response.json();
 
-    const apiCaseStudies = json.data.map((item) => ({
-      id: item?.id ?? " ",
-      title: item?.title ?? "this is the title",
-      shortDescription: item?.shortDescription ?? "this is the description",
-      image: item?.ogImage || "/banners/Software-Development.webp",
-      slug: item?.slug ?? " ",
-      layout: item?.layout ?? "image-top",
-      isFeatured: item?.isFeatured ?? false,
-      date: item?.publishedAt ?? " ",
-      categories: item?.categories?.map((category) => category?.name ?? " "),
-    }));
+    const apiCaseStudies = json.data
+      .map((item) => ({
+        id: item?.id ?? " ",
+        title: item?.title ?? "this is the title",
+        shortDescription: item?.shortDescription ?? "this is the description",
+        image: item?.ogImage || "/banners/Software-Development.webp",
+        slug: item?.slug ?? " ",
+        layout: item?.layout ?? "image-top",
+        isFeatured: item?.isFeatured ?? false,
+        date: item?.publishedAt ?? " ",
+        categories: item?.categories?.map((category) => category?.name ?? " "),
+      }))
+      .filter((item) => !isRemovedLegacyCaseStudySlug(item.slug));
 
     const mergedCaseStudies = [...apiCaseStudies];
     const seenSlugs = new Set(apiCaseStudies.map((caseStudy) => caseStudy.slug));
