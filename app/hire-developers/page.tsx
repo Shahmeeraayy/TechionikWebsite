@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import HireDevelopersPage from "@/components/service-pages/hire-developers/HireDevelopersPage";
 import { ParentHirigList } from "@/app/api/ParentHiring/utils/getHirigList";
+import { getSiteUrl } from "@/lib/site";
+
+export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const headersList = await headers();
-  const host = headersList.get("host") || "www.techionik.com";
-  const protocol =
-    headersList.get("x-forwarded-proto") ||
-    (host.includes("localhost") ? "http" : "https");
-  const canonicalUrl = `${protocol}://${host}/hire-developers`;
-  const imageUrl = `${protocol}://${host}/images/home/dedicated-team.png`;
+  const siteUrl = getSiteUrl();
+  const canonicalUrl = `${siteUrl}/hire-developers`;
+  const imageUrl = `${siteUrl}/images/home/dedicated-team.png`;
   const description =
     "Hire offshore developers from Techionik and scale your team with pre-vetted software talent across frontend, backend, full-stack, mobile, and AI roles.";
   const title = "Hire Offshore Developers | Techionik";

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { headers } from "next/headers";
 import ContactSection from "@/components/ContactSection";
-import HiringCard from "@/components/hirngCards";
 import TailoredSolutions from "@/components/TailoredSolutions";
 import OutsourcingModels from "@/components/OutSourceModel";
 import OurClientSays from "@/components/OurClientSays";
@@ -13,20 +11,11 @@ import ThreeColumnSection from "@/components/sections/technologyComponents/choos
 import TechServices from "@/views/home/TechServices";
 import HiringProcess from "@/components/HiringProcess";
 import H_Skills from "@/components/H_Skills";
-import { contactPageData } from "@/data/hiringdata";
 import { hiringData } from "@/data/hiringCardData";
-import { TechexpertTechStack } from "@/data/TechnicalexpertTechStack";
-import { tailoredSolutions } from "@/data/solutionsData";
 
 import { stepsData } from "@/data/chooseNextjs";
 
-import { hiringProcessData } from "@/data/hiring-processData";
-import { skillsData } from "@/data/H_skillsData";
-import { contactHeroContent } from "@/data/ConnectHero";
-import { HiringPageCTAImageData } from "@/data/hiringPageCTAImageData";
 import SoftwareSolution from "@/components/sections/about/SoftwareSolution/page";
-import { softwaresolutionData } from "@/data/SoftwareSolution";
-import { faqsData } from "@/data/FAQS";
 import { servicesDataHome } from "@/data/TechServices/HomeTechServices";
 // import { SingleHiringList } from "@/app/api/SingleHiring/utils/getSingleHiring";
 import ActionSection, {
@@ -39,16 +28,37 @@ import TypeOfServices, {
   sampleDataaa,
 } from "@/components/singleHiring/typesOfServices";
 import { SingleHiringList } from "@/app/api/singleHiring/utils/getSingleHiring";
+import { getSiteUrl } from "@/lib/site";
 // import { transformHireDeveloperPage } from "@/app/api/ParentHiring/utils/transformHiringPage";
 
+type ActionSectionCardItem = {
+  title?: string;
+  description?: string;
+};
+
+type ServiceLinkItem = {
+  title?: string;
+  slug?: string;
+};
+
+type PriceListCardItem = {
+  pkgTitle?: string;
+  priceRange?: string;
+  description?: string;
+};
+
+type AdvantageCardItem = {
+  id?: string | number;
+  title?: string;
+  description?: string;
+};
+
+export const revalidate = 3600;
+
 export async function generateMetadata(): Promise<Metadata> {
-  const headersList = await headers();
-  const host = headersList.get("host") || "www.techionik.com";
-  const protocol =
-    headersList.get("x-forwarded-proto") ||
-    (host.includes("localhost") ? "http" : "https");
-  const pathname = "/hire-developers";
-  const canonicalUrl = `${protocol}://${host}${pathname}`;
+  const siteUrl = getSiteUrl();
+  const canonicalUrl = `${siteUrl}/hire-developers`;
+  const ogImageUrl = `${siteUrl}/images/og/hiring-og.jpg`;
 
   const description =
     "Build your career at Techionik. Join our team of experts in custom software and AI development. We value talent, innovation, and professional growth.";
@@ -77,7 +87,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "Techionik",
       images: [
         {
-          url: `${protocol}://${host}/images/og/hiring-og.jpg`,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: "Careers at Techionik",
@@ -90,7 +100,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Join Techionik | Engineering & AI Careers",
       description: description,
-      images: [`${protocol}://${host}/images/og/hiring-og.jpg`],
+      images: [ogImageUrl],
     },
     alternates: {
       canonical: canonicalUrl,
@@ -238,7 +248,7 @@ export default async function HireDeveloper(props: {
             description:
               page.actionSection.description || sampleData.description,
             items: (page.actionSection.items || sampleData.items).map(
-              (item: any) => ({
+              (item: ActionSectionCardItem) => ({
                 title: item.title || sampleData.items[0].title,
                 description:
                   item.description || sampleData.items[0].description,
@@ -292,7 +302,7 @@ export default async function HireDeveloper(props: {
             image: page?.typeOfServices?.image || sampleDataaa.image,
             services: (
               page?.typeOfServices?.services || sampleDataaa.services
-            ).map((s: any) => ({
+            ).map((s: ServiceLinkItem) => ({
               title: s.title || "",
               slug: s?.slug ? `/services/${s.slug}` : "",
             })),
@@ -305,7 +315,7 @@ export default async function HireDeveloper(props: {
             title: page.priceList.title || sampleDataa.title,
             description: page.priceList.description || sampleDataa.description,
             items: (page.priceList.items || sampleDataa.items).map(
-              (item: any) => ({
+              (item: PriceListCardItem) => ({
                 pkgTitle: item.pkgTitle || sampleDataa.items[0].pkgTitle,
                 priceRange: item.priceRange || sampleDataa.items[0].priceRange,
                 description:
@@ -426,10 +436,10 @@ export default async function HireDeveloper(props: {
             // lastTitle: page?.whyChooseTechionik?.lastTitle || "",
             description: page?.advantageOfHiring?.description || "",
             items: (page?.advantageOfHiring?.items || []).map(
-              (item: any, i: number) => {
+              (item: AdvantageCardItem, i: number) => {
                 const imageIndex = (i % 4) + 1;
                 return {
-                  id: item.id,
+                  id: i + 1,
                   title: item.title || "",
                   description: item.description || "",
                   image: `/images/about/software-solution/aiLayer${imageIndex}.svg`,

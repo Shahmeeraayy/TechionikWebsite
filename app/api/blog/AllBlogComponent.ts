@@ -38,7 +38,11 @@ interface PaginatedBlogResponse {
 export async function getNormalizedBlogs(limit: number = 5): Promise<NormalizedBlog[]> {
   try {
     const url = `${BASE_URL}${ENDPOINTS.BLOGS}?limit=${limit}&page=1`;
-    const res = await fetch(url, { cache: "default" });
+    const res = await fetch(url, {
+      next: {
+        revalidate: 1800,
+      },
+    });
 
     if (!res.ok) {
       // console.error(`❌ Blog API error: ${res.status} ${res.statusText}`);

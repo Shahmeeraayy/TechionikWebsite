@@ -13,53 +13,53 @@ export interface CaseStudyCategory {
 }
 
 export async function getCaseStudyCategories(): Promise<CaseStudyCategory[]> {
- try{
-   const res = await fetch(
-    `${BASE_URL}${ENDPOINTS.CASESTUDY_CATEGORY}`,
-    { cache: "no-store" }
-  );
+  try {
+    const res = await fetch(`${BASE_URL}${ENDPOINTS.CASESTUDY_CATEGORY}`, {
+      next: {
+        revalidate: 86400,
+      },
+    });
 
-  if (!res.ok) throw new Error("Failed to fetch blog categories");
+    if (!res.ok) throw new Error("Failed to fetch case study categories");
 
-  const json: blogCategory = await res.json();
+    const json: blogCategory = await res.json();
 
-  // Translate API data → component-friendly shape
-  const apiCategories = json.data.map((item) => ({
-    id: item?.id ?? " ",
-    name: item?.name ?? "",
-    slug: item?.slug ?? " ",
-    imageUrl: item?.imageUrl || undefined,
-    parentCategoryName: item?.parentCategoryName || undefined,
-    parentCategorySlug: item?.parentCategorySlug || undefined,
-  }));
+    // Translate API data → component-friendly shape
+    const apiCategories = json.data.map((item) => ({
+      id: item?.id ?? " ",
+      name: item?.name ?? "",
+      slug: item?.slug ?? " ",
+      imageUrl: item?.imageUrl || undefined,
+      parentCategoryName: item?.parentCategoryName || undefined,
+      parentCategorySlug: item?.parentCategorySlug || undefined,
+    }));
 
-  const mergedCategories = [...apiCategories];
-  const seenSlugs = new Set(apiCategories.map((category) => category.slug));
+    const mergedCategories = [...apiCategories];
+    const seenSlugs = new Set(apiCategories.map((category) => category.slug));
 
-  for (const category of supplementalCaseStudyCategories) {
-    if (seenSlugs.has(category.slug)) continue;
+    for (const category of supplementalCaseStudyCategories) {
+      if (seenSlugs.has(category.slug)) continue;
 
-    mergedCategories.push({
+      mergedCategories.push({
+        id: category.id,
+        name: category.name,
+        slug: category.slug,
+        imageUrl: undefined,
+        parentCategoryName: category.parentCategoryName,
+        parentCategorySlug: category.parentCategorySlug,
+      });
+    }
+
+    return mergedCategories;
+  } catch (error) {
+    console.log("this is the error ", error);
+    return supplementalCaseStudyCategories.map((category) => ({
       id: category.id,
       name: category.name,
       slug: category.slug,
       imageUrl: undefined,
       parentCategoryName: category.parentCategoryName,
       parentCategorySlug: category.parentCategorySlug,
-    });
+    }));
   }
-
-  return mergedCategories;
- }catch(error){
-  console.log("this is the error ", error)
-  return supplementalCaseStudyCategories.map((category) => ({
-    id: category.id,
-    name: category.name,
-    slug: category.slug,
-    imageUrl: undefined,
-    parentCategoryName: category.parentCategoryName,
-    parentCategorySlug: category.parentCategorySlug,
-  }));
- }
-
 }

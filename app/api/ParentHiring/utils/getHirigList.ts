@@ -1,4 +1,3 @@
-import { HiringPageData } from "@/data/TechnicalexpertTechStack";
 import { BASE_URL, ENDPOINTS } from "../../config/apiConfig";
 import { HireDeveloperApiResponse } from "../types/parentHiring.type";
 
@@ -21,8 +20,14 @@ export interface DeveloperListPageData {
 export async function ParentHirigList(slug: string) {
   try {
     const response = await fetch(`${BASE_URL}${ENDPOINTS.SINGLE_HIRING}/${slug}`, {
-      cache: "default",
+      next: {
+        revalidate: 3600,
+      },
     });
+
+    if (!response.ok) {
+      return null;
+    }
 
     const json: HireDeveloperApiResponse = await response.json();
 

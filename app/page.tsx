@@ -58,6 +58,8 @@ const FooterContact = dynamic(
   { loading: () => null },
 );
 
+export const revalidate = 3600;
+
 export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl();
   const canonicalUrl = `${siteUrl}/`;
@@ -117,6 +119,7 @@ export default async function Home() {
     getNormalizedBlogs(5),
     getNormalizedCaseStudies(),
   ]);
+  const homeCaseStudies = caseStudyData.slice(0, 6);
 
   const faqSchema = faqsData.faq.map((item) => ({
     "@type": "Question",
@@ -274,7 +277,7 @@ export default async function Home() {
       </section>
 
       <section id="case-studies" className="pt-5">
-        <CaseStudies caseStudies={caseStudyData} />
+        <CaseStudies caseStudies={homeCaseStudies} />
       </section>
 
       <section

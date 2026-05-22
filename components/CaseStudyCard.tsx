@@ -22,6 +22,10 @@ export default function CaseStudyCard({
   // Calculate position relative to the active card
   const offset = index - activeIndex;
 
+  if (offset < 0 || offset > 3) {
+    return null;
+  }
+
   let scale = 1;
   let translateY = 0;
   let zIndex = 30;

@@ -85,7 +85,9 @@ export async function getMainCaseStudyData(): Promise<getMainCaseStudy[]> {
 
   try {
     const response = await fetch(`${BASE_URL}${ENDPOINTS.ALL_CASESTUDIES}`, {
-      cache: "default",
+      next: {
+        revalidate: 3600,
+      },
     });
 
     if (!response.ok) {
@@ -118,7 +120,7 @@ export async function getMainCaseStudyData(): Promise<getMainCaseStudy[]> {
       ...aiAutomationArchiveStudies,
       ...supplementalArchiveStudies,
     ]);
-  } catch (error) {
+  } catch {
     return dedupeCaseStudies([
       ...aiAutomationArchiveStudies,
       ...supplementalArchiveStudies,

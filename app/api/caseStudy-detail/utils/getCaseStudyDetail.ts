@@ -63,7 +63,9 @@ export async function getTransformedCaseStudyDetail(
     const response = await fetch(
       `${BASE_URL}${ENDPOINTS.ALL_CASESTUDIES}/${slug}`,
       {
-        cache: "default",
+        next: {
+          revalidate: 3600,
+        },
       },
     );
 

@@ -35,7 +35,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   }
 
   return (
-    <div className="relative w-full h-screen max-h-screen min-h-[400px] overflow-hidden">
+    <div className="relative w-full h-[100svh] max-h-[100svh] min-h-[400px] overflow-hidden">
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: autoplayDelay, disableOnInteraction: false }}
@@ -55,13 +55,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 sizes="100vw"
                 className="object-cover"
               />
-            ) : data.video ? (
+            ) : data.video && index === activeIndex ? (
               <video
                 src={data.video}
                 autoPlay
                 muted
                 loop
                 playsInline
+                preload="auto"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             ) : null}

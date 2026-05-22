@@ -22,6 +22,10 @@ function MobileCard({
   let offset = index - activeIndex;
   if (offset < 0) offset += total;
 
+  if (offset > 3) {
+    return null;
+  }
+
   let scale = 1;
   let translateY = 0;
   let zIndex = 0;

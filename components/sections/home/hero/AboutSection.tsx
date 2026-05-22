@@ -28,7 +28,7 @@ const AboutSection: React.FC<AboutHeroSectionProps> = ({
   };
 
   return (
-    <div className="relative w-full h-screen max-h-screen min-h-100 overflow-hidden">
+    <div className="relative w-full h-[100svh] max-h-[100svh] min-h-[400px] overflow-hidden">
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: autoplayDelay, disableOnInteraction: false }}
@@ -39,13 +39,16 @@ const AboutSection: React.FC<AboutHeroSectionProps> = ({
       >
         {slides.map((data, index) => (
           <SwiperSlide key={index} className="relative h-full w-full">
-            <Image
-              src={data.image}
-              alt={data.title}
-              fill
-              priority={index === 0}
-              className="object-cover"
-            />
+            {index === activeIndex ? (
+              <Image
+                src={data.image}
+                alt={data.title}
+                fill
+                priority={index === 0}
+                sizes="100vw"
+                className="object-cover"
+              />
+            ) : null}
             <div className="absolute inset-0 bg-black/50" />
           </SwiperSlide>
         ))}

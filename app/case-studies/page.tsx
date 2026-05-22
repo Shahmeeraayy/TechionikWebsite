@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import CaseStudyPage from "../case-study/CaseStudyPage";
 import { getCaseStudyCategories } from "../api/caseStudy-Category/utils/caseStudyCategoryUtils";
 import { getMainCaseStudyData } from "../api/All-CaseStudies/utils/getCaseStudies";
+import { getSiteUrl } from "@/lib/site";
+
+export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const headersList = await headers();
-  const host = headersList.get("host") || "www.techionik.com";
-  const protocol =
-    headersList.get("x-forwarded-proto") ||
-    (host.includes("localhost") ? "http" : "https");
-  const pathname = "/case-studies";
-  const canonicalUrl = `${protocol}://${host}${pathname}`;
+  const siteUrl = getSiteUrl();
+  const canonicalUrl = `${siteUrl}/case-studies`;
+  const ogImageUrl = `${siteUrl}/images/og/case-study-og.jpg`;
 
   const description =
     "Explore Techionik's case studies. See how we help global clients transform their operations with custom software and advanced AI-driven applications.";
@@ -38,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "Techionik",
       images: [
         {
-          url: `${protocol}://${host}/images/og/case-study-og.jpg`,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: "Techionik Case Studies",
@@ -51,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Techionik Case Studies | Client Success Stories",
       description,
-      images: [`${protocol}://${host}/images/og/case-study-og.jpg`],
+      images: [ogImageUrl],
     },
     alternates: {
       canonical: canonicalUrl,
