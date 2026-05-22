@@ -1,5 +1,6 @@
 import { BASE_URL, ENDPOINTS } from "../../config/apiConfig";
 import { CaseStudyDetailPage } from "../types/casetudyDetail.type";
+import { supplementalCaseStudyDetails } from "@/data/webCaseStudies";
 
 export interface TransformedCaseStudyDetail {
   id: string;
@@ -45,6 +46,8 @@ export interface TransformedCaseStudyDetail {
 export async function getTransformedCaseStudyDetail(
   slug: string,
 ): Promise<TransformedCaseStudyDetail | null> {
+  const supplementalCaseStudy = supplementalCaseStudyDetails[slug];
+
   try {
     console.log("1. Slug received:", slug);
 
@@ -57,7 +60,7 @@ export async function getTransformedCaseStudyDetail(
 
     if (!response.ok) {
       console.error("2. Fetch failed:", response.status, response.statusText);
-      return null;
+      return supplementalCaseStudy ?? null;
     }
 
     let json: CaseStudyDetailPage;
@@ -66,14 +69,14 @@ export async function getTransformedCaseStudyDetail(
       json = await response.json();
     } catch (parseError) {
       console.error("3. JSON parsing failed:", parseError);
-      return null;
+      return supplementalCaseStudy ?? null;
     }
 
     console.log("4. API response:", JSON.stringify(json, null, 2));
 
     if (!json?.success || !json?.data) {
       console.warn("5. Invalid API shape:", json);
-      return null;
+      return supplementalCaseStudy ?? null;
     }
 
     const item = json.data;
@@ -130,6 +133,6 @@ export async function getTransformedCaseStudyDetail(
 
   } catch (error) {
     console.error("6. Unexpected error in getTransformedCaseStudyDetail:", error);
-    return null;
+    return supplementalCaseStudy ?? null;
   }
 }

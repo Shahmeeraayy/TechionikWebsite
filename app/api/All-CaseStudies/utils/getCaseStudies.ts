@@ -1,5 +1,6 @@
 import { BASE_URL, ENDPOINTS } from "../../config/apiConfig";
 import { MainCaseStudyPage } from "../types/caseStudy.type";
+import { supplementalCaseStudySummaries } from "@/data/webCaseStudies";
 
 
 export interface getMainCaseStudy {
@@ -27,7 +28,7 @@ export async function getMainCaseStudyData(): Promise<getMainCaseStudy[]> {
 
     const json: MainCaseStudyPage = await response.json();
 
-    return json.data.map((item) => ({
+    const apiCaseStudies = json.data.map((item) => ({
       id: item?.id ?? " ",
       title: item?.title ?? "this is the title",
       shortDescription: item?.shortDescription ?? "this is the description",
@@ -38,8 +39,39 @@ export async function getMainCaseStudyData(): Promise<getMainCaseStudy[]> {
       date: item?.publishedAt ?? " ",
       categories: item?.categories?.map((category) => category?.name ?? " "),
     }));
+
+    const mergedCaseStudies = [...apiCaseStudies];
+    const seenSlugs = new Set(apiCaseStudies.map((caseStudy) => caseStudy.slug));
+
+    for (const study of supplementalCaseStudySummaries) {
+      if (seenSlugs.has(study.slug)) continue;
+
+      mergedCaseStudies.push({
+        id: study.id,
+        title: study.title,
+        shortDescription: study.shortDescription,
+        image: study.image,
+        slug: study.slug,
+        layout: study.layout,
+        isFeatured: study.isFeatured ?? false,
+        date: study.date,
+        categories: study.categories,
+      });
+    }
+
+    return mergedCaseStudies;
   } catch (error) {
     // console.log("Error fetching case studies:", error);
-    return [];
+    return supplementalCaseStudySummaries.map((study) => ({
+      id: study.id,
+      title: study.title,
+      shortDescription: study.shortDescription,
+      image: study.image,
+      slug: study.slug,
+      layout: study.layout,
+      isFeatured: study.isFeatured ?? false,
+      date: study.date,
+      categories: study.categories,
+    }));
   }
 }
