@@ -1,6 +1,9 @@
 {
   "name": "techiocnik-web",
   "version": "0.1.0",
+  "engines": {
+    "node": "22.x"
+  },
   "browserslist": [
     "last 2 versions",
     "not dead",

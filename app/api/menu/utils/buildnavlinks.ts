@@ -48,6 +48,7 @@ const FALLBACK_NAV_LINKS: Navlink[] = [
       },
     ],
   },
+  { name: "Case Studies", href: "/case-study" },
   {
     name: "Technologies",
     href: "/technology",
@@ -128,6 +129,17 @@ function mergeWithFallback(navLinks: Navlink[]): Navlink[] {
         ...apiLink,
         children: HOMEPAGE_SERVICE_MENU,
         isMega: true,
+      };
+    }
+
+    if (fallbackSlug === "case-study") {
+      return {
+        ...fallback,
+        ...apiLink,
+        name: fallback.name,
+        href: fallback.href,
+        children: undefined,
+        isMega: false,
       };
     }
 
