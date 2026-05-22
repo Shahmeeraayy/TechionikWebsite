@@ -5,6 +5,7 @@ import TechnologyExpertiseComponent from "@/components/TechnologyExpertise";
 import WhatYouGet from "@/components/WhatYouGet";
 import IndustriesSection from "@/views/home/IndustriesSection";
 import CaseStudies from "@/views/home/CaseStudies";
+import AIAutomationCaseStudies from "@/components/AIAutomationCaseStudies";
 import Certifications from "@/components/sections/how-we-work-component/certificates";
 import OurClientSays from "@/components/OurClientSays";
 import AllBlogs from "@/views/home/AllBlogs";
@@ -138,6 +139,8 @@ const SubServicePage = async ({
     category,
     slug,
   );
+  const showAiAutomationCaseStudies =
+    category === "automation" && slug === "bpa";
 
   if (!apiData) return notFound();
   const techStackFilters = apiData.techStackData?.filters ?? [];
@@ -322,7 +325,9 @@ const SubServicePage = async ({
       )}
 
       {/* Case Studies */}
-      {(apiData?.caseStudies?.length ?? 0) > 0 && (
+      {showAiAutomationCaseStudies ? (
+        <AIAutomationCaseStudies />
+      ) : (apiData?.caseStudies?.length ?? 0) > 0 && (
         <div>
           <CaseStudies caseStudies={apiData?.caseStudies} />
         </div>

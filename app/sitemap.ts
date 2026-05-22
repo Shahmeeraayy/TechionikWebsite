@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { BASE_URL } from "./api/config/apiConfig";
+import { aiAutomationCaseStudies } from "@/data/aiAutomationCaseStudies";
 import { getSiteUrl } from "@/lib/site";
 import { serviceMenuItems } from "@/data/services/serviceRegistry";
 
@@ -143,6 +144,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
       })),
     ]),
+    ...aiAutomationCaseStudies.map((study) => ({
+      url: `${siteUrl}${study.route}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
 
   const allRoutes = [...staticPages, ...dynamicRoutes];
