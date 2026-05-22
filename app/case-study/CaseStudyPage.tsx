@@ -619,16 +619,6 @@ const CaseStudyPage = ({
         <div className="absolute bottom-6 right-[-6rem] h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.08),transparent_72%)] blur-2xl" />
 
         <div className="relative mx-auto flex max-w-[1440px] flex-col items-center px-6 pb-24 pt-20 text-center sm:px-8 lg:px-16 lg:pb-28">
-          <div className="inline-flex flex-wrap items-center justify-center rounded-full border border-white/10 bg-white/6 px-5 py-3 text-sm text-white/75 backdrop-blur-xl">
-            <LoadingLink href="/" className="transition hover:text-white">
-              Home
-            </LoadingLink>
-            <span className="mx-2 text-white/30">/</span>
-            <span>Insights</span>
-            <span className="mx-2 text-white/30">/</span>
-            <span className="text-[#F05323]">Case Studies</span>
-          </div>
-
           <h1 className="mt-7 max-w-5xl bg-[radial-gradient(circle_at_top,_#FFFFFF_0%,_#999999_100%)] bg-clip-text text-4xl font-bold leading-tight text-transparent sm:text-5xl lg:text-[58px] lg:leading-[1.12]">
             Explore How We Chart Pathways to Success Through Technological
             Innovation

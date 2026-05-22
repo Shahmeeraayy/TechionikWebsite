@@ -389,18 +389,6 @@ export default function AssetraCaseStudyPage({
         <div className="absolute bottom-0 right-[-8%] h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.06),transparent_70%)] blur-3xl" />
 
         <div className="relative mx-auto max-w-[1440px] px-6 pb-16 pt-28 sm:px-8 lg:px-16 lg:pb-20 lg:pt-32">
-          <div className="inline-flex flex-wrap items-center rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/75 backdrop-blur-xl">
-            <Link href="/" className="transition hover:text-white">
-              Home
-            </Link>
-            <span className="mx-2 text-white/25">/</span>
-            <Link href="/case-study" className="transition hover:text-white">
-              Case Study
-            </Link>
-            <span className="mx-2 text-white/25">/</span>
-            <span className="text-[#F05323]">Assetra</span>
-          </div>
-
           <div className="mt-10 grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
             <div className="relative">
               <div className="flex flex-wrap items-center gap-3">
