@@ -58,7 +58,7 @@ export const caseStudies: CaseStudy[] = supplementalCaseStudySummaries.map(
       stats: [],
       imageDesktop: study.image,
       imageMobile: study.image,
-      href: `/case-study/${study.slug}`,
+      href: `/case-studies/${study.slug}`,
     };
   },
 );

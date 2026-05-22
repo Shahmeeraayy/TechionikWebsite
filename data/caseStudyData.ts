@@ -39,7 +39,7 @@ export const caseStudyData: CaseStudies[] = supplementalCaseStudySummaries.map(
     title: study.title,
     brandTitle: CASE_STUDY_BRANDS[study.slug],
     description: study.shortDescription,
-    btnLink: `/case-study/${study.slug}`,
+    btnLink: `/case-studies/${study.slug}`,
     btnText: "Explore More",
     imageUrl: study.image,
     blogCategory: study.categories.map(toTag),
@@ -47,6 +47,6 @@ export const caseStudyData: CaseStudies[] = supplementalCaseStudySummaries.map(
     slug: study.slug,
     layout: study.layout,
     isFeatured: study.isFeatured ?? false,
-    href: `/case-study/${study.slug}`,
+    href: `/case-studies/${study.slug}`,
   }),
 );

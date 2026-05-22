@@ -380,7 +380,7 @@ function getStudyHref(study: getMainCaseStudy): string {
 
   if (href) return href;
 
-  return `/case-study/${study.slug}`;
+  return `/case-studies/${study.slug}`;
 }
 
 function PrimaryPillLink({
@@ -626,7 +626,7 @@ const CaseStudyPage = ({
             <span className="mx-2 text-white/30">/</span>
             <span>Insights</span>
             <span className="mx-2 text-white/30">/</span>
-            <span className="text-[#F05323]">Case Study</span>
+            <span className="text-[#F05323]">Case Studies</span>
           </div>
 
           <h1 className="mt-7 max-w-5xl bg-[radial-gradient(circle_at_top,_#FFFFFF_0%,_#999999_100%)] bg-clip-text text-4xl font-bold leading-tight text-transparent sm:text-5xl lg:text-[58px] lg:leading-[1.12]">

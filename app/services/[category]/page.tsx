@@ -206,7 +206,7 @@ const SingleServicePage = async ({
           stats: [],
           imageDesktop: cs?.image ?? "/banners/caseStudy.webp",
           imageMobile: cs?.image ?? "/banners/caseStudy.webp",
-          href: `/case-study/${cs?.slug ?? "#"}`,
+          href: `/case-studies/${cs?.slug ?? "#"}`,
         }))
       : await getNormalizedCaseStudies();
 

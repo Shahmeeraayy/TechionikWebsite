@@ -17,6 +17,6 @@ export async function getNormalizedCaseStudies() {
     ],
     imageDesktop: item?.image || "/banners/caseStudy.webp",
     imageMobile: item?.image || "/banners/caseStudy.webp",
-    href: `/case-study/${item?.slug ?? "#"}`,
+    href: `/case-studies/${item?.slug ?? "#"}`,
   }));
 }

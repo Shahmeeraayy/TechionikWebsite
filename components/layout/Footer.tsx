@@ -234,7 +234,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               {[
                 { label: "blogs", href: "/blog" },
-                { label: "Case Studies", href: "/case-study" },
+                { label: "Case Studies", href: "/case-studies" },
                 { label: "contact us", href: "/contact-us" },
                 { label: "Industries", href: "/industries" },
                 { label: "How We Work", href: "/how-we-work" },

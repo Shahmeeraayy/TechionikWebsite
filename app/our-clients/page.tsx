@@ -104,7 +104,7 @@ const ClientsPage = async () => {
               knowsAbout: [client.industry, ...client.services],
               url: client.href.startsWith("http")
                 ? client.href
-                : `https://www.techionik.com/case-study${client.href}`,
+                : `https://www.techionik.com${client.href}`,
             },
           })),
         },

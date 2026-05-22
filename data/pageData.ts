@@ -38,7 +38,7 @@ export const AllPagesData: Record<string, PageStructure> = {
   },
   "case-studies": {
     name: "Case Studies",
-    slug: "case-study",
+    slug: "case-studies",
     subPages: [
       { name: "E-commerce Success", slug: "rastah" },
     //   { name: "SaaS Automation", slug: "rastah" },

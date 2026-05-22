@@ -25,7 +25,7 @@ const STATIC_ROUTES = [
   "/ceo-suite",
   "/careers",
   "/blog",
-  "/case-study",
+  "/case-studies",
   "/our-clients",
   "/how-we-work",
   "/hire-developers",
@@ -113,7 +113,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     })),
     ...caseStudies.map((caseStudy) => ({
-      url: `${siteUrl}/case-study/${caseStudy.slug}`,
+      url: `${siteUrl}/case-studies/${caseStudy.slug}`,
       lastModified: toDate(caseStudy.updatedAt ?? caseStudy.publishedAt),
       changeFrequency: "monthly" as const,
       priority: 0.7,

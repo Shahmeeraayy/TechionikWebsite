@@ -112,7 +112,7 @@ const IndustryPage = async ({
         imageDesktop: cs.ogImage ?? "/banners/caseStudy.webp",
         imageMobile: cs.ogImage ?? "/banners/caseStudy.webp",
         category: cs.categories?.[0]?.name ?? "Success Story",
-        href: `/case-study/${cs.slug}`,
+        href: `/case-studies/${cs.slug}`,
         stats: [],
       }))
     : caseStudies;

@@ -14,7 +14,7 @@ export const OurClientsData: OurClients[] = [
     logo: "/images/our-clients/Acclutions.png",
     industry: "Technology",
     services:["Web Development", "Mobile App Development"],
-    href: "/case-study"
+    href: "/case-studies"
   },
   {
     id: "2",
@@ -22,7 +22,7 @@ export const OurClientsData: OurClients[] = [
     logo: "/images/our-clients/Assetra.png",
     industry: "Technology",
     services:["Web Development", "Mobile App Development"],
-     href: "/case-study"
+     href: "/case-studies"
   },
   {
     id: "3",
@@ -30,7 +30,7 @@ export const OurClientsData: OurClients[] = [
     logo: "/images/our-clients/boxelu.png",
     industry: "Technology",
     services:["Web Development", "Mobile App Development"],
-     href: "/case-study"
+     href: "/case-studies"
   },
   {
     id: "4",
@@ -38,7 +38,7 @@ export const OurClientsData: OurClients[] = [
     logo: "/images/our-clients/Capital.png",
     industry: "Technology",
     services:["Web Development", "Mobile App Development"],
-     href: "/case-study"
+     href: "/case-studies"
   },
   {
     id: "5",
@@ -46,7 +46,7 @@ export const OurClientsData: OurClients[] = [
     logo: "/images/our-clients/hib-tourism.png",
     industry: "Tourism",
     services:["Tourism ", "Mobile App Development"],
-     href: "/case-study"
+     href: "/case-studies"
   },
   {
     id: "6",
@@ -54,7 +54,7 @@ export const OurClientsData: OurClients[] = [
     logo: "/images/our-clients/homecert.png",
     industry: "Design",
     services:["Home Design", "Home Renovation"],
-     href: "/case-study"
+     href: "/case-studies"
   },
   {
     id: "7",
@@ -62,7 +62,7 @@ export const OurClientsData: OurClients[] = [
     logo: "/images/our-clients/investors.png",
     industry: "Investment",
     services:["loan", "investment"],
-     href: "/case-study"
+     href: "/case-studies"
   },
   {
     id: "8",
@@ -70,7 +70,7 @@ export const OurClientsData: OurClients[] = [
     logo: "/images/our-clients/kingkomp.png",
     industry: "Casino",
     services:["Casino", "Games"],
-     href: "/case-study"
+     href: "/case-studies"
   },
   {
     id: "9",
@@ -78,7 +78,7 @@ export const OurClientsData: OurClients[] = [
     logo: "/images/our-clients/layoffhub.png",
     industry: "Technology",
     services:["Web Development", "Mobile App Development"],
-     href: "/case-study"
+     href: "/case-studies"
   },
   {
     id: "10",
@@ -86,7 +86,7 @@ export const OurClientsData: OurClients[] = [
     logo: "/images/our-clients/marvel.png",
     industry: "Electronics",
     services:["wires", "Cables"],
-     href: "/case-study"
+     href: "/case-studies"
   },
   {
     id: "11",
@@ -94,7 +94,7 @@ export const OurClientsData: OurClients[] = [
     logo: "/images/our-clients/ozone.png",
     industry: "Technology",
     services:["Web Development", "Mobile App Development"],
-     href: "/case-study"
+     href: "/case-studies"
   },
   {
     id: "12",
@@ -102,6 +102,6 @@ export const OurClientsData: OurClients[] = [
     logo: "/images/our-clients/rastah.png",
     industry: "Real Estate",
     services:["Real Estate", "Mobile App Development"],
-     href: "/case-study"
+     href: "/case-studies"
   },
 ]

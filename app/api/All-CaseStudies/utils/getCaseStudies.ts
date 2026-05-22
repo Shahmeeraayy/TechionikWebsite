@@ -76,7 +76,7 @@ export async function getMainCaseStudyData(): Promise<getMainCaseStudy[]> {
       shortDescription: study.shortDescription,
       image: study.image,
       slug: study.slug,
-      href: `/case-study/${study.slug}`,
+      href: `/case-studies/${study.slug}`,
       layout: study.layout,
       isFeatured: study.isFeatured ?? false,
       date: study.date,
@@ -105,7 +105,7 @@ export async function getMainCaseStudyData(): Promise<getMainCaseStudy[]> {
         slug: item?.slug ?? " ",
         href:
           aiAutomationRouteBySlug.get(item?.slug ?? "") ??
-          `/case-study/${item?.slug ?? ""}`,
+          `/case-studies/${item?.slug ?? ""}`,
         layout: item?.layout ?? "image-top",
         isFeatured: item?.isFeatured ?? false,
         date: item?.publishedAt ?? " ",

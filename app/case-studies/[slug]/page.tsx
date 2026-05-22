@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { notFound } from "next/navigation";
 import ContactHero from "@/components/ConnectHero";
 import { detailCaseStudyCTA } from "@/data/detailCaseStudyCTA";
 import {
@@ -8,6 +7,9 @@ import {
   getAiAutomationCaseStudyBySlug,
 } from "@/data/aiAutomationCaseStudies";
 import { getSiteUrl } from "@/lib/site";
+import GenericCaseStudyDetailPage, {
+  generateGenericCaseStudyMetadata,
+} from "@/app/case-study/GenericCaseStudyDetailPage";
 
 export function generateStaticParams() {
   return aiAutomationCaseStudies.map((study) => ({
@@ -24,7 +26,7 @@ export async function generateMetadata({
   const study = getAiAutomationCaseStudyBySlug(slug);
 
   if (!study) {
-    return {};
+    return generateGenericCaseStudyMetadata(slug, "/case-studies");
   }
 
   const siteUrl = getSiteUrl();
@@ -77,7 +79,7 @@ export default async function AiAutomationCaseStudyDetailPage({
   const study = getAiAutomationCaseStudyBySlug(slug);
 
   if (!study) {
-    return notFound();
+    return <GenericCaseStudyDetailPage slug={slug} />;
   }
 
   return (

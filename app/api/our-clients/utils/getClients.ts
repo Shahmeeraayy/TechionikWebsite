@@ -30,7 +30,7 @@ export const fetchClients = async (): Promise<OurClients[]> => {
             logo: client?.logoUrl || "/images/our-clients/marvel.png",
             industry: client?.industry?.name || "Unknown",
             services: client?.service ? [client?.service?.name] : [],
-            href: client?.caseStudy ? `/case-study/${client?.caseStudy?.slug}` : "#",
+            href: client?.caseStudy ? `/case-studies/${client?.caseStudy?.slug}` : "#",
         }));
 
         return mapped;

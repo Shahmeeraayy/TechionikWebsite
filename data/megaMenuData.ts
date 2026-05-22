@@ -79,7 +79,7 @@ export const MegaMenuResponses: Record<string, MenuResponse> = {
       {
         id: 13,
         name: "Case Studies",
-        slug: "case-study",
+        slug: "case-studies",
         icon: "/icons/cloud.svg",
         children: [
           {

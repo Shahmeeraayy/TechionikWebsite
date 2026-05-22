@@ -6,6 +6,20 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/case-study",
+        destination: "/case-studies",
+        permanent: true,
+      },
+      {
+        source: "/case-study/:slug",
+        destination: "/case-studies/:slug",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     // Set to false to enable automatic compression and resizing
     unoptimized: false,

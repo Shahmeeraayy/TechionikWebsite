@@ -48,7 +48,7 @@ const FALLBACK_NAV_LINKS: Navlink[] = [
       },
     ],
   },
-  { name: "Case Studies", href: "/case-study" },
+  { name: "Case Studies", href: "/case-studies" },
   {
     name: "Technologies",
     href: "/technology",
@@ -103,6 +103,7 @@ function normalizeSlug(slug: string): string {
   if (normalized === "about") return "about-us";
   if (normalized === "contact") return "contact-us";
   if (normalized === "industry") return "industries";
+  if (normalized === "case-study") return "case-studies";
 
   return normalized;
 }
@@ -132,7 +133,7 @@ function mergeWithFallback(navLinks: Navlink[]): Navlink[] {
       };
     }
 
-    if (fallbackSlug === "case-study") {
+    if (fallbackSlug === "case-studies") {
       return {
         ...fallback,
         ...apiLink,
