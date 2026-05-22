@@ -9,15 +9,17 @@ import {
   CheckCircle2,
   ChevronRight,
   Clock3,
+  Cloud,
+  Database,
   FileText,
   Landmark,
   Layers3,
   Lock,
+  Server,
   Sparkles,
   TrendingUp,
   Users,
   Workflow,
-  Building2,
   ShieldCheck,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -229,24 +231,34 @@ const WORKFLOW: StepCard[] = [
 
 const TECH_STACK = [
   {
+    icon: Server,
+    label: "Backend",
+    value: "Application services and workflow orchestration",
+  },
+  {
     icon: Layers3,
     label: "Frontend",
     value: "React.js, Next.js, Tailwind CSS",
   },
   {
+    icon: Database,
+    label: "Database",
+    value: "Centralized asset, client, and relationship records",
+  },
+  {
     icon: BrainCircuit,
     label: "AI layer",
-    value: "Custom lease abstraction model",
+    value: "Custom lease abstraction model trained for contract parsing",
+  },
+  {
+    icon: Cloud,
+    label: "Hosting",
+    value: "Secure cloud deployment for a scalable SaaS experience",
   },
   {
     icon: Lock,
     label: "Security",
     value: "JWT auth and role-based access control",
-  },
-  {
-    icon: Building2,
-    label: "Architecture",
-    value: "Scalable wealth and asset management stack",
   },
 ];
 
@@ -444,6 +456,27 @@ export default function AssetraCaseStudyPage({
                 </Link>
               </div>
 
+              <div className="mt-8 rounded-[24px] border border-white/10 bg-black/25 p-5 shadow-[0_18px_50px_rgba(0,0,0,0.25)]">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#F05323]">
+                      Build Your Idea
+                    </p>
+                    <p className="mt-2 text-sm leading-7 text-[#C9C9D4]">
+                      Consult our expert team to shape a secure wealth
+                      management workflow around your own product vision.
+                    </p>
+                  </div>
+                  <Link
+                    href="/contact-us"
+                    className="inline-flex items-center justify-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/10"
+                  >
+                    Consult our expert
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+
               <div className="mt-10 flex flex-wrap gap-3">
                 <Link
                   href="#overview"
@@ -614,7 +647,7 @@ export default function AssetraCaseStudyPage({
               className="rounded-[30px] border border-white/10 bg-[#0f0f14] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.3)] sm:p-8"
             >
               <SectionHeader
-                eyebrow="Overview"
+                eyebrow="About Assetra"
                 title="A modern wealth platform built around clarity and control"
                 description={study.shortDescription}
               />
@@ -914,7 +947,7 @@ export default function AssetraCaseStudyPage({
               <SectionHeader
                 eyebrow="Technology stack"
                 title="The implementation stack emphasized modern web delivery"
-                description="The PDF highlights a modern frontend, AI abstraction layer, and secure access model."
+                description="The PDF highlights a layered stack spanning backend services, frontend delivery, database support, AI abstraction, hosting, and security."
               />
 
               <div className="mt-8 space-y-3">

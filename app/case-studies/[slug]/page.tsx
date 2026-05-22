@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import ContactHero from "@/components/ConnectHero";
+import AssetraCaseStudyPage from "@/components/case-study/AssetraCaseStudyPage";
 import { detailCaseStudyCTA } from "@/data/detailCaseStudyCTA";
 import {
   aiAutomationCaseStudies,
@@ -10,11 +12,17 @@ import { getSiteUrl } from "@/lib/site";
 import GenericCaseStudyDetailPage, {
   generateGenericCaseStudyMetadata,
 } from "@/app/case-study/GenericCaseStudyDetailPage";
+import { getTransformedCaseStudyDetail } from "@/app/api/caseStudy-detail/utils/getCaseStudyDetail";
+
+const ASSETRA_CASE_STUDY_SLUG = "assetra-wealth-management-software";
 
 export function generateStaticParams() {
-  return aiAutomationCaseStudies.map((study) => ({
-    slug: study.slug,
-  }));
+  return [
+    ...aiAutomationCaseStudies.map((study) => ({
+      slug: study.slug,
+    })),
+    { slug: ASSETRA_CASE_STUDY_SLUG },
+  ];
 }
 
 export async function generateMetadata({
@@ -23,6 +31,11 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+
+  if (slug === ASSETRA_CASE_STUDY_SLUG) {
+    return generateGenericCaseStudyMetadata(slug, "/case-studies");
+  }
+
   const study = getAiAutomationCaseStudyBySlug(slug);
 
   if (!study) {
@@ -76,6 +89,17 @@ export default async function AiAutomationCaseStudyDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  if (slug === ASSETRA_CASE_STUDY_SLUG) {
+    const data = await getTransformedCaseStudyDetail(slug);
+
+    if (!data) {
+      return notFound();
+    }
+
+    return <AssetraCaseStudyPage study={data} />;
+  }
+
   const study = getAiAutomationCaseStudyBySlug(slug);
 
   if (!study) {
