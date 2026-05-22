@@ -181,7 +181,7 @@ export const supplementalCaseStudySummaries: SupplementalCaseStudySummary[] = [
     title: "Assetra Wealth Management Software",
     slug: "assetra-wealth-management-software",
     shortDescription:
-      "A modern wealth management platform designed for portfolio visibility, client operations, and financial workflows.",
+      "A subscription-based wealth management platform built to centralize assets, tenants, company records, and AI-assisted lease analysis for family offices.",
     image: "/images/blog/blog2.jpg",
     layout: "image-right",
     date: SUPPLEMENTAL_CASE_STUDY_DATE,
@@ -269,7 +269,19 @@ export const supplementalCaseStudyDetails: Record<
           description: study.shortDescription,
           ogImage: study.image,
           robots: "index,follow",
-          keywords: [study.title, ...study.categories, "Techionik case study"],
+          keywords:
+            study.slug === "assetra-wealth-management-software"
+              ? [
+                  study.title,
+                  "Assetra",
+                  "wealth management software",
+                  "family office software",
+                  "AI lease analysis",
+                  "tenant portal",
+                  "portfolio visibility",
+                  "Techionik case study",
+                ]
+              : [study.title, ...study.categories, "Techionik case study"],
         },
       },
     ];
