@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import HeroSection from "@/components/sections/home/hero/HeroSection";
 import IndustryCards from "@/components/IndustryCards";
+import { HeroIndustryData } from "../../data/HeroIndustryData";
+import { getAllIndustries } from "../api/Industries/utils/getIndustries";
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl =
@@ -55,10 +58,28 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function IndustryPage() {
+export default async function IndustryPage() {
+  const data = await getAllIndustries();
+  const industryListText = (data || [])
+    .slice(0, 6)
+    .map((i) => i.title)
+    .join(", ");
+
   return (
     <main className="overflow-x-hidden scroll-smooth">
-      <IndustryCards />
+      <div className="industry-voice-narrative" style={{ display: "none" }}>
+        {`Techionik provides sector-specific software and AI innovation. 
+          We serve diverse industries including ${industryListText}, and more. 
+          Each solution is custom-built to meet unique sector challenges.`}
+      </div>
+
+      <section id="HeroSection">
+        <HeroSection slides={HeroIndustryData} />
+      </section>
+
+      <section id="industrycards">
+        <IndustryCards />
+      </section>
     </main>
   );
 }
