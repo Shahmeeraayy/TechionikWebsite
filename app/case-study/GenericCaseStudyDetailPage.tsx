@@ -148,12 +148,13 @@ export default async function GenericCaseStudyDetailPage({
             <div className="my-10 flex justify-between gap-2">
               <div>
                 {data.categories.map((category: DetailCaseStudyCategories) => (
-                  <span
+                  <Link
+                    href={`/case-studies?useCase=${encodeURIComponent(category.name)}`}
                     className="mr-3 text-muted caption p-2 border border-gray-800 rounded-2xl"
                     key={category.id}
                   >
                     {category.name}
-                  </span>
+                  </Link>
                 ))}
               </div>
               <div className="flex flex-col gap-2">

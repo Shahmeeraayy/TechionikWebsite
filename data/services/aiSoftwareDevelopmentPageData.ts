@@ -54,6 +54,7 @@ const caseStudies: CaseStudyType[] = caseStudyData.slice(0, 4).map((item) => ({
   imageDesktop: item.imageUrl,
   imageMobile: item.imageUrl,
   href: item.href,
+  category: item.category,
   stats: [],
 }));
 

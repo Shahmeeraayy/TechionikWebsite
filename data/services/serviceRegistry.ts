@@ -524,6 +524,7 @@ function makeSubServicePageData(config: {
     imageDesktop: item.imageUrl,
     imageMobile: item.imageUrl,
     href: item.href,
+    category: item.category,
     stats: [],
   }));
 
@@ -1495,6 +1496,7 @@ function buildGenericSubServicePageData(
       imageDesktop: item.imageUrl,
       imageMobile: item.imageUrl,
       href: item.href,
+      category: item.category,
       stats: [],
     })),
     whatWeDo: makeWhatWeDo(

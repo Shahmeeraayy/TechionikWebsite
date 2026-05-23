@@ -9,6 +9,7 @@ export interface CaseStudies {
   btnLink?: string;
   imageUrl: string;
   blogCategory: string[];
+  category?: string;
   date: Date;
   slug: string;
   layout:
@@ -43,6 +44,7 @@ export const caseStudyData: CaseStudies[] = supplementalCaseStudySummaries.map(
     btnText: "Explore More",
     imageUrl: study.image,
     blogCategory: study.categories.map(toTag),
+    category: study.categories[0],
     date: new Date(study.date),
     slug: study.slug,
     layout: study.layout,

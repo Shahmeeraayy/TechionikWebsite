@@ -5,6 +5,7 @@ export interface CaseStudy {
   brand: string;
   title: string;
   solution: string;
+  category?: string;
   stats: { label: string; value: string }[];
   imageDesktop: string;
   imageMobile: string;
@@ -55,6 +56,7 @@ export const caseStudies: CaseStudy[] = supplementalCaseStudySummaries.map(
       brand: copy.brand,
       title: copy.title,
       solution: copy.solution,
+      category: study.categories[0],
       stats: [],
       imageDesktop: study.image,
       imageMobile: study.image,

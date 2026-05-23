@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import CaseStudyCard from "@/components/CaseStudyCard";
 import CaseStudyStackMobile from "@/components/CaseStudyCardMobile";
 import Button from "@/components/Button";
+import { getCaseStudyArchiveHref } from "@/lib/caseStudyTheme";
 
 export type CaseStudyType = {
   id: number;
@@ -21,11 +22,16 @@ export type CaseStudyType = {
 
 type CaseStudiesProps = {
   caseStudies: CaseStudyType[];
+  viewAllHref?: string;
 };
 
-const CaseStudies: React.FC<CaseStudiesProps> = ({ caseStudies }) => {
+const CaseStudies: React.FC<CaseStudiesProps> = ({
+  caseStudies,
+  viewAllHref,
+}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   // const [paused, setPaused] = useState(false);
+  const archiveHref = viewAllHref ?? getCaseStudyArchiveHref(caseStudies);
 
   useEffect(() => {
     if ( !caseStudies.length) return;
@@ -62,7 +68,7 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ caseStudies }) => {
             icon="/icons/arrow-right.svg"
             size="medium"
             radius="full"
-            href="/case-study"
+            href={archiveHref}
             variant="glass"
             className="inline-flex items-center justify-between bg-[#333333] text-foreground hover:bg-[#444444]"
           />

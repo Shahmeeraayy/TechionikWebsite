@@ -7,17 +7,20 @@ import Image from "next/image";
 import { useMemo, useState, type CSSProperties } from "react";
 import { getMainCaseStudy } from "../api/All-CaseStudies/utils/getCaseStudies";
 import { CaseStudyCategory } from "../api/caseStudy-Category/utils/caseStudyCategoryUtils";
+import {
+  getCaseStudyThemeCopy,
+  type CaseStudyDisplayGroup,
+} from "@/lib/caseStudyTheme";
 
-type DisplayGroupName =
-  | "Industries"
-  | "Services"
-  | "Technologies & Platforms";
+type DisplayGroupName = CaseStudyDisplayGroup;
 
 type CardVariant = "top" | "overlay";
 
 interface BlogPageClientProps {
   caseStudyCategories: CaseStudyCategory[];
   allCaseStudies: getMainCaseStudy[];
+  initialGroup?: DisplayGroupName;
+  initialCategory?: string | null;
 }
 
 interface DisplayCategory {
@@ -573,16 +576,22 @@ function FeaturedStory({
 const CaseStudyPage = ({
   caseStudyCategories = [],
   allCaseStudies = [],
+  initialGroup = "Services",
+  initialCategory = null,
 }: BlogPageClientProps) => {
   const displayGroups = useMemo(
     () => buildDisplayGroups(caseStudyCategories, allCaseStudies),
     [allCaseStudies, caseStudyCategories],
   );
 
-  const [activeGroup, setActiveGroup] = useState<DisplayGroupName>("Services");
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeGroup, setActiveGroup] =
+    useState<DisplayGroupName>(initialGroup);
+  const [activeCategory, setActiveCategory] = useState<string | null>(
+    initialCategory,
+  );
 
   const visibleCategories = displayGroups[activeGroup];
+  const themeCopy = getCaseStudyThemeCopy(activeCategory);
 
   const filteredCaseStudies = useMemo(() => {
     if (!activeCategory) return allCaseStudies;
@@ -619,21 +628,24 @@ const CaseStudyPage = ({
         <div className="absolute bottom-6 right-[-6rem] h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.08),transparent_72%)] blur-2xl" />
 
         <div className="relative mx-auto flex max-w-[1440px] flex-col items-center px-6 pb-24 pt-20 text-center sm:px-8 lg:px-16 lg:pb-28">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#F05323]">
+            {themeCopy.heroEyebrow}
+          </p>
           <h1 className="mt-7 max-w-5xl bg-[radial-gradient(circle_at_top,_#FFFFFF_0%,_#999999_100%)] bg-clip-text text-4xl font-bold leading-tight text-transparent sm:text-5xl lg:text-[58px] lg:leading-[1.12]">
-            Explore How We Chart Pathways to Success Through Technological
-            Innovation
+            {themeCopy.heroTitle}
           </h1>
 
           <p className="mt-6 max-w-3xl text-base leading-8 text-[#CECECE] sm:text-lg">
-            Delve into our case studies showcasing how precision and
-            cutting-edge innovation at Techionik drive transformative outcomes
-            across sectors like retail, hospitality, AI automation, and modern
-            digital experiences.
+            {themeCopy.heroDescription}
           </p>
 
           <PrimaryPillLink
             href={CALENDLY_URL}
-            label="Let's Discuss Your Idea"
+            label={
+              activeCategory
+                ? `Discuss ${activeCategory} Use Case`
+                : "Let's Discuss Your Idea"
+            }
             className="mt-10"
           />
         </div>
@@ -721,11 +733,14 @@ const CaseStudyPage = ({
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#F05323]">
-              Case Study Archive
+              {themeCopy.archiveEyebrow}
             </p>
             <h2 className="mt-4 max-w-3xl bg-[radial-gradient(circle_at_top,_#FFFFFF_0%,_#9D9DA8_100%)] bg-clip-text text-3xl font-bold text-transparent sm:text-4xl">
-              Real project stories with a more editorial presentation
+              {themeCopy.archiveTitle}
             </h2>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-[#A8A8B3] sm:text-base">
+              {themeCopy.archiveDescription}
+            </p>
           </div>
 
           <p className="text-sm text-[#A8A8B3] sm:text-base">

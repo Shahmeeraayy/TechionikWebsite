@@ -920,16 +920,17 @@ export default function AssetraCaseStudyPage({
                   <p className="text-[11px] uppercase tracking-[0.2em] text-white/45">
                     Categories
                   </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {categoryNames.map((category) => (
-                      <span
-                        key={category}
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-[#E5E5EF]"
-                      >
-                        {category}
-                      </span>
-                    ))}
-                  </div>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {categoryNames.map((category) => (
+                    <Link
+                      href={`/case-studies?useCase=${encodeURIComponent(category)}`}
+                      key={category}
+                      className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-[#E5E5EF]"
+                    >
+                      {category}
+                    </Link>
+                  ))}
+                </div>
                 </div>
                 <div className="rounded-[20px] border border-white/10 bg-black/25 p-4">
                   <p className="text-[11px] uppercase tracking-[0.2em] text-white/45">
@@ -1029,7 +1030,7 @@ export default function AssetraCaseStudyPage({
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/case-study"
+                href="/case-studies"
                 className="inline-flex items-center justify-center gap-3 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/10"
               >
                 Browse more case studies

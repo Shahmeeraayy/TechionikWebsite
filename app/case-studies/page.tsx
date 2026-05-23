@@ -3,25 +3,47 @@ import CaseStudyPage from "../case-study/CaseStudyPage";
 import { getCaseStudyCategories } from "../api/caseStudy-Category/utils/caseStudyCategoryUtils";
 import { getMainCaseStudyData } from "../api/All-CaseStudies/utils/getCaseStudies";
 import { getSiteUrl } from "@/lib/site";
+import {
+  getCaseStudyThemeCopy,
+  normalizeCaseStudyKey,
+  resolveCaseStudyInitialState,
+  type CaseStudySearchParams,
+} from "@/lib/caseStudyTheme";
 
 export const revalidate = 3600;
 
-export async function generateMetadata(): Promise<Metadata> {
+function getRequestedThemeValue(searchParams?: CaseStudySearchParams): string | null {
+  const value = searchParams?.useCase ?? searchParams?.category;
+  if (Array.isArray(value)) {
+    return value[0] ?? null;
+  }
+
+  return value ?? null;
+}
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams?: Promise<CaseStudySearchParams> | CaseStudySearchParams;
+}): Promise<Metadata> {
+  const resolvedSearchParams = (await searchParams) ?? {};
+  const requestedTheme = getRequestedThemeValue(resolvedSearchParams);
+  const themeCopy = getCaseStudyThemeCopy(requestedTheme);
   const siteUrl = getSiteUrl();
-  const canonicalUrl = `${siteUrl}/case-studies`;
+  const canonicalUrl = requestedTheme
+    ? `${siteUrl}/case-studies?useCase=${encodeURIComponent(requestedTheme)}`
+    : `${siteUrl}/case-studies`;
   const ogImageUrl = `${siteUrl}/images/og/case-study-og.jpg`;
 
-  const description =
-    "Explore Techionik's case studies. See how we help global clients transform their operations with custom software and advanced AI-driven applications.";
-
   return {
-    title: "Case Studies | Techionik - Success Stories in Tech & AI",
-    description,
+    title: themeCopy.metadataTitle,
+    description: themeCopy.metadataDescription,
     robots: {
       index: true,
       follow: true,
     },
     keywords: [
+      requestedTheme ?? "case studies",
       "software case studies",
       "AI implementation stories",
       "tech success stories",
@@ -30,8 +52,8 @@ export async function generateMetadata(): Promise<Metadata> {
       "Techionik case study",
     ],
     openGraph: {
-      title: "Case Studies | Techionik - Success Stories in Tech & AI",
-      description,
+      title: themeCopy.metadataTitle,
+      description: themeCopy.metadataDescription,
       url: canonicalUrl,
       siteName: "Techionik",
       images: [
@@ -47,8 +69,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Techionik Case Studies | Client Success Stories",
-      description,
+      title: themeCopy.metadataTitle,
+      description: themeCopy.metadataDescription,
       images: [ogImageUrl],
     },
     alternates: {
@@ -57,13 +79,41 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const Page = async () => {
+const Page = async ({
+  searchParams,
+}: {
+  searchParams?: Promise<CaseStudySearchParams> | CaseStudySearchParams;
+}) => {
   const caseStudiesCategories = await getCaseStudyCategories();
   const allCaseStudies = await getMainCaseStudyData();
-  const featuredProjects = allCaseStudies
+  const resolvedSearchParams = (await searchParams) ?? {};
+  const requestedTheme = getRequestedThemeValue(resolvedSearchParams);
+  const { initialGroup, initialCategory } = resolveCaseStudyInitialState(
+    resolvedSearchParams,
+    caseStudiesCategories,
+  );
+  const requestedThemeKey = requestedTheme
+    ? normalizeCaseStudyKey(requestedTheme)
+    : "";
+  const themedCaseStudies =
+    requestedThemeKey.length > 0
+      ? allCaseStudies.filter((caseStudy) =>
+          (caseStudy.categories ?? []).some(
+            (category) => normalizeCaseStudyKey(category) === requestedThemeKey,
+          ),
+        )
+      : allCaseStudies;
+  const archiveCaseStudies =
+    themedCaseStudies.length > 0 ? themedCaseStudies : allCaseStudies;
+  const featuredProjects = archiveCaseStudies
     .slice(0, 3)
     .map((cs) => cs.title)
     .join(", ");
+  const themeCopy = getCaseStudyThemeCopy(initialCategory ?? requestedTheme);
+  const siteUrl = getSiteUrl();
+  const canonicalUrl = requestedTheme
+    ? `${siteUrl}/case-studies?useCase=${encodeURIComponent(requestedTheme)}`
+    : `${siteUrl}/case-studies`;
 
   const unifiedCaseStudySchema = {
     "@context": "https://schema.org",
@@ -71,10 +121,9 @@ const Page = async () => {
       {
         "@type": "CollectionPage",
         "@id": "https://www.techionik.com/case-studies#webpage",
-        url: "https://www.techionik.com/case-studies",
-        name: "Case Studies | Techionik - Success Stories in Tech & AI",
-        description:
-          "Explore Techionik's case studies. See how we help global clients transform their operations with custom software and AI.",
+        url: canonicalUrl,
+        name: themeCopy.metadataTitle,
+        description: themeCopy.metadataDescription,
         publisher: {
           "@type": "Organization",
           "@id": "https://www.techionik.com/#organization",
@@ -92,8 +141,8 @@ const Page = async () => {
         mainEntity: {
           "@type": "ItemList",
           name: "Techionik Client Success Stories",
-          numberOfItems: allCaseStudies?.length || 0,
-          itemListElement: (allCaseStudies || []).map((cs, index) => ({
+          numberOfItems: archiveCaseStudies?.length || 0,
+          itemListElement: (archiveCaseStudies || []).map((cs, index) => ({
             "@type": "ListItem",
             position: index + 1,
             item: {
@@ -119,13 +168,17 @@ const Page = async () => {
       />
 
       <div className="case-study-voice-narrative" style={{ display: "none" }}>
-        {`Techionik has a proven track record of digital transformation. 
+        {requestedTheme
+          ? `Techionik's ${requestedTheme} case studies highlight how we turn that use case into measurable business outcomes. Our projects showcase success stories like ${featuredProjects}, and more.`
+          : `Techionik has a proven track record of digital transformation. 
           Our case studies showcase success stories like ${featuredProjects}, and more. 
           We specialize in custom software and advanced AI solutions for global clients.`}
       </div>
       <CaseStudyPage
         allCaseStudies={allCaseStudies}
         caseStudyCategories={caseStudiesCategories}
+        initialGroup={initialGroup}
+        initialCategory={initialCategory}
       />
     </main>
   );

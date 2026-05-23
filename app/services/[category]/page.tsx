@@ -195,19 +195,20 @@ const SingleServicePage = async ({
     : `Techionik provides expert software development services. ${subServicesNarrative}. ${whatWeDoData?.mainDescription || apiData?.shortDescription || ""}`;
 
   const apiCaseStudies = apiData?.caseStudies ?? [];
-  const normalizedCaseStudies: CaseStudyType[] =
-    apiCaseStudies.length > 0
-      ? apiCaseStudies.map((cs, index) => ({
-          id: cs?.id ?? index,
-          brand: "",
-          title: cs?.title ?? "Untitled Case Study",
-          description: cs?.shortDescription ?? "",
-          solution: "",
-          stats: [],
-          imageDesktop: cs?.image ?? "/banners/caseStudy.webp",
-          imageMobile: cs?.image ?? "/banners/caseStudy.webp",
-          href: `/case-studies/${cs?.slug ?? "#"}`,
-        }))
+    const normalizedCaseStudies: CaseStudyType[] =
+      apiCaseStudies.length > 0
+        ? apiCaseStudies.map((cs, index) => ({
+            id: index + 1,
+            brand: "",
+            title: cs?.title ?? "Untitled Case Study",
+            description: cs?.shortDescription ?? "",
+            solution: "",
+            category: cs?.categories?.[0]?.name ?? "",
+            stats: [],
+            imageDesktop: cs?.image ?? "/banners/caseStudy.webp",
+            imageMobile: cs?.image ?? "/banners/caseStudy.webp",
+            href: `/case-studies/${cs?.slug ?? "#"}`,
+          }))
       : await getNormalizedCaseStudies();
 
   const techStackData =
