@@ -3,7 +3,6 @@ import { partners } from "@/data/partners";
 import TeamCard from "@/components/TeamCards";
 import { teamSections } from "@/data/TeamData";
 import TechStack from "@/views/home/TechStacks";
-import { aboutserviceData } from "@/data/services/AboutServicesData";
 
 import TechServices from "@/views/home/TechServices";
 import { AboutUsData } from "@/data/AboutSectionData";
@@ -27,7 +26,6 @@ import { servicesDataAbout } from "@/data/TechServices/AboutTechServices";
 import { industriesDataAbout } from "@/data/Industries Data/IndustriesSectionAbout";
 import { abouttechStackData } from "@/data/TechStack/AboutTeckStack";
 import { outsourcingModelsData } from "@/data/outSourceModel";
-import { getIndustriesComponent } from "../api/Industries/utils/industriesComponent";
 import {
   getParentPage,
   transformParentServices,
@@ -89,7 +87,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
-  const industriesData = await getIndustriesComponent();
+  const industriesData = industriesDataAbout;
   const apiData = await getParentPage();
   const transformedData = transformParentServices(apiData, "about");
 
@@ -287,7 +285,7 @@ export default async function AboutPage() {
       </section>
 
       <section id="outsourcing-models">
-        <OutsourcingModels data={outsourcingModelsData as any} />
+        <OutsourcingModels data={outsourcingModelsData} />
       </section>
 
       <section
