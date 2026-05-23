@@ -51,31 +51,43 @@ export function transformParentServices(
     console.log(`[DEBUG] templateData keys:`, Object.keys(apiResponse.templateData));
   }
 
-  const apiData = apiResponse?.data ?? [];
+  const apiData: ParentType[] = apiResponse?.data ?? [];
 
   const mappedServices = (apiData ?? []).map((item, index) => {
+    const typeSpecificTitle =
+      type === "home"
+        ? item?.templateData?.homepageCardContent?.title
+        : type === "about"
+          ? item?.templateData?.aboutUsContent?.title
+          : type === "parent"
+            ? item?.templateData?.parentServicesContent?.title
+            : item?.title;
+
+    const typeSpecificDescription =
+      type === "home"
+        ? item?.templateData?.homepageCardContent?.description
+        : type === "about"
+          ? item?.templateData?.aboutUsContent?.description
+          : type === "parent"
+            ? item?.templateData?.parentServicesContent?.description
+            : item?.shortDescription || item?.description;
+
     return {
       id: item?.id ?? "",
       icon: item?.imageUrl || "/icons/ai-brain.svg",
-      title:
-        (type === "home" ? item?.templateData?.homepageCardContent?.title :
-         type === "about" ? item?.templateData?.aboutUsContent?.title :
-         type === "parent" ? item?.templateData?.parentServicesContent?.title :
-         type === "industry" ? item?.title :
-         item?.title) ?? " ",
+      title: typeSpecificTitle || item?.title || " ",
       description:
-        (type === "industry" ? (item?.shortDescription || item?.description) :
-         type === "home" ? item?.templateData?.homepageCardContent?.description :
-         type === "about" ? item?.templateData?.aboutUsContent?.description :
-         type === "parent" ? item?.templateData?.parentServicesContent?.description :
-         item?.shortDescription || item?.description) || "",
+        typeSpecificDescription ||
+        item?.shortDescription ||
+        item?.description ||
+        "",
 
       state: index === 0,
 
       lists:
-        item.templateData?.whatWeDo?.items?.map(
-          (i: any) => i?.title ?? ""
-        ) ?? [],
+        (item.templateData?.whatWeDo?.items ?? []).map(
+          (i) => i?.title ?? ""
+        ),
 
       href: `${item?.hasPage ? `/services/${item.slug}` : "#"}`,
     };
