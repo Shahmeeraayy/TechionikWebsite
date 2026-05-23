@@ -111,16 +111,13 @@ export default function IndustryCards() {
             <span className="text-[#f05323]">Industry</span>
           </div>
 
-          <h1
-            className="max-w-[760px] font-semibold leading-[1.05] tracking-[-0.03em] text-[#d9d9d9] text-balance"
-            style={{ fontSize: "clamp(1.9rem, 3.2vw, 3rem)" }}
-          >
+          <h1 className="max-w-[1100px] text-[clamp(1.35rem,1.9vw,2rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-[#d9d9d9]">
             Transforming Industries Through
             <br />
             Innovation and Expertise
           </h1>
 
-          <p className="mt-3 max-w-[760px] text-pretty text-[15px] leading-6 text-white/65 sm:text-base">
+          <p className="mt-4 max-w-[760px] text-pretty text-[15px] leading-6 text-white/65 sm:text-base">
             Delve into our case studies showcasing how precision and cutting-edge
             innovation at TECHIONIK drive transformative outcomes in sectors like
             oil and gas, fintech, healthcare, and more.
@@ -128,7 +125,7 @@ export default function IndustryCards() {
 
           <LoadingLink
             href="/contact-us"
-            className="group mt-4 inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-[#ff6d32] via-[#f05323] to-[#d94717] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_18px_45px_rgba(240,83,35,0.35)] transition-transform hover:-translate-y-0.5"
+            className="group mt-5 inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-[#ff6d32] via-[#f05323] to-[#d94717] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_18px_45px_rgba(240,83,35,0.35)] transition-transform hover:-translate-y-0.5"
           >
             Let&apos;s Discuss Your Idea
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white transition-colors group-hover:bg-white/20">
@@ -138,15 +135,15 @@ export default function IndustryCards() {
         </div>
       </section>
 
-      <section className="relative z-10 mx-auto max-w-[580px] px-4 pb-20 pt-0 sm:px-6 lg:px-0">
-        <div className="grid grid-cols-1 gap-7 sm:grid-cols-2">
+      <section className="relative z-10 mx-auto max-w-[580px] px-4 pb-24 pt-0 sm:px-6 lg:px-0">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {visibleIndustries.map((slide) => (
             <IndustryCard key={slide.link} slide={slide} />
           ))}
         </div>
 
         {EXTRA_INDUSTRIES.length > 0 ? (
-          <div className="mt-12 flex justify-center">
+          <div className="mt-14 flex justify-center">
             <button
               type="button"
               onClick={() => setShowMore((value) => !value)}
