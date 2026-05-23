@@ -57,7 +57,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function IndustryPage() {
   return (
-    <main className="overflow-x-hidden scroll-smooth bg-black">
+    <main className="overflow-x-hidden scroll-smooth">
       <IndustryCards />
     </main>
   );
